@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodDonor</title>
+    <h1 align="center">Blood Bank</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css" >
+   
+</head>
+<body>
+    <div class="container">
+      <div class="col-1">
+        <img src="/resources/blood.png" height="200" width="200"/>
+      </div>
+      <div class="col-2">
+        <div class="ctr-brdr-div" onclick="">
+            <div class="donor-ctr">
+                <div class="check-item">
+                   <span class="donor-title">DONOR</span>
+                   <input type="checkbox" class="donor-check" name="chk" onclick="onlyOne(this)" id="chkd" />
+                </div>
+               </div>
+               <div class="rec-ctr">
+                  <div class="check-item">
+                   <span class="rec-title">RECIEVER</span>
+                   <input type="checkbox" class="rec-check" name="chk" onclick="onlyOne(this)" id="chkr"/>
+                  </div>
+               </div>
+        </div>
+       <div class="submit-btn-container">
+        <div class="submit-button" onclick="submitClick()">
+            SUBMIT
+        </div>
+       </div>
+      </div>
+      <div class="col-3">
+        <img src="/resources/blood.png" height="200" width="200"/>
+      </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

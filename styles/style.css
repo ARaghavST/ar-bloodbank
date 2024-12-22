@@ -1,0 +1,201 @@
+*{
+    font-family: "Oswald", serif;
+    /* outline: 1px solid; */
+}
+
+body{
+    background-color: rgba(255, 70, 70,0.2);   
+}
+
+.container{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.ctr-brdr-div{
+    background-color: #FBD288;
+    box-shadow: 10px 2px 8px grey;
+    border-radius: 20px;
+    padding: 50px 50px;
+}
+
+.donor-ctr .rec-ctr{
+    padding: 10px;
+}
+
+.rec-ctr{
+    margin-top: 50px;
+    background-color: #FA7070;
+    border-radius: 15px;
+    color : white
+}
+
+.donor-ctr{
+    background-color: #FA7070;
+    border-radius: 15px;
+    color : white
+}
+
+.submit-btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button{
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 25px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    color:white;
+    width: 180px;
+    background-color:#FF2929;
+}
+
+.submit-button:hover{
+    background-color: rgba(190, 60, 81);
+    scale: 1.2;
+    transition: 0.2s all;
+    
+}
+
+.check-item{
+
+    width: 180px;
+    display: flex;
+    font-size: 25px;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+
+.rec-title{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+input.rec-check{
+    height: 25px;
+    width: 25px;
+}
+
+input.donor-check{
+    height: 25px;
+    width: 25px;
+}
+
+/*
+---------------------------------------Donor.html
+*/
+
+.donor-container {
+    display: flex;
+    justify-content: center;
+    padding: 15%;
+}
+
+.donor-ctr-center {
+    border-radius: 10px;
+    font-size: 45px;
+    padding: 25px 40px;
+    display: flex;
+    background-color: #FA7070;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.donor-sspan{
+    padding: 10px;
+    color: white;
+}
+
+.donor-cls-btn{
+    padding: 10px;
+    color: purple;
+    cursor: pointer;
+}
+
+
+/*
+----------------------Donor-login page
+*/
+
+.login-form{
+    background-color: white;
+    padding: 15px;
+    font-size: 30px;
+    border-radius: 15px;
+    box-shadow: 5px 2px 4px grey;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 250px;
+    height: 200px;
+}
+
+.login-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.login-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.password-item{
+
+    display: flex;
+    padding: 2px;
+    width: 300px;
+}
+
+input:focus{
+    outline: none;
+}
+
+input {
+    border: none;
+}
+
+.login-item input{
+    width: 300px;
+    box-sizing: border-box;
+    font-size: 25px;
+    border-bottom: 1px solid;
+}
+
+.login-button{
+    display: flex;
+ 
+    justify-content: center;
+}
+
+.login-button div {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #FF2929;
+    opacity: 0.7;
+    transition: 0.2s ease-in;
+}
+
+.login-button div:hover{
+    box-shadow: 5px 2px 4px grey;
+
+}
