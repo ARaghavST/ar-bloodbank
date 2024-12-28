@@ -11,6 +11,51 @@
     <link rel="stylesheet" href="/styles/style.css" >
 </head>
 <body>
-    <div class="sign"></div>
+    <div class="signup-donor-container">
+        <div class="signup-form">
+            <div class="signup-item title-signup">ENTER YOUR DETAILS</div>
+            <div class="signup-item">
+                <span>Name</span>
+                <input type="text" id="signup-name-text" placeholder="Your name"/>
+            </div>
+            <div class="signup-item">
+                <span>Date of Birth</span>
+                <input type="text" id="signup-dob-text" placeholder="DD/MM/YYYY"/>
+            </div>
+            <div class="signup-item">
+                <span>Gender</span>
+                <div class="signup-radiogroup">
+                    <input type="radio" id="male-radio" name="gender" value="Male">Male</input>
+                    <input type="radio" id="female-radio" name="gender" value="Female">Female</input>
+                    <input type="radio" id="others-radio" name="gender" value="Others">Others</input>
+                </div>
+            </div>
+            <div class="signup-item">
+                <span>Mobile No.</span>
+                <!---   On input function (a.k.a event listener) for this text box is in script.js 90   -->
+                <input type="text" id="signup-mobile-text" placeholder="Mobile Number" />
+            </div>
+            <div class="signup-item">
+                <span>Email</span>
+                <input type="text" id="signup-email-text" placeholder="Email"/>
+            </div>
+            <div class="signup-item">
+                <span>Blood Group</span>
+                <select name="bg" id="listbox-bg">
+                    <option value="Select your blood group" disabled selected>Select your blood group</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+            </div>
+            <div class="signup-item submit-btn">
+                <div class="submit-apply-test-button" onclick="onClickAFT()">Apply For Test</div>
+            </div>
+        </div>    
+    </div>
 </body>
+<script src="../script.js"></script>
 </html>

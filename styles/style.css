@@ -199,3 +199,83 @@ input {
     box-shadow: 5px 2px 4px grey;
 
 }
+
+
+/*------------Signup donor page--------------------*/
+
+.signup-donor-container{
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.signup-form{
+    padding: 20px;
+    width: 600px;
+    /* border: 3px solid rgba(0,0,0,0.3); */
+    box-shadow: 3px 2px 10px grey;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.signup-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.signup-item input[type=text] {
+    font-size: 36px;
+    width: 400px;
+}
+
+.signup-radiogroup{
+    display: flex;
+    width: 405px;
+    justify-content: space-between;
+}
+
+#male-radio{
+    scale: 2;
+}
+
+#female-radio{
+    scale: 2;
+}
+
+#others-radio{
+    scale: 2;
+}
+
+#listbox-bg{
+    width: 405px;
+    font-size: 32px;
+}
+
+.submit-btn{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+} 
+
+.submit-apply-test-button {
+    background-color: rgba(255, 70, 70,0.7);
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+    box-shadow: 5px 2px 5px grey;
+    border-radius: 10px;
+}
+
+.submit-apply-test-button:hover {
+    background-color: rgba(255, 70, 70);
+    transition: 0.2s ease-in;
+}
+
+
+.title-signup {
+    display: flex;
+    justify-content: center;
+    border: 2px solid;
+}

@@ -1,3 +1,4 @@
+
 function onlyOne(checkbox) {
 
     var checkboxes = document.getElementsByName(checkbox.name)
@@ -77,5 +78,73 @@ function userLogin(){
         "password":passwordField.value
     }
 
+    // This data will be sent to java backend
+
     
+}
+
+
+// for donor-signup html
+
+const mobileTextBox = document.getElementById("signup-mobile-text")
+
+mobileTextBox.addEventListener('input',function(event){
+
+    const mobileNumber = event.target.value
+
+    if (mobileNumber.length > 10){
+        window.alert('Mobile number cannot exceed 10 digits')
+        mobileTextBox.value=val.substring(0,10)
+    }
+    
+})
+
+
+function onClickAFT(){
+    const name = document.getElementById("signup-name-text").value;
+    const dob = document.getElementById("signup-dob-text").value;
+    const mobile = document.getElementById("signup-mobile-text").value;
+    const email = document.getElementById("signup-email-text").value;
+
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+
+    const listbox = document.getElementById("listbox-bg");
+
+    let bloodGroup;
+
+    var listLength = listbox.options.length
+    for(var i=0;i<listLength;i++){
+       if(listbox.options[i].selected){
+            bloodGroup = listbox.options[i].value;
+       }
+    }   
+
+
+    const dateRegx =  /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!dateRegx.test(dob)){
+        window.alert("Invalid date format given. Input date in DD/MM/YYYY format")
+        document.getElementById("signup-dob-text").value=""; 
+    }
+    
+
+    if (!emailRegex.test(email)){
+        window.alert('Email format invalid');
+        document.getElementById("signup-email-text").value="";
+    }
+
+    const signupData = {
+        "name":name,
+        "dob":dob,
+        "mobile":mobile,
+        "email":email,
+        "gender":gender,
+        "bloodgroup":bloodGroup
+    }
+
+
+
+    // This signupdata will be sent to java backend
+
 }
