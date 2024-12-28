@@ -94,7 +94,7 @@ mobileTextBox.addEventListener('input',function(event){
 
     if (mobileNumber.length > 10){
         window.alert('Mobile number cannot exceed 10 digits')
-        mobileTextBox.value=val.substring(0,10)
+        mobileTextBox.value=mobileNumber.substring(0,10)
     }
     
 })
