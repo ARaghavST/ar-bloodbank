@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BloodDonor</title>
-    <h4>This is receiver</h4>
-</head>
-<body>
+    <h1 align ="center">Blood Bank</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../styles/style.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+</head>
+<body onload="fetchDonors()">
+    <div class="container" >
+        <div class="main-table">
+            <h1>Blood Donors</h1>
+            <div class="table-filters">
+                <input type="text" placeholder="Enter blood amount"/>
+                <i class="fas fa-search"></i>
+            </div>
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <th>S.No</th>
+                    <th>Donor ID</th>
+                    <th>Name Of Donor</th>
+                    <th>Blood Amount (in ml)</th>
+                    <th>Action</th>
+                </thead>
+                <tbody id="donor-table-rec">
+                    <!--
+                    
+                    Data for table will come from script.js
+                    -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </body>
+<script src="../script.js"></script>
 </html>

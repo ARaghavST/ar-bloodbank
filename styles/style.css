@@ -1,13 +1,13 @@
-*{
+* {
     font-family: "Oswald", serif;
     /* outline: 1px solid; */
 }
 
-body{
-    background-color: rgba(255, 70, 70,0.2);   
+body {
+    background-color: rgba(255, 70, 70, 0.2);
 }
 
-.container{
+.container {
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -16,36 +16,36 @@ body{
     padding: 10px;
 }
 
-.ctr-brdr-div{
+.ctr-brdr-div {
     background-color: #FBD288;
     box-shadow: 10px 2px 8px grey;
     border-radius: 20px;
     padding: 50px 50px;
 }
 
-.donor-ctr .rec-ctr{
+.donor-ctr .rec-ctr {
     padding: 10px;
 }
 
-.rec-ctr{
+.rec-ctr {
     margin-top: 50px;
     background-color: #FA7070;
     border-radius: 15px;
-    color : white
+    color: white
 }
 
-.donor-ctr{
+.donor-ctr {
     background-color: #FA7070;
     border-radius: 15px;
-    color : white
+    color: white
 }
 
-.submit-btn-container{
+.submit-btn-container {
     display: flex;
     justify-content: center;
 }
 
-.submit-button{
+.submit-button {
     padding: 10px;
     font-weight: 600;
     cursor: pointer;
@@ -54,19 +54,19 @@ body{
     display: flex;
     justify-content: center;
     border-radius: 15px;
-    color:white;
+    color: white;
     width: 180px;
-    background-color:#FF2929;
+    background-color: #FF2929;
 }
 
-.submit-button:hover{
+.submit-button:hover {
     background-color: rgba(190, 60, 81);
     scale: 1.2;
     transition: 0.2s all;
-    
+
 }
 
-.check-item{
+.check-item {
 
     width: 180px;
     display: flex;
@@ -76,18 +76,18 @@ body{
 }
 
 
-.rec-title{
+.rec-title {
     display: flex;
     align-content: center;
     align-items: center;
 }
 
-input.rec-check{
+input.rec-check {
     height: 25px;
     width: 25px;
 }
 
-input.donor-check{
+input.donor-check {
     height: 25px;
     width: 25px;
 }
@@ -112,12 +112,12 @@ input.donor-check{
     width: 500px;
 }
 
-.donor-sspan{
+.donor-sspan {
     padding: 10px;
     color: white;
 }
 
-.donor-cls-btn{
+.donor-cls-btn {
     padding: 10px;
     color: purple;
     cursor: pointer;
@@ -128,7 +128,7 @@ input.donor-check{
 ----------------------Donor-login page
 */
 
-.login-form{
+.login-form {
     background-color: white;
     padding: 15px;
     font-size: 30px;
@@ -142,25 +142,25 @@ input.donor-check{
     height: 200px;
 }
 
-.login-container{
+.login-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.login-item{
+.login-item {
     display: flex;
     justify-content: space-between;
 }
 
-.password-item{
+.password-item {
 
     display: flex;
     padding: 2px;
     width: 300px;
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
@@ -168,16 +168,16 @@ input {
     border: none;
 }
 
-.login-item input{
+.login-item input {
     width: 300px;
     box-sizing: border-box;
     font-size: 25px;
     border-bottom: 1px solid;
 }
 
-.login-button{
+.login-button {
     display: flex;
- 
+
     justify-content: center;
 }
 
@@ -195,7 +195,7 @@ input {
     transition: 0.2s ease-in;
 }
 
-.login-button div:hover{
+.login-button div:hover {
     box-shadow: 5px 2px 4px grey;
 
 }
@@ -203,14 +203,14 @@ input {
 
 /*------------Signup donor page--------------------*/
 
-.signup-donor-container{
+.signup-donor-container {
     font-size: 36px;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.signup-form{
+.signup-form {
     padding: 20px;
     width: 600px;
     /* border: 3px solid rgba(0,0,0,0.3); */
@@ -219,7 +219,7 @@ input {
     background-color: white;
 }
 
-.signup-item{
+.signup-item {
     display: flex;
     justify-content: space-between;
     padding: 8px;
@@ -230,37 +230,37 @@ input {
     width: 400px;
 }
 
-.signup-radiogroup{
+.signup-radiogroup {
     display: flex;
     width: 405px;
     justify-content: space-between;
 }
 
-#male-radio{
+#male-radio {
     scale: 2;
 }
 
-#female-radio{
+#female-radio {
     scale: 2;
 }
 
-#others-radio{
+#others-radio {
     scale: 2;
 }
 
-#listbox-bg{
+#listbox-bg {
     width: 405px;
     font-size: 32px;
 }
 
-.submit-btn{
+.submit-btn {
     display: flex;
     margin-top: 20px;
     justify-content: center;
-} 
+}
 
 .submit-apply-test-button {
-    background-color: rgba(255, 70, 70,0.7);
+    background-color: rgba(255, 70, 70, 0.7);
     color: white;
     padding: 4px 8px;
     cursor: pointer;
@@ -278,4 +278,45 @@ input {
     display: flex;
     justify-content: center;
     border: 2px solid;
+}
+
+/*-------------------------Receiver.html--------------*/
+.main-table{
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+}
+
+.table-filters {
+    display: flex;
+    justify-content: space-around;
+}
+
+table {
+    margin-top: 20px;
+}
+
+.table-filters input {
+    font-size: 20px;
+}
+
+.table-filters > i {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+tr, td , th{
+    padding: 10px;
+    border: 1px solid rgba(255, 70, 70, 0.8);
+    text-align: center;
+}
+
+.action-button {
+    cursor: pointer;
+}
+
+.action-button > i {
+    color :  red;
 }
