@@ -39,6 +39,44 @@
         </div>
 
     </div>
+    <div class="bg-screen" id="screen-1" >
+        <div class="details-dialog" id="details-dialog-box">
+            <div>
+                <div class="close-button" onclick='removeBlackScreen()'><i class="fas fa-x"></i></div>
+            </div>
+            <h2 align="center" class="light-red-div">Blood Details</h2>
+            <div class="details-content light-red-div">
+                <div class="details-row">
+                    <div><b>Name</b></div>
+                    <div id="donor-name-div"></div>
+                </div>
+                <div class="details-row">
+                    <div><b>Email</b></div>
+                    <div id="donor-email-div"></div>
+                </div>
+                <div class="details-row">
+                    <div><b>Phone No.</b></div>
+                    <div id="donor-phno-div"></div>
+                </div>
+                <div class="details-row">
+                    <div><b>Amount available</b></div>
+                    <div id="donor-amt-div"></div>
+                </div>
+            </div>
+            <div style="margin-top: 25px;">
+                <div class="details-row">
+                    <div><b>Amount Required</b></div>
+                    <input id="blood-amount-input" placeholder="Enter required blood amount"></div>
+                </div>
+                <div class="button-parent">
+                    <div class="blood-button">Get Blood</div>
+                </div>
+            </div>
+        </div>
+
+    </div>    
+    
 </body>
+
 <script src="../script.js"></script>
 </html>

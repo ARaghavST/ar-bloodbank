@@ -1,6 +1,7 @@
 // to select only one checkbox between Donor or Receiver
 function onlyOne(checkbox) {
 
+    // checkboxes is an array of checkbox , we have two checkbox donor-check and reciever-check
     var checkboxes = document.getElementsByName(checkbox.name)
 
     checkboxes.forEach((item) => {
@@ -156,10 +157,28 @@ function onClickAFT() {
 
 
 /** Script for receiver.html page load */
-function getBloodDialog(event){
-    idToFetch = event.id
 
-    console.log(idToFetch)
+/** The HTML code for creation of table is present in script.js line no. 189 - 195 */
+function getBloodDialog(item){
+
+    const blackScreen = document.getElementById("screen-1")
+    const dialogbox = document.getElementById("details-dialog-box")
+
+
+    // we check empty condition , because initally we set the display of "screen-1" (id) as none - IN CSS
+    if (blackScreen.style.display == ""){
+        blackScreen.style.display = "block"
+    }
+
+    const name = document.getElementById("donor-name-div")
+    const phno = document.getElementById("donor-phno-div")
+    const email = document.getElementById("donor-email-div")
+    const amt = document.getElementById("donor-amt-div")
+
+    name.innerHTML = item.name
+    phno.innerHTML = item.name
+    email.innerHTML = item.email
+    amt.innerHTML = item.amount
 }
 
 
@@ -167,10 +186,9 @@ async function fetchDonors(){
 
    const response = await fetch("http://localhost:8080/ar-bloodbank/donor")
     const jsonData = await response.json()
-
    var tableBodyElement = document.getElementById("donor-table-rec")
 
-   for(var i=0 ; i < jsonData["data"].length ; i++){
+   for(var i = 0 ; i < jsonData["data"].length ; i++){
 
         const item = jsonData["data"][i]
 
@@ -184,12 +202,16 @@ async function fetchDonors(){
         <td>${item.donor_id}</td>
         <td>${item.name}</td>
         <td>${item.amount}</td>
-        <td class="action-button" id=${item.donor_id} onclick="getBloodDialog(${item.donor_id})"><i class="fas fa-pencil"></i></td>
+        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
         </tr>
         `
    }
+}
 
+function removeBlackScreen(){
 
+    const screen = document.getElementById("screen-1")
 
- 
+    screen.style.display = ""
+
 }
