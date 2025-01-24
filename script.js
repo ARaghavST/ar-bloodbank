@@ -11,6 +11,9 @@ function onlyOne(checkbox) {
     })
 
 }
+// Admin login page script
+
+
 
 // Submit button at first page
 function submitClick() {
@@ -69,6 +72,9 @@ function showPassword() {
 }
 
 
+
+
+
 // for donor-login.html
 
 
@@ -92,7 +98,7 @@ function userLogin() {
 // Used to show mobile number every time user enters a number, and to check mobile number do not exeeds 10 digits
 const mobileTextBox = document.getElementById("signup-mobile-text")
 
-mobileTextBox.addEventListener('input', function (event) {
+mobileTextBox ? mobileTextBox.addEventListener('input', function (event) {
 
     const mobileNumber = event.target.value
 
@@ -101,7 +107,7 @@ mobileTextBox.addEventListener('input', function (event) {
         mobileTextBox.value = mobileNumber.substring(0, 10)
     }
 
-})
+}) : ''
 
 // AFT stand for "Apply For Test" in Donor--> SingnUp page
 function onClickAFT() {
@@ -187,7 +193,7 @@ async function fetchDonors(){
    const response = await fetch("http://localhost:8080/ar-bloodbank/donor")
     const jsonData = await response.json()
    var tableBodyElement = document.getElementById("donor-table-rec")
-
+    console.log(jsonData)
    for(var i = 0 ; i < jsonData["data"].length ; i++){
 
         const item = jsonData["data"][i]
@@ -214,4 +220,29 @@ function removeBlackScreen(){
 
     screen.style.display = ""
 
+}
+
+
+
+window.onload = function(){
+
+    path = window.location.pathname
+
+    // below code is done to run the fetchDonors function only when we are in receivers page
+
+    // if we are not in receivers page, then run the code of rendering admin icon
+    path === '/pages/receiver.html' ? fetchDonors() : renderAdminIcon()
+
+}
+
+function renderAdminIcon(){
+    const adminIcon = document.getElementsByClassName("admin-button")[0]
+    
+    path = window.location.pathname
+
+    adminIcon.style.display = (path === '/' ? "block": "")
+}
+
+function goToAdminLogin(){
+    window.location.href = "/pages/admin-login.html"
 }

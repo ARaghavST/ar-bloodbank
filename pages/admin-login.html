@@ -25,7 +25,9 @@
     <div class="col-1">
       <img src="/resources/blood.png" height="200" width="200" />
     </div>
-    <div class="login-form col-2">
+    <!---    -->
+    <div class="login-form admin-login-form col-2">
+        <div style="display: flex; justify-content: center; border: 2px solid #FA7070; border-radius: 15px;">Admin Login</div>
       <div class="login-item">
         <span>Email</span>
         <input type="text" placeholder="Enter your email id" id="email" />
@@ -37,7 +39,7 @@
           <span class="password-toggle-icon" onclick="showPassword()"><i class="fas fa-eye"></i></span>
         </span>
       </div>
-      <div class="login-button">
+      <div class="login-button" style="margin-top: 8px;">
         <div onclick="userLogin()"><i class="fas fa-lock"></i>Login</div>
       </div>
     </div>
