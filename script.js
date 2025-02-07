@@ -239,10 +239,54 @@ function renderAdminIcon(){
     const adminIcon = document.getElementsByClassName("admin-button")[0]
     
     path = window.location.pathname
-
-    adminIcon.style.display = (path === '/' ? "block": "")
+    adminIcon.style.display = (path === '/' || path === '/index.html' ? "block" : "")
 }
 
 function goToAdminLogin(){
     window.location.href = "/pages/admin-login.html"
+}
+
+
+/**
+ * Admin login page 
+ * 
+ */
+
+async function adminLogin(){
+    const emailText = document.getElementById("admin-email")
+    const passwordText = document.getElementById("admin-password")
+
+    const loginData = {
+        "email":emailText.value,
+        "password":passwordText.value
+    }
+
+   const response = await fetch("http://localhost:8080/ar-bloodbank/admin",{
+        method:'POST',
+        body:JSON.stringify(loginData)
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+
+
+
+}
+
+function showAdminPassword() {
+    const passwordField = document.getElementById("admin-password");
+    const togglePassword = document.querySelector(".password-toggle-icon i");
+    // "fa-eye" And "fa-eye-slash" icon name or class beside Password text box in Donor-->Login page
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+    }
+    else {
+        passwordField.type = "password";
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
+    }
+
 }

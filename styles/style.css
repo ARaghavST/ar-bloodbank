@@ -239,7 +239,7 @@ input {
 /*------------Signup donor page--------------------*/
 
 .signup-donor-container {
-    font-size: 36px;
+    font-size: 24px;
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -261,7 +261,7 @@ input {
 }
 
 .signup-item input[type=text] {
-    font-size: 36px;
+    font-size: 28px;
     width: 400px;
 }
 
@@ -285,7 +285,7 @@ input {
 
 #listbox-bg {
     width: 405px;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .submit-btn {
