@@ -193,7 +193,6 @@ async function fetchDonors(){
    const response = await fetch("http://localhost:8080/ar-bloodbank/donor")
     const jsonData = await response.json()
    var tableBodyElement = document.getElementById("donor-table-rec")
-    console.log(jsonData)
    for(var i = 0 ; i < jsonData["data"].length ; i++){
 
         const item = jsonData["data"][i]
@@ -233,6 +232,10 @@ window.onload = function(){
     // if we are not in receivers page, then run the code of rendering admin icon
     path === '/pages/receiver.html' ? fetchDonors() : renderAdminIcon()
 
+    
+    // if we are in admin-login page, then run the code of checking admin data from localstorage in browser, to retain logged in admin
+    path === '/pages/admin-login.html' ? checkAdminLogin() : ""
+
 }
 
 function renderAdminIcon(){
@@ -268,9 +271,19 @@ async function adminLogin(){
 
     const data = await response.json()
 
-    console.log(data)
+    const adminLoginForm = document.getElementById("admin-login-form")
+    const adminUsersDiv = document.getElementById("admin-list-users")
+    
+    if (data['data']){
 
+        localStorage.setItem("admin",JSON.stringify(data['data']))
 
+        adminLoginForm.style.display="none" 
+        adminUsersDiv.style.display="block"
+    }else{
+        // notification popup
+        console.log(data['message'])
+    }
 
 }
 
@@ -289,4 +302,51 @@ function showAdminPassword() {
         togglePassword.classList.add("fa-eye");
     }
 
+}
+
+function checkAdminLogin(){
+
+    var data = localStorage.getItem("admin")
+    const adminLoginForm = document.getElementById("admin-login-form")
+    const adminUsersDiv = document.getElementById("admin-list-users")
+    
+    if (data){
+        adminLoginForm.style.display="none"
+        adminUsersDiv.style.display="block"
+
+        fetchStatusZeroUsers()
+
+    }else{
+        
+    }
+
+}
+
+async function fetchStatusZeroUsers(){
+    const response = await fetch('http://localhost:8080/ar-bloodbank/admin')
+
+    const users = await response.json()
+    console.log(users)
+
+    const tableBodyElement = document.getElementById("status-zero-users-table")
+
+    for(var i = 0 ; i < users['data'].length ; i++){
+
+        const item = users['data'][i]
+
+        tableBodyElement.innerHTML += 
+        // vvvvvvvvvvvvvv important
+            //       `          is a tilde operator/symbol
+
+        `
+        <tr>
+        <td>${i+1}</td>
+        <td>${item.name}</td>
+        <td>${item.dob}</td>
+        <td>${item.gender}</td>
+        <td>${item.mobile}</td>
+        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
+        </tr>
+        `
+   }
 }

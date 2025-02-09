@@ -439,3 +439,10 @@ tr, td , th{
     padding: 3px;
     background-color:#FA7070; 
 }
+
+
+.admin-list{
+    display: none;
+}
+
+
