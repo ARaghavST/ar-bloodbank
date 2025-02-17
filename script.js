@@ -1,3 +1,6 @@
+const BLOODBANK_BACKEND_URL="https://ar-bloodbank-backend.onrender.com/bloodbank"
+
+
 // to select only one checkbox between Donor or Receiver
 function onlyOne(checkbox) {
 
@@ -190,7 +193,7 @@ function getBloodDialog(item){
 
 async function fetchDonors(){
 
-   const response = await fetch("http://localhost:8080/ar-bloodbank/donor")
+   const response = await fetch(`${BLOODBANK_BACKEND_URL}/donor`)
     const jsonData = await response.json()
    var tableBodyElement = document.getElementById("donor-table-rec")
    for(var i = 0 ; i < jsonData["data"].length ; i++){
@@ -264,7 +267,7 @@ async function adminLogin(){
         "password":passwordText.value
     }
 
-   const response = await fetch("http://localhost:8080/ar-bloodbank/admin",{
+   const response = await fetch(`${BLOODBANK_BACKEND_URL}/admin`,{
         method:'POST',
         body:JSON.stringify(loginData)
     })
@@ -325,7 +328,7 @@ function checkAdminLogin(){
 }
 
 async function fetchStatusZeroUsers(){
-    const response = await fetch('http://localhost:8080/ar-bloodbank/admin')
+    const response = await fetch(`${BLOODBANK_BACKEND_URL}/admin`)
 
     const users = await response.json()
     // console.log(users)
@@ -410,7 +413,7 @@ async function adminSubmitDonor(sno){
     
 
     // we will send this to api
-    const response = await fetch("http://localhost:8080/ar-bloodbank/admin",{
+    const response = await fetch(`${BLOODBANK_BACKEND_URL}/admin`,{
         method: 'PUT',
         headers:{
             'Content-type': 'application/json'
