@@ -1,4 +1,4 @@
-const BLOODBANK_BACKEND_URL="https://ar-bloodbank-backend.onrender.com/bloodbank"
+const BLOODBANK_BACKEND_URL="https://ar-bloodbank-backend.onrender.com/bloodbank-1.0"
 
 
 // to select only one checkbox between Donor or Receiver
@@ -185,7 +185,7 @@ function getBloodDialog(item){
     const amt = document.getElementById("donor-amt-div")
 
     name.innerHTML = item.name
-    phno.innerHTML = item.name
+    phno.innerHTML = item.phno
     email.innerHTML = item.email
     amt.innerHTML = item.amount
 }
