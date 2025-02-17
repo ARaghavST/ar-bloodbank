@@ -66,6 +66,7 @@
             -->
         </tbody>
     </table>
+   
     </div>
     </div>
     <div class="col-3">
@@ -74,6 +75,43 @@
   </div>
   
   </div>
+  <div class="bg-screen" id="screen-1" >
+    <div class="details-dialog" id="details-dialog-box">
+        <div>
+            <div class="close-button" onclick='removeBlackScreen()'><i class="fas fa-x"></i></div>
+        </div>
+        <h2 align="center" class="light-red-div">Donor Details</h2>
+        <div class="details-content light-red-div">
+            <div class="details-row">
+                <div><b>Name</b></div>
+                <div id="admin-donor-name-div"></div>
+            </div>
+            <div class="details-row">
+                <div><b>Blood Amount (ml)</b></div>
+                <input id="admin-blood-amount-input" placeholder="Enter required blood amount">
+            </div>
+            <div class="details-row">
+              <div><b>Blood Group</b></div>
+              <select name="bg" id="admin-listbox-bg">
+                <option value="Select your blood group" disabled selected>Select your blood group</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+          </div>
+        </div>
+        <div style="margin-top: 25px;">
+        
+            <div class="admin-button-parent">
+              <!-- We can implement sno parameter usage to submit button by setting data in this div also <div class="div-hidden" id=""></div> -->  
+                <div class="admin-submit-donor-button" id="admin-submit">Submit</div>
+                <div class="admin-reject-donor-button" id="admin-reject">Reject</div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="../script.js"></script>
 

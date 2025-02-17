@@ -287,6 +287,8 @@ async function adminLogin(){
 
 }
 
+/** Script for admin-login page */
+
 function showAdminPassword() {
     const passwordField = document.getElementById("admin-password");
     const togglePassword = document.querySelector(".password-toggle-icon i");
@@ -326,7 +328,7 @@ async function fetchStatusZeroUsers(){
     const response = await fetch('http://localhost:8080/ar-bloodbank/admin')
 
     const users = await response.json()
-    console.log(users)
+    // console.log(users)
 
     const tableBodyElement = document.getElementById("status-zero-users-table")
 
@@ -345,8 +347,89 @@ async function fetchStatusZeroUsers(){
         <td>${item.dob}</td>
         <td>${item.gender}</td>
         <td>${item.mobile}</td>
-        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
+        <td class="action-button" id=${i+1} onclick='adminShowRegUserDialogBox(${JSON.stringify(item)})'><i class="fas fa-vial-circle-check"></i></td>
         </tr>
         `
    }
+}
+
+function adminShowRegUserDialogBox(item){
+    const blackScreen = document.getElementById("screen-1")
+    const dialogbox = document.getElementById("details-dialog-box")
+
+    const nameDiv = document.getElementById("admin-donor-name-div")
+
+
+    // we check empty condition , because initally we set the display of "screen-1" (id) as none - IN CSS
+    if (blackScreen.style.display == ""){
+        blackScreen.style.display = "block"
+    }
+
+
+    const adminSubmitDonorButton = document.getElementById("admin-submit")
+    // we have added one click listener to submit donor button in admin page
+    // we have done this because, we need sno field of donor everytime we click on submit button , to send update row in table with that sno field
+    adminSubmitDonorButton.addEventListener("click",()=>{
+        adminSubmitDonor(item.sno)
+    },{once:true})
+
+
+    const adminRejectDonorButton = document.getElementById("admin-reject")
+
+    adminRejectDonorButton.addEventListener("click",()=>{
+        adminRejectDonor(item.sno)
+    },{ once: true })
+
+
+
+    nameDiv.innerHTML = item.name
+
+}   
+
+
+async function adminSubmitDonor(sno){
+    
+    const bloodText = document.getElementById("admin-blood-amount-input")
+    const listbox = document.getElementById("admin-listbox-bg")
+    let bloodGroup;
+
+    var listLength = listbox.options.length
+    for (var i = 0; i < listLength; i++) {
+        if (listbox.options[i].selected) {
+            bloodGroup = listbox.options[i].value;
+        }
+    }
+
+    const submitData = {
+        "amount":parseFloat(bloodText.value),
+        "blood_group":bloodGroup,
+        "sno":parseInt(sno)
+    }
+
+    // console.log("For id ",id)
+    
+
+    // we will send this to api
+    const response = await fetch("http://localhost:8080/ar-bloodbank/admin",{
+        method: 'PUT',
+        headers:{
+            'Content-type': 'application/json'
+       },
+        body:JSON.stringify(submitData),
+      
+    })
+
+    const res = await response.json();
+
+    console.log(res);
+
+}
+
+
+function adminRejectDonor(sno){
+    const toDeleteDonor = {
+        "sno":sno
+    }
+
+    console.log(toDeleteDonor)
 }
