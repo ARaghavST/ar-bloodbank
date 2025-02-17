@@ -187,7 +187,7 @@ function getBloodDialog(item){
     name.innerHTML = item.name
     phno.innerHTML = item.phno
     email.innerHTML = item.email
-    amt.innerHTML = item.amount
+    amt.innerHTML = item.amount+" mL"
 }
 
 
@@ -210,7 +210,7 @@ async function fetchDonors(){
         <td>${item.donor_id}</td>
         <td>${item.name}</td>
         <td>${item.amount}</td>
-        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
+        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-vial-circle-check"></i></td>
         </tr>
         `
    }
@@ -350,7 +350,7 @@ async function fetchStatusZeroUsers(){
         <td>${item.dob}</td>
         <td>${item.gender}</td>
         <td>${item.mobile}</td>
-        <td class="action-button" id=${i+1} onclick='adminShowRegUserDialogBox(${JSON.stringify(item)})'><i class="fas fa-vial-circle-check"></i></td>
+        <td class="action-button" id=${i+1} onclick='adminShowRegUserDialogBox(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
         </tr>
         `
    }

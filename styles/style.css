@@ -39,9 +39,7 @@ body {
 .container {
     display: flex;
     padding: 25px;
-    margin: 0 auto;
-    align-content: center;
-    flex-direction: row;
+    height: 85vh;
     align-items: center;
     justify-content: space-around;
 }
@@ -91,7 +89,7 @@ body {
 
 .submit-button:hover {
     background-color: rgba(190, 60, 81);
-    scale: 1.2;
+    scale: 1.1;
     transition: 0.2s all;
 
 }
