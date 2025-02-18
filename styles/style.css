@@ -39,7 +39,7 @@ body {
 .container {
     display: flex;
     padding: 25px;
-    height: 85vh;
+    /* height: 85vh; */
     align-items: center;
     justify-content: space-around;
 }

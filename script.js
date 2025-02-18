@@ -206,9 +206,9 @@ async function fetchDonors(){
 
         `
         <tr>
-        <td>${i+1}</td>
         <td>${item.donor_id}</td>
         <td>${item.name}</td>
+        <td>${item.blood_group}</td>
         <td>${item.amount}</td>
         <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-vial-circle-check"></i></td>
         </tr>
