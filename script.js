@@ -168,52 +168,11 @@ function onClickAFT() {
 /** Script for receiver.html page load */
 
 /** The HTML code for creation of table is present in script.js line no. 189 - 195 */
-function getBloodDialog(item){
-
-    const blackScreen = document.getElementById("screen-1")
-    const dialogbox = document.getElementById("details-dialog-box")
-
-
-    // we check empty condition , because initally we set the display of "screen-1" (id) as none - IN CSS
-    if (blackScreen.style.display == ""){
-        blackScreen.style.display = "block"
-    }
-
-    const name = document.getElementById("donor-name-div")
-    const phno = document.getElementById("donor-phno-div")
-    const email = document.getElementById("donor-email-div")
-    const amt = document.getElementById("donor-amt-div")
-
-    name.innerHTML = item.name
-    phno.innerHTML = item.phno
-    email.innerHTML = item.email
-    amt.innerHTML = item.amount+" mL"
-}
 
 
 async function fetchDonors(){
 
-   const response = await fetch(`${BLOODBANK_BACKEND_URL}/donor`)
-    const jsonData = await response.json()
-   var tableBodyElement = document.getElementById("donor-table-rec")
-   for(var i = 0 ; i < jsonData["data"].length ; i++){
-
-        const item = jsonData["data"][i]
-
-        tableBodyElement.innerHTML += 
-        // vvvvvvvvvvvvvv important
-            //       `          is a tilde operator/symbol
-
-        `
-        <tr>
-        <td>${item.donor_id}</td>
-        <td>${item.name}</td>
-        <td>${item.blood_group}</td>
-        <td>${item.amount}</td>
-        <td class="action-button" id=${item.donor_id} onclick='getBloodDialog(${JSON.stringify(item)})'><i class="fas fa-vial-circle-check"></i></td>
-        </tr>
-        `
-   }
+   
 }
 
 function removeBlackScreen(){
@@ -250,6 +209,23 @@ function renderAdminIcon(){
 
 function goToAdminLogin(){
     window.location.href = "/pages/admin-login.html"
+}
+
+
+function perform(slider,limit){
+
+    
+    let value = slider.value;
+    
+    if (value > limit) {
+        value = limit 
+        slider.value = limit
+    }
+
+    console.log(slider.value)
+
+    // slider.style.background = `linear-gradient(to right, red 0%, red ${value}%, #ddd ${value}%, #ddd 100%)`;
+
 }
 
 

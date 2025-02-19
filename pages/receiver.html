@@ -18,67 +18,19 @@
     <div class="admin-button"> <i class="fas fa-headset"></i></div>
   </div>
 <body >
-    <div class="container" >
-        <div class="main-table">
-            <h1>Blood Donors</h1>
-            <div class="table-filters">
-                <input type="text" placeholder="Enter blood amount"/>
-                <i class="fas fa-search"></i>
-            </div>
-            <table cellspacing="0" cellpadding="0">
-                <thead>
-                    <th>Donor ID</th>
-                    <th>Name Of Donor</th>
-                    <th>Blood Group</th>
-                    <th>Blood Amount (in mL)</th>
-                    <th>Action</th>
-                </thead>
-                <tbody id="donor-table-rec">
-                    <!--
-                    
-                    Data for table will come from script.js
-                    -->
-                </tbody>
-            </table>
+    <div class="receiver-parent-1">
+        <h3>Select Blood Type</h3>
+        <div>
+            <input type="range" min="0" max="100" value="50" class="slider" id="myRange" oninput="perform(this,50)"/>
+            <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
         </div>
-
-    </div>
-    <div class="bg-screen" id="screen-1" >
-        <div class="details-dialog" id="details-dialog-box">
-            <div>
-                <div class="close-button" onclick='removeBlackScreen()'><i class="fas fa-x"></i></div>
-            </div>
-            <h2 align="center" class="light-red-div">Blood Details</h2>
-            <div class="details-content light-red-div">
-                <div class="details-row">
-                    <div><b>Name</b></div>
-                    <div id="donor-name-div"></div>
-                </div>
-                <div class="details-row">
-                    <div><b>Email</b></div>
-                    <div id="donor-email-div"></div>
-                </div>
-                <div class="details-row">
-                    <div><b>Phone No.</b></div>
-                    <div id="donor-phno-div"></div>
-                </div>
-                <div class="details-row">
-                    <div><b>Amount available</b></div>
-                    <div id="donor-amt-div"></div>
-                </div>
-            </div>
-            <div style="margin-top: 25px;">
-                <div class="details-row">
-                    <div><b>Amount Required</b></div>
-                    <input id="blood-amount-input" placeholder="Enter required blood amount"></div>
-                </div>
-                <div class="button-parent">
-                    <div class="blood-button">Get Blood</div>
-                </div>
-            </div>
-        </div>
-
-    </div>    
+    </div> 
     
 </body>
 
