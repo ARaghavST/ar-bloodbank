@@ -5,31 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BloodDonor</title>
 
+
+    <link rel="stylesheet" href="../styles/style.css" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../styles/style.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 </head>
-<div class="navigation-bar">
-    <h1 align="center">Blood Bank</h1>
-    <div class="admin-button"> <i class="fas fa-headset"></i></div>
-  </div>
+
 <body >
+    <div class="navigation-bar">
+        <h1 align="center">Blood Bank</h1>
+        <div class="admin-button"> <i class="fas fa-headset"></i></div>
+      </div>
     <div class="receiver-parent-1">
-        <h3>Select Blood Type</h3>
-        <div>
-            <input type="range" min="0" max="100" value="50" class="slider" id="myRange" oninput="perform(this,50)"/>
-            <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
+       
+        <div class="receiver-parent-2">
+         <h2>Need Blood? We've Got You Covered</h2>
+         <p>Browse our inventory and request the blood type you need.</p>
+         
+         <div class="receiver-parent-3">
+            <h3>Choose a blood group</h3>
+            <div class="receiver-child-1">
+                <div>A+</div>
+                <div>AB+</div>
+                <div>B+</div>
+                <div>B-</div>
+                <div>O+</div>
+                <div>O-</div>
+                <div>AB-</div>
+                <div>A-</div>
+             </div>
+             <div class="receiver-child-2">
+                <div class="test-tube-container">
+                    <div class="test-tube">
+                        <div class="blood"></div>
+                        <div class="shine"></div>
+                        <div class="scale">
+                            <div class="scale-mark" style="bottom: 100%;">1000</div>
+                            <div class="scale-mark" style="bottom: 90%;">900</div>
+                            <div class="scale-mark" style="bottom: 80%;">800</div>
+                            <div class="scale-mark" style="bottom: 70%;">700</div>
+                            <div class="scale-mark" style="bottom: 60%;">600</div>
+                            <div class="scale-mark" style="bottom: 50%;">500</div>
+                            <div class="scale-mark" style="bottom: 40%;">400</div>
+                            <div class="scale-mark" style="bottom: 30%;">300</div>
+                            <div class="scale-mark" style="bottom: 20%;">200</div>
+                            <div class="scale-mark" style="bottom: 10%;">100</div>  
+                        </div>
+                    </div>
+                </div>
+                <input type="range" id="bloodSlider" min="0" max="500" step="50" value="250"/>
+             </div>
+         </div>
         </div>
+      
     </div> 
     
 </body>
