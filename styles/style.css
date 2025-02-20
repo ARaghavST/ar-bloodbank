@@ -409,10 +409,12 @@ input {
 
 .blood {
     position: absolute; /* gyaan na baate */
-    bottom: 0;
+    bottom: 0;  
     width: 100%;
-    /* height: 10%; Adjust this for different blood levels */
+    height: 50%;
     background: linear-gradient(180deg, #FF0000, #8B0000);
+    opacity: 0.6;
+    /* background: linear-gradient(30deg, #f11313, #e46a3e ); */
     border-radius: 0 0 30px 30px;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
     animation: fillBlood 2s ease-in-out forwards;
@@ -427,6 +429,19 @@ input {
         height: 40%;
     }
 }
+
+.receive-blood {
+    position: absolute; /* gyaan na baate */
+    bottom: 0;  
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(180deg, #FF0000, #8B0000);
+    opacity: 1;
+    border-radius: 0 0 30px 30px;
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: height 0.9s ease-in-out ;
+}
+
 
 .shine {
     position: absolute;
@@ -463,23 +478,12 @@ input {
 /* End of test tube blood css*/
 
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 300px;
-}
-
-h2 {
-    margin-bottom: 10px;
-}
 
 .slider-container {
     display: flex;
+    padding: 5px;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 input[type="range"] {
@@ -488,7 +492,7 @@ input[type="range"] {
 }
 
 .input-box {
-    width: 70px;
+    width: 50px;
     padding: 5px;
     text-align: center;
     border: 1px solid #ccc;
@@ -501,11 +505,6 @@ input[type="range"] {
     font-weight: bold;
 }
 
-
-
-#bloodSlider {
-    
-}
 
 /* -------------- Receiver.html end -----------------------*/
 

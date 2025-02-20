@@ -44,6 +44,7 @@
                 <div class="test-tube-container-2-1">
                     <div class="test-tube-2-1-1">
                         <div class="blood"></div>
+                        <div class="receive-blood"></div>
                         <div class="shine"></div>
                         <div class="scale">
                             <div class="scale-mark" style="bottom: 100%;">1000</div>
@@ -62,11 +63,10 @@
                 <div class="receiver-child-2-1">
                     <h2>Select Blood Amount</h2>
                     <p>Adjust the slider or enter a value manually.</p>
-                
                     <div class="slider-container">
-                        <input type="range" id="bloodSlider" min="100" max="1000" step="50" value="500">
-                        <input type="text" id="bloodInput" class="input-box" min="100" max="1000" step="50" value="500">
-                        <span class="unit">ml</span>
+                        <input type="range" id="bloodSlider" min="0" max="1000" step="10" value="200" oninput="processBloodSlider(this,400)">
+                        <input type="text" id="bloodInput" class="input-box" value="200" oninput="processBloodInputText(this,400)">
+                        <span class="unit">mL</span>
                     </div>
                 </div>
              </div>

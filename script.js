@@ -170,11 +170,6 @@ function onClickAFT() {
 /** The HTML code for creation of table is present in script.js line no. 189 - 195 */
 
 
-async function fetchDonors(){
-
-   
-}
-
 function removeBlackScreen(){
 
     const screen = document.getElementById("screen-1")
@@ -212,22 +207,50 @@ function goToAdminLogin(){
 }
 
 
-function perform(slider,limit){
+/**
+ * 
+ * receiver page
+ * 
+ */
 
-    
-    let value = slider.value;
-    
-    if (value > limit) {
-        value = limit 
-        slider.value = limit
+function processBloodSlider(slider,maxValue){
+    const bloodTextBox = document.getElementById("bloodInput")
+
+    const receiveBloodFill = document.getElementsByClassName("receive-blood")
+
+    if (slider.value > maxValue) {
+        slider.value = maxValue
     }
 
-    console.log(slider.value)
+    var fillHeight = (slider.value/1000)*100;
 
-    // slider.style.background = `linear-gradient(to right, red 0%, red ${value}%, #ddd ${value}%, #ddd 100%)`;
-
+    receiveBloodFill[0].style.height = `${fillHeight}%`
+    
+    bloodTextBox.value = slider.value
 }
 
+
+function processBloodInputText(textbox,maxValue){
+
+    const slider = document.getElementById("bloodSlider")
+    const receiveBloodFill = document.getElementsByClassName("receive-blood")
+
+    if (textbox.value > maxValue){
+        textbox.value = maxValue
+    }
+
+    var fillHeight = (textbox.value/1000)*100;
+
+    receiveBloodFill[0].style.height = `${fillHeight}%`
+
+    slider.value = textbox.value
+}
+
+
+/**
+ * receiver page end
+ * 
+ */
 
 /**
  * Admin login page 
