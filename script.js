@@ -215,15 +215,17 @@ function goToAdminLogin(){
 
 function processBloodSlider(slider,maxValue){
     const bloodTextBox = document.getElementById("bloodInput")
-
     const receiveBloodFill = document.getElementsByClassName("receive-blood")
 
+    // line 221 -> line 223 , means we are restricting slider not to go more than max value
     if (slider.value > maxValue) {
         slider.value = maxValue
     }
 
-    var fillHeight = (slider.value/1000)*100;
+    var fillHeight = (slider.value / 1000)*  100;
 
+
+    //  receiveBloodFill[0] denotes the element , because receiveBloodFill in array of elements
     receiveBloodFill[0].style.height = `${fillHeight}%`
     
     bloodTextBox.value = slider.value
