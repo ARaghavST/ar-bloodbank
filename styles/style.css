@@ -30,12 +30,12 @@ h2,h3,h4 {
     align-items: center;
     justify-content: space-evenly;
     box-shadow: 2px 3px 4px rgba(0,0,0,0.5);;
-    background-color: #FA7070;
+    background-color: #e73838;
 }
 
 .navigation-bar > h1 {
     color: white;
-    text-shadow: 3px 4px  #ff0000;
+    text-shadow: 3px 4px 5px rgba(0,0,0,0.6);
 }
 
 body {
@@ -349,6 +349,10 @@ input {
 }
 
 .receiver-parent-3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
     padding: 2px;
 }
 
@@ -378,36 +382,65 @@ input {
     background: linear-gradient(180deg, #FF4747, #8B0000);
 }
 
-.receiver-child-2{
-    padding: 12px;
-    display: flex;
-    justify-content: space-evenly;
-
-}
 
 /**    Test tube blood implementation ***/
 
 .test-tube-container-2-1 {
-    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 300px;
     padding: 15px;
 }
 
 .max-line{
-    position: absolute;
-    left: -55px;
-    bottom: 0;
-    background: black;
+    position: relative;
+    border-top: 2px solid #d31414;
     width: 70px;
-    outline: 1px solid #B20000;
-    font-weight: 800;
-    color: #FF3C3C;
+    font-weight: 500;
     font-size: 10px;
+    /* transition: bottom 0.7s ease-in-out; */
     height: 0;
+    /* bottom: calc(-300px * 0.6); */
+    animation: moveMaxLine 2.5s ease-in-out forwards;
 }
+
+@keyframes moveMaxLine {
+    from{
+        bottom: 0;
+    }
+    to {
+        bottom: calc(-300px * 0.6); ;
+    }
+}
+
+
+/****** Request blood carousel implementation *****/
+
+.receiver-child-2{
+    /* border: 1px solid red; */
+    padding: 10px;
+    display: flex;
+    width: 600px;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    /* border: 2px solid brown; */
+    transform: translateX(-620px);
+    gap: 10px;
+}
+
+.receiver-child-2-card{
+    /* border: 1px solid violet; */
+    display: flex;
+    width: 600px;
+    justify-content: space-evenly;
+}
+
+
+/****** Carousel implementation end ******/
+
 
 .test-tube-2-1-1 {
     width: 60px;
@@ -492,6 +525,12 @@ input {
 }
 /* End of test tube blood css*/
 
+.receiver-child-2-1-1{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    justify-content: space-evenly;
+}
 
 
 .slider-container {
@@ -519,6 +558,102 @@ input[type="range"] {
     font-size: 16px;
     font-weight: bold;
 }
+
+.receiver-buttons-container {
+    display: flex;
+    font-size: 12px;
+    font-family: "Poppins", serif;
+    padding: 15px;
+    align-items: center;
+    gap:10px;
+}
+
+.receiver-buttons-container div {
+    text-align: center;
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    cursor: pointer;
+    gap: 20px;
+    width: 100%;
+}
+
+.receiver-buttons-container div > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.receiver-button-refresh {
+    border: 2px solid #fb1212;
+    color: #b90606;
+}
+
+.receiver-button-request {
+    background: linear-gradient(180deg, #da5454, #fb1212);
+    color: white;
+}
+
+/***** receiver blood request form start **/
+
+.receiver-child-2-card-1 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    gap:10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.receiver-form-description {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.receiver-form-gui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    height: 100%;
+    border-left: 2px solid #B20000;
+}
+
+.receiver-form-control{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.receiver-form-control input {
+    font-size: 16px;
+    padding: 6px;
+    width: 300px;
+    border: 1px solid #ccc;
+}
+
+.receiver-form-button-control{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.receiver-form-button-control div {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background: linear-gradient(180deg, #da5454, #fb1212);;;
+}
+
+/***** receiver blood request form end **/
+
+
 
 
 /* -------------- Receiver.html end -----------------------*/

@@ -29,7 +29,7 @@
          <p>Browse our inventory and request the blood type you need.</p>
          
          <div class="receiver-parent-3">
-            <h3>Choose a blood group</h3>
+            <h3>Choose required blood group</h3>
             <div class="receiver-child-1">
                 <div>A+</div>
                 <div>AB+</div>
@@ -41,33 +41,76 @@
                 <div>A-</div>
              </div>
              <div class="receiver-child-2">
-                <div class="test-tube-container-2-1">
-                    <div class="max-line">Max amount</div>
-                    <div class="test-tube-2-1-1">
-                        <div class="blood"></div>
-                        <div class="receive-blood"></div>
-                        <div class="shine"></div>
-                        <div class="scale">
-                            <div class="scale-mark" style="bottom: 100%;">1000</div>
-                            <div class="scale-mark" style="bottom: 90%;">900</div>
-                            <div class="scale-mark" style="bottom: 80%;">800</div>
-                            <div class="scale-mark" style="bottom: 70%;">700</div>
-                            <div class="scale-mark" style="bottom: 60%;">600</div>
-                            <div class="scale-mark" style="bottom: 50%;">500</div>
-                            <div class="scale-mark" style="bottom: 40%;">400</div>
-                            <div class="scale-mark" style="bottom: 30%;">300</div>
-                            <div class="scale-mark" style="bottom: 20%;">200</div>
-                            <div class="scale-mark" style="bottom: 10%;">100</div>  
+                <div class="carousel">
+                    <div class="receiver-child-2-card">
+                        <div class="test-tube-container-2-1">
+                            <div class="max-line">Available amount</div> 
+                            <div class="test-tube-2-1-1">
+                                <div class="blood"></div>
+                                <div class="receive-blood"></div>
+                                <div class="shine"></div>
+                                <div class="scale">
+                                    <div class="scale-mark" style="bottom: 100%;">1000</div>
+                                    <div class="scale-mark" style="bottom: 90%;">900</div>
+                                    <div class="scale-mark" style="bottom: 80%;">800</div>
+                                    <div class="scale-mark" style="bottom: 70%;">700</div>
+                                    <div class="scale-mark" style="bottom: 60%;">600</div>
+                                    <div class="scale-mark" style="bottom: 50%;">500</div>
+                                    <div class="scale-mark" style="bottom: 40%;">400</div>
+                                    <div class="scale-mark" style="bottom: 30%;">300</div>
+                                    <div class="scale-mark" style="bottom: 20%;">200</div>
+                                    <div class="scale-mark" style="bottom: 10%;">100</div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="receiver-child-2-1-1">
+                           <div> 
+                            <h2>Select Blood Amount</h2>
+                            <p>Adjust the slider or enter a value manually.</p>
+                        </div>
+                            <div class="slider-container">
+                                <input type="range" id="bloodSlider" min="0" max="1000" step="10" value="200" oninput="processBloodSlider(this,400)">
+                                <input type="text" id="bloodInput" class="input-box" value="200" oninput="processBloodInputText(this,400)">
+                                <span class="unit">mL</span>
+                            </div>
+                            <div class="receiver-buttons-container">
+                                <div class="receiver-button-refresh" onclick=""><i class="fas fa-rotate"></i> Refresh Stock</div>
+                                <div class="receiver-button-request" onclick=""><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
+                               
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="receiver-child-2-1">
-                    <h2>Select Blood Amount</h2>
-                    <p>Adjust the slider or enter a value manually.</p>
-                    <div class="slider-container">
-                        <input type="range" id="bloodSlider" min="0" max="1000" step="10" value="200" oninput="processBloodSlider(this,400)">
-                        <input type="text" id="bloodInput" class="input-box" value="200" oninput="processBloodInputText(this,400)">
-                        <span class="unit">mL</span>
+                    <div class="receiver-child-2-card">
+                        <div class="receiver-child-2-card-1">
+                        <div class="receiver-form-description">
+                            <i class="fas fa-notebook"></i>
+                            <h4>Requested <span id="blood-amount">400 mL </span> of <span id="blood_group"> AB+ </span></h4>
+                            <h4 style="font-family: 'Inter', sans-serif; font-weight: 300;">We now require some additional info of yours &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></h4>
+                        </div>
+                        <div class="receiver-form-gui">
+
+                            <div class="receiver-form-control">  
+                                <input type="text" placeholder="Your name" id="receiver-name"/>
+                             </div>
+                            
+                             <div class="receiver-form-control">  
+                                <input type="text" placeholder="Your phone number" id="receiver-phno"/>
+                             </div>
+                            
+                             <div class="receiver-form-control">  
+                                <input type="text" placeholder="Your phone number" id="receiver-email"/>
+                             </div>
+    
+                             <div class="receiver-form-control">  
+                                <input type="text" placeholder="Your aadhar number" id="receiver-aadhar"/>
+                             </div>
+
+                             <div class="receiver-form-button-control">
+                                <div>Submit</div>
+                             </div>
+                        </div>
+
+                        </div>
                     </div>
                 </div>
              </div>

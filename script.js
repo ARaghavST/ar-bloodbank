@@ -187,7 +187,7 @@ window.onload = function(){
     // below code is done to run the fetchDonors function only when we are in receivers page
 
     // if we are not in receivers page, then run the code of rendering admin icon
-    path === '/pages/receiver.html' ? fetchDonors() : renderAdminIcon()
+    path === '/pages/receiver.html' ? "" : renderAdminIcon()
 
     
     // if we are in admin-login page, then run the code of checking admin data from localstorage in browser, to retain logged in admin
