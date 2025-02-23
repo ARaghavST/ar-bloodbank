@@ -99,7 +99,21 @@ function userLogin() {
 
 // for donor-signup html
 // Used to show mobile number every time user enters a number, and to check mobile number do not exeeds 10 digits
-const mobileTextBox = document.getElementById("signup-mobile-text")
+const mobileTextBox = document.getElementById("signup-mobile-text") 
+
+const receiverPhno = document.getElementById("receiver-phno")
+
+receiverPhno ? receiverPhno.addEventListener('input', function (event) {
+
+    const mobileNumber = event.target.value
+
+    if (mobileNumber.length > 10) {
+        window.alert('Mobile number cannot exceed 10 digits')
+        receiverPhno.value = mobileNumber.substring(0, 10)
+    }
+
+}) : ''
+
 
 mobileTextBox ? mobileTextBox.addEventListener('input', function (event) {
 
@@ -189,13 +203,27 @@ window.onload = function(){
     // if we are not in receivers page, then run the code of rendering admin icon
     if (path === '/pages/receiver.html'){
 
-        const bloodDrops = document.getElementsByName("blood_drop")
+        const bloodDrops = document.getElementsByName("blood_type")
 
-        bloodDrops.forEach((element)=>{
-            element.addEventListener(('click'),()=>{
-                handleBloodDropClick(element)
+        
+        for( var i = 0 ; i < bloodDrops.length ; i++){
+
+            const drop = bloodDrops[i]
+
+            drop.addEventListener(('click'),()=>{
+                handleBloodTypeClick(drop)
             })
-        })
+                 
+        }
+
+        // bloodDrops.forEach((element)=>{
+        //     element.addEventListener(('click'),()=>{
+        //         handleBloodTypeClick(element)
+        //     })
+        //     console.log(element)
+        // })
+
+
 
     }
 
@@ -207,22 +235,7 @@ window.onload = function(){
 
 }
 
-function handleBloodDropClick(clickedElement){
-    const bloodDrops = document.getElementsByName("blood_drop")
 
-    bloodDrops.forEach((item)=>{
-        if (item == clickedElement){
-            item.style.color="#8B0000"
-            item.style.boxShadow="2px 4px 20px rgba(255, 0, 0, 0.9)"
-            item.style.background="white"    
-        }else{
-            item.style.color="white"
-            item.style.boxShadow="inset 0 3px 10px rgba(255, 255, 255, 0.5), 0 4px 8px rgba(0, 0, 0, 0.5)"
-            item.style.background="linear-gradient(180deg, #FF3C3C, #B20000)"    
-        }
-    })
-    
-}
 
 
 
@@ -281,11 +294,109 @@ function processBloodInputText(textbox,maxValue){
 }
 
 
-function showSubmitFormCard(){
-    const bloodAmt = document.getElementById("bloodInput").value
-    // const bloodGroup = 
+function submitAndShowSecondCard(){
+    
+    const bloodGroups = document.getElementsByClassName("selected-blood")
+
+    if (bloodGroups.length == 0){
+        window.alert('Please select a blood group')
+        return
+    }
+    
+    const carousel = document.getElementsByClassName("carousel")
+    
+    // below line will store the selected blood group 
+    var selectedBloodGroup = bloodGroups[0].innerHTML
+
+    // below line will store the amount of blood chosen
+    const bloodAmount = document.getElementById("bloodInput").value
+
+
+    const bloodAmountLabel = document.getElementById("blood-amount")
+    const bloodTypeLabel = document.getElementById("blood-group")
+
+    bloodAmountLabel.innerHTML = bloodAmount
+    bloodTypeLabel.innerHTML = selectedBloodGroup
+
+    carousel[0].style.transform = 'translateX(-620px)';
+
+    var bloodRequiredTitle = document.getElementsByClassName("blood-required-title")
+    bloodRequiredTitle[0].style.display="none"
 }
 
+function handleBloodTypeClick(clickedElement){
+
+    const bloodTypes = document.getElementsByName("blood_type")
+
+    const carousel = document.getElementsByClassName("carousel")
+
+
+    for( var i = 0 ; i < bloodTypes.length ; i++){
+        const drop = bloodTypes[i]
+        
+        if (drop == clickedElement && !drop.classList.contains("not-available-blood")){
+            // if current element is the one we clicked
+            drop.classList.add("selected-blood")
+        }else{
+            drop.classList.remove("selected-blood")
+        }
+    }
+
+    // bloodTypes.forEach((item)=>{
+    //     if (item == clickedElement){
+    //         item.classList.add("selected-blood")
+    //     }else{
+    //         item.classList.remove("selected-blood")
+    //     }
+    // })
+    
+}
+
+
+function goToReceiverChild2Card(){
+    const carousel = document.getElementsByClassName("carousel")
+    carousel[0].style.transform = 'translateX(0px)';
+
+     var bloodRequiredTitle = document.getElementsByClassName("blood-required-title")
+    bloodRequiredTitle[0].style.display="block"
+}
+
+function handleAadharFormat(aadharTextBox){
+
+    var text = aadharTextBox.value
+
+    // split text by '-' and join with empty space
+    var aadharInNumber = text.split("-").join('')
+
+    if (aadharInNumber.length % 4 === 0 && aadharInNumber.length !== 0 && aadharInNumber.length != 12){
+        text += '-'
+    }
+    aadharTextBox.value=text
+
+}
+
+
+function submitGetBloodForm(){
+    const receiverName = document.getElementById("receiver-name").value
+    const receiverPhno = document.getElementById("receiver-phno").value
+    const receiverEmail = document.getElementById("receiver-email").value
+    const receiverAadhar = document.getElementById("receiver-aadhar").value
+
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(receiverEmail)) {
+        window.alert('Email format invalid');
+        document.getElementById("receiver-email").value = "";
+    }
+
+    var hyphenRemovedString = receiverAadhar.split("-").join('')
+
+    if (!validateAadhaarNumber(hyphenRemovedString)){
+        window.alert('Aadhar number invalid');
+        document.getElementById("receiver-aadhar").value = "";
+    }
+}
 
 /**
  * receiver page end
@@ -474,4 +585,59 @@ function adminRejectDonor(sno){
     }
 
     console.log(toDeleteDonor)
+}
+
+
+/********************** Aadhar validation logics ******/
+
+
+function validateAadhaarNumber(aadhaar) {
+    // Regular expression to check if the Aadhaar number is exactly 12 digits
+    const aadhaarRegex = /^\d{12}$/;
+    
+    if (!aadhaarRegex.test(aadhaar)) {
+        return false; // Aadhaar number must be 12 digits
+    }
+    
+    return isValidVerhoeff(aadhaar);
+}
+
+// Verhoeff algorithm implementation
+const verhoeffTableD = [
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
+    [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
+    [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
+    [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
+    [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
+    [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
+    [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
+    [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
+    [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+];
+
+const verhoeffTableP = [
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
+    [2, 8, 0, 7, 9, 6, 4, 1, 3, 5],
+    [3, 9, 1, 0, 5, 7, 8, 2, 6, 4],
+    [4, 2, 8, 6, 7, 3, 0, 9, 5, 1],
+    [5, 4, 6, 8, 0, 2, 9, 7, 1, 3],
+    [6, 3, 9, 2, 8, 0, 7, 5, 4, 1],
+    [7, 0, 4, 9, 1, 5, 2, 3, 6, 8],
+    [8, 7, 5, 4, 3, 9, 1, 6, 0, 2],
+    [9, 6, 3, 5, 8, 1, 4, 7, 2, 0]
+];
+
+const verhoeffTableInv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9];
+
+function isValidVerhoeff(aadhaar) {
+    let checksum = 0;
+    let reversedArray = aadhaar.split("").reverse().map(Number);
+
+    for (let i = 0; i < reversedArray.length; i++) {
+        checksum = verhoeffTableD[checksum][verhoeffTableP[i % 8][reversedArray[i]]];
+    }
+
+    return checksum === 0;
 }

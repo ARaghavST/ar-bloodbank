@@ -29,16 +29,29 @@
          <p>Browse our inventory and request the blood type you need.</p>
          
          <div class="receiver-parent-3">
-            <h3>Choose required blood group</h3>
+            <h3 class="blood-required-title">Choose required blood group</h3>
+            <div style="padding: 5px; display: flex; gap: 10px;">
+
+               <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                    <div id="not-available"></div>
+                    <div>Not Available</div>
+               </div>
+               
+               <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;"> 
+                    <div id="available"></div>
+                    <div>Available</div>
+                </div>
+            </div>
+
             <div class="receiver-child-1">
-                <div name="blood_drop" class="selected-blood">A+</div>
-                <div name="blood_drop">AB+</div>
-                <div name="blood_drop">B+</div>
-                <div name="blood_drop">B-</div>
-                <div name="blood_drop">O+</div>
-                <div name="blood_drop">O-</div>
-                <div name="blood_drop">AB-</div>
-                <div name="blood_drop">A-</div>
+                <div name="blood_type">A+</div>
+                <div name="blood_type" class="not-available-blood">AB+</div>
+                <div name="blood_type">B+</div>
+                <div name="blood_type">B-</div>
+                <div name="blood_type">O+</div>
+                <div name="blood_type">O-</div>
+                <div name="blood_type">AB-</div>
+                <div name="blood_type">A-</div>
              </div>
              <div class="receiver-child-2">
                 <div class="carousel">
@@ -75,7 +88,7 @@
                             </div>
                             <div class="receiver-buttons-container">
                                 <div class="receiver-button-refresh" onclick=""><i class="fas fa-rotate"></i> Refresh Stock</div>
-                                <div class="receiver-button-request" onclick="showSubmitFormCard()"><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
+                                <div class="receiver-button-request" onclick="submitAndShowSecondCard()"><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
                                
                             </div>
                         </div>
@@ -83,8 +96,9 @@
                     <div class="receiver-child-2-card">
                         <div class="receiver-child-2-card-1">
                         <div class="receiver-form-description">
-                            <h4>You requested <span id="blood-amount"><br/>400 </span>mL of <span id="blood_group"> AB+ </span></h4><br/>
+                            <h4>You requested <span id="blood-amount">400</span><br/> mL of <span id="blood-group">AB+</span></h4><br/>
                             <h4 style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px;">We now require some additional info of yours &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></h4>
+                            <div onclick="goToReceiverChild2Card()"><i class="fas fa-backward"></i>Back</div>
                         </div>
                         <div class="receiver-form-gui">
 
@@ -93,7 +107,7 @@
                              </div>
                             
                              <div class="receiver-form-control">  
-                                <input type="text" placeholder="Enter phone number" id="receiver-phno"/>
+                                <input type="text" placeholder="Enter phone number" id="receiver-phno" />
                              </div>
                             
                              <div class="receiver-form-control">  
@@ -101,11 +115,11 @@
                              </div>
     
                              <div class="receiver-form-control">  
-                                <input type="text" placeholder="Enter aadhar number" id="receiver-aadhar"/>
+                                <input type="text" placeholder="Enter aadhar number" id="receiver-aadhar" oninput="handleAadharFormat(this)"/>
                              </div>
 
                              <div class="receiver-form-button-control">
-                                <div>Submit</div>
+                                <div onclick="submitGetBloodForm()">SUBMIT</div>
                              </div>
                         </div>
 
