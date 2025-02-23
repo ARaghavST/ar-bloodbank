@@ -31,14 +31,14 @@
          <div class="receiver-parent-3">
             <h3>Choose required blood group</h3>
             <div class="receiver-child-1">
-                <div>A+</div>
-                <div>AB+</div>
-                <div>B+</div>
-                <div>B-</div>
-                <div>O+</div>
-                <div>O-</div>
-                <div>AB-</div>
-                <div>A-</div>
+                <div name="blood_drop" class="selected-blood">A+</div>
+                <div name="blood_drop">AB+</div>
+                <div name="blood_drop">B+</div>
+                <div name="blood_drop">B-</div>
+                <div name="blood_drop">O+</div>
+                <div name="blood_drop">O-</div>
+                <div name="blood_drop">AB-</div>
+                <div name="blood_drop">A-</div>
              </div>
              <div class="receiver-child-2">
                 <div class="carousel">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="receiver-buttons-container">
                                 <div class="receiver-button-refresh" onclick=""><i class="fas fa-rotate"></i> Refresh Stock</div>
-                                <div class="receiver-button-request" onclick=""><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
+                                <div class="receiver-button-request" onclick="showSubmitFormCard()"><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
                                
                             </div>
                         </div>
@@ -83,26 +83,25 @@
                     <div class="receiver-child-2-card">
                         <div class="receiver-child-2-card-1">
                         <div class="receiver-form-description">
-                            <i class="fas fa-notebook"></i>
-                            <h4>Requested <span id="blood-amount">400 mL </span> of <span id="blood_group"> AB+ </span></h4>
-                            <h4 style="font-family: 'Inter', sans-serif; font-weight: 300;">We now require some additional info of yours &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></h4>
+                            <h4>You requested <span id="blood-amount"><br/>400 </span>mL of <span id="blood_group"> AB+ </span></h4><br/>
+                            <h4 style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px;">We now require some additional info of yours &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></h4>
                         </div>
                         <div class="receiver-form-gui">
 
                             <div class="receiver-form-control">  
-                                <input type="text" placeholder="Your name" id="receiver-name"/>
+                                <input type="text"  placeholder="Enter full name" id="receiver-name"/>
                              </div>
                             
                              <div class="receiver-form-control">  
-                                <input type="text" placeholder="Your phone number" id="receiver-phno"/>
+                                <input type="text" placeholder="Enter phone number" id="receiver-phno"/>
                              </div>
                             
                              <div class="receiver-form-control">  
-                                <input type="text" placeholder="Your phone number" id="receiver-email"/>
+                                <input type="text" placeholder="Enter email" id="receiver-email"/>
                              </div>
     
                              <div class="receiver-form-control">  
-                                <input type="text" placeholder="Your aadhar number" id="receiver-aadhar"/>
+                                <input type="text" placeholder="Enter aadhar number" id="receiver-aadhar"/>
                              </div>
 
                              <div class="receiver-form-button-control">

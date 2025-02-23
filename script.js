@@ -187,13 +187,45 @@ window.onload = function(){
     // below code is done to run the fetchDonors function only when we are in receivers page
 
     // if we are not in receivers page, then run the code of rendering admin icon
-    path === '/pages/receiver.html' ? "" : renderAdminIcon()
+    if (path === '/pages/receiver.html'){
+
+        const bloodDrops = document.getElementsByName("blood_drop")
+
+        bloodDrops.forEach((element)=>{
+            element.addEventListener(('click'),()=>{
+                handleBloodDropClick(element)
+            })
+        })
+
+    }
+
+    //  ? "" : renderAdminIcon()
 
     
     // if we are in admin-login page, then run the code of checking admin data from localstorage in browser, to retain logged in admin
     path === '/pages/admin-login.html' ? checkAdminLogin() : ""
 
 }
+
+function handleBloodDropClick(clickedElement){
+    const bloodDrops = document.getElementsByName("blood_drop")
+
+    bloodDrops.forEach((item)=>{
+        if (item == clickedElement){
+            item.style.color="#8B0000"
+            item.style.boxShadow="2px 4px 20px rgba(255, 0, 0, 0.9)"
+            item.style.background="white"    
+        }else{
+            item.style.color="white"
+            item.style.boxShadow="inset 0 3px 10px rgba(255, 255, 255, 0.5), 0 4px 8px rgba(0, 0, 0, 0.5)"
+            item.style.background="linear-gradient(180deg, #FF3C3C, #B20000)"    
+        }
+    })
+    
+}
+
+
+
 
 function renderAdminIcon(){
     const adminIcon = document.getElementsByClassName("admin-button")[0]
@@ -246,6 +278,12 @@ function processBloodInputText(textbox,maxValue){
     receiveBloodFill[0].style.height = `${fillHeight}%`
 
     slider.value = textbox.value
+}
+
+
+function showSubmitFormCard(){
+    const bloodAmt = document.getElementById("bloodInput").value
+    // const bloodGroup = 
 }
 
 
