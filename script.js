@@ -135,6 +135,8 @@ function onClickAFT() {
 
     const gender = document.querySelector('input[name="gender"]:checked').value;
 
+    var e_available = document.querySelector('input[id="e_check"]:checked')? 1 : 0
+
     const listbox = document.getElementById("listbox-bg");
 
     let bloodGroup;
@@ -168,9 +170,12 @@ function onClickAFT() {
         "mobile": mobile,
         "email": email,
         "gender": gender,
-        "bloodgroup": bloodGroup
+        "bloodgroup": bloodGroup,
+        "e_ready":e_available
     }
 
+
+    console.log(signupData)
 
 
 

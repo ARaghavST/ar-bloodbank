@@ -17,17 +17,21 @@
       </div>
     <div class="signup-donor-container">
         <div class="signup-form">
-            <div class="signup-item title-signup">ENTER YOUR DETAILS</div>
-            <div class="signup-item">
-                <span>Name</span>
-                <input type="text" id="signup-name-text" placeholder="Your name"/>
+            <div class="signup-description">
+                <h3>Make a Difference – Register as a <span style="color: red;
+                    font-weight: 600;
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Donor </span>Now!</h3>
+                <p>Every donation you make is a heartbeat saved. Start your journey as a blood donor today!</p>
             </div>
             <div class="signup-item">
-                <span>Date of Birth</span>
-                <input type="text" id="signup-dob-text" placeholder="DD/MM/YYYY"/>
+                <input type="text" id="signup-name-text" placeholder="Your name" autocomplete="off"/>
             </div>
             <div class="signup-item">
-                <span>Gender</span>
+                <div>Date of Birth</div>
+                <input type="text" id="signup-dob-text" placeholder="DD/MM/YYYY"  autocomplete="off"/>
+            </div>
+            <div class="signup-item">
+                <span>You are a ? </span>
                 <div class="signup-radiogroup">
                     <input type="radio" id="male-radio" name="gender" value="Male">Male</input>
                     <input type="radio" id="female-radio" name="gender" value="Female">Female</input>
@@ -35,18 +39,16 @@
                 </div>
             </div>
             <div class="signup-item">
-                <span>Mobile No.</span>
                 <!---   On input function (a.k.a event listener) for this text box is in script.js 90   -->
-                <input type="text" id="signup-mobile-text" placeholder="Mobile Number" />
+                <input type="text" id="signup-mobile-text" placeholder="Your Mobile Number"  autocomplete="off" />
             </div>
             <div class="signup-item">
-                <span>Email</span>
-                <input type="text" id="signup-email-text" placeholder="Email"/>
+                <input type="text" id="signup-email-text" placeholder="Your Email"  autocomplete="off"/>
             </div>
             <div class="signup-item">
-                <span>Blood Group</span>
+                <span>Your blood group</span>
                 <select name="bg" id="listbox-bg">
-                    <option value="Select your blood group" disabled selected>Select your blood group</option>
+                    <option value="Select blood group" disabled selected>Select blood group</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                     <option value="B+">B+</option>
@@ -55,8 +57,11 @@
                     <option value="AB-">AB-</option>
                   </select>
             </div>
+            <div class="signup-item emergency-checkbox-item">
+               <input type="checkbox" id="e_check" class="emergency-check" value="1"/><div>I will be available during emergencies</div> 
+            </div>
             <div class="signup-item submit-btn">
-                <div class="submit-apply-test-button" onclick="onClickAFT()">Apply For Test</div>
+                <div class="submit-apply-test-button" onclick="onClickAFT()">APPLY FOR TEST</div>
             </div>
         </div>    
     </div>
