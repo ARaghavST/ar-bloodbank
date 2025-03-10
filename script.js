@@ -1,4 +1,5 @@
 const BLOODBANK_BACKEND_URL="https://ar-bloodbank-backend.onrender.com/bloodbank-1.0"
+const LOCAL_BACKEND_URL="http://localhost:8080/bloodbank"
 
 
 // to select only one checkbox between Donor or Receiver
@@ -81,7 +82,8 @@ function showPassword() {
 // for donor-login.html
 
 
-function userLogin() {
+async function userLogin() {
+
     const emailField = document.getElementById("email");
     const passwordField = document.getElementById("password");
     /* Like Dictionaries in Python
@@ -90,6 +92,37 @@ function userLogin() {
         "email": emailField.value,
         "password": passwordField.value
     }
+
+    const loginLockDiv = document.getElementsByClassName("login-lock-div")[0]
+    const loginSpinner = document.getElementsByClassName("spinner-parent-div")[0]
+
+    loginLockDiv.style.setProperty("display", "none", "important")
+    loginSpinner.style.setProperty("display", "flex", "important")
+
+
+
+    fetch(`${LOCAL_BACKEND_URL}/donor/login`,{
+        
+        method:'POST',
+        
+        body:JSON.stringify(data)
+    
+    }).then((response)=>{
+
+       return response.json()
+
+    }).then((data)=>{
+       
+        if(data.error){
+            loginLockDiv.style.setProperty("display", "flex", "important")
+            loginSpinner.style.setProperty("display", "none", "important")
+
+            // will send notification here
+        }else{
+            window.location.href="/pages/donor-profile.html"
+        }
+    })
+
 
     // This data will be sent to java backend
 
@@ -163,19 +196,42 @@ function onClickAFT() {
         window.alert('Email format invalid');
         document.getElementById("signup-email-text").value = "";
     }
+
+
+
     // Used for data protection
     const signupData = {
         "name": name,
         "dob": dob,
         "mobile": mobile,
         "email": email,
-        "gender": gender,
+        "gender": gender[0],
         "bloodgroup": bloodGroup,
         "e_ready":e_available
     }
 
 
     console.log(signupData)
+
+
+    fetch(`${LOCAL_BACKEND_URL}/donor/`,{
+        
+        method:'POST',
+        
+        body:JSON.stringify(signupData)
+    
+    }).then((response)=>{
+
+       return response.json()
+
+    }).then((data)=>{
+       
+       if(!data.error){
+            window.location.reload(true)
+            window.alert("You are signed up")
+            // notification for error and success signup
+       }
+    })
 
 
 
@@ -401,6 +457,8 @@ function submitGetBloodForm(){
         window.alert('Aadhar number invalid');
         document.getElementById("receiver-aadhar").value = "";
     }
+
+    
 }
 
 /**

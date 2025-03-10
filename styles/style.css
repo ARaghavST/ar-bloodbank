@@ -92,7 +92,7 @@ body {
     border-radius: 15px;
     color: white;
     width: 180px;
-    background-color: #FF2929;
+    background-color: #f11a1a;
 }
 
 .submit-button:hover {
@@ -142,7 +142,7 @@ input.donor-check {
     border-radius: 10px;
     font-size: 36px;
     padding: 20px 30px;
-    box-shadow: 2px 2px 5px grey;
+    box-shadow: 2px 2px 8px grey;
     display: flex;
     justify-content: space-between;
     width: 600px;
@@ -231,9 +231,9 @@ input {
 }
 
 .login-button div {
-    width: 100px;
+    width: 120px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px;
     color: white;
@@ -244,125 +244,38 @@ input {
     transition: 0.2s ease-in;
 }
 
-.login-button div:hover {
+.spinner-parent-div {
+    cursor:not-allowed !important;
+    display: none !important; 
+}
+
+
+.login-lock-div:hover {
     box-shadow: 2px 2px 4px grey;
 
 }
 
+.spinner {
+    width: 18px !important;
+    height: 18px !important;
+    border: 2px solid white !important;
+    border-top: 2px solid transparent !important;
+    border-radius: 50% !important;
+    animation: spin 0.6s linear infinite;
+    cursor: not-allowed !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
 
 /*------------Signup donor page--------------------*/
+/* Pahuch chuka hai donor-signup.css */
+/*---------------------------------*/
 
-.signup-donor-container {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    transform: translateY(3%);
-    justify-content: center;
-}
-
-.signup-donor-container input {
-    border: 2px solid #ccc;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.signup-form {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 400px;
-    /* border: 3px solid rgba(0,0,0,0.3); */
-    box-shadow: 2px 2px 10px grey;
-    border-radius: 15px;
-    background-color: white;
-}
-
-.signup-description p{
-    padding: 5px;
-    font-size: 12px;
-}
-
-.signup-item {
-    display: flex;
-    justify-content: space-between;
-    /* width: 300px; */
-    align-items: center;
-}
-.signup-item > div {
-    width: 200px;
-}
-
-.signup-item input[type=text] {
-    font-size: 16px;
-    width: 100%;
-}
-
-.signup-radiogroup {
-    padding: 5px;
-    width: 250px !important;
-    display: flex;
-    gap: 2px;
-    justify-content: space-between;
-}
-
-#male-radio {
-    scale: 1.2;
-}
-
-#female-radio {
-     scale: 1.2;
-}
-
-#others-radio {
-     scale: 1.2;
-}
-
-#listbox-bg {
-    height: 100%;
-    font-size: 16px;
-    padding: 5px;
-    width: 250px;
-}
-
-.emergency-checkbox-item{
-    display: flex;
-    padding: 5px;
-    gap: 10px;
-    align-items: center;
-}
-
-.emergency-check{
-    scale: 1.5;
-    accent-color: red;
-}
-
-.emergency-checkbox-item div {
-    width: 100%;
-}
-
-.submit-btn {
-    display: flex;
-    margin-top: 10px;
-    width: 100% !important;
-    justify-content: center;
-}
-
-.submit-apply-test-button {
-    background-color: rgba(255, 70, 70, 0.7);
-    color: white;
-    padding: 5px !important;
-    width: 100% !important;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 1px 2px 5px grey;
-    border-radius: 10px;
-}
-
-.submit-apply-test-button:hover {
-    background-color: rgba(255, 70, 70);
-    transition: 0.2s ease-in;
-}
 
 /*-------------------------Receiver.html--------------*/
 .slider {
@@ -802,4 +715,5 @@ input[type="range"] {
     scale: 1.1;
     transition: 0.2s ease-in;
 }
+
 
