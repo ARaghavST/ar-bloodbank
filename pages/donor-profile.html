@@ -20,27 +20,90 @@
 <body>
   <div class="navigation-bar">
     <h1 align="center">Blood Bank</h1>
-    <div class="admin-button"> <i class="fas fa-headset"></i></div>
+    <div class="profile-button"><i class="fas fa-user"></i></div>
+  </div>
+  <div class="profile-dialog-box">
+    <div style="font-size: 14px; padding: 10px;">
+      <div><b>Registered On</b></div>
+      <div >23 Jan 2020 13:20:00</div>
+    </div>
+    <div style="background: red; border-radius: 10px; color: white; font-weight: 600;">
+      <div style="display: flex; justify-content: space-around; padding: 8px; align-items: center;">
+        <i class="fas fa-key"></i>Reset Password
+      </div>
+    </div>
+
   </div>
   <div class="profile-container">
-    <div class="col-1">
-      <img src="/resources/blood.png" height="200" width="200" />
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+      <div class="col-1">
+        <img src="/resources/blood.png" height="250" width="250" />
+      </div>
     </div>
     <div class="profile-card">
-        <h1>Welcome Jay</h1>
-        <div class="">
-            <h4>Your Donation History</h4>
-            <div class="history-table">
-                
+        
+        <h1 style="margin-bottom: 20px; text-align: center; color: red; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Welcome Jay</h1>
+        <div id="profile-card-1">
+          <!-- <p>Your "Yes" to our bloodbank gives others a second chance in life. Keep up the good work</p> -->
+          <p>Your gift of blood can save lives. Keep your availability updated and make a difference!"</p>
+        </div>
+
+        <div class="profile-card-2">
+          <div class="profile-card-2-1">
+            <div>
+              Update Availability
             </div>
+            <label class="switch">
+              <input type="checkbox" id="availability-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+  
+          <div class="profile-card-2-2">
+            <div>
+              Update Emergency availability
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="availability-toggle">
+              <span class="slider"></span>
+          </label>
+          </div>
+        </div>
+    
+        <div class="profile-card-3">
+          <h3 style="text-align: center;">Your Donation History</h3>
+          <div class="profile-card-3-1" id="donation-history-items">
+            <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600;">No donation history available</span>
+            <div class="history-card">
+              <div class="blood-icon">🩸</div>
+              <div class="history-details">
+                  <p class="info">🗓️ <span>Date:</span> 10th March 2025</p>
+                  <p class="info">⏰ <span>Time:</span> 10:30 AM</p>
+                  <p class="info">💉 <span>Amount Donated:</span> 500ml</p>
+                  <p class="info">⚖️ <span>Weight:</span> 72kg</p>
+              </div>
+            </div>
+          <div class="history-card">
+            <div class="blood-icon">🩸</div>
+            <div class="history-details">
+                <p class="info">🗓️ <span>Date:</span> 10th March 2025</p>
+                <p class="info">⏰ <span>Time:</span> 10:30 AM</p>
+                <p class="info">💉 <span>Amount Donated:</span> 500ml</p>
+                <p class="info">⚖️ <span>Weight:</span> 72kg</p>
+            </div>
+          </div>
+          </div>
         </div>
     </div>
+   <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
     <div class="col-3">
-      <img src="/resources/blood.png" height="200" width="200" />
+      <img src="/resources/blood.png" height="250" width="250" />
     </div>
+   </div>
   </div>
   </div>
 </body>
 <script src="../script.js"></script>
+<script src="../scripts/donor-profile.js"></script>
 
 </html>

@@ -288,7 +288,7 @@ window.onload = function(){
 
     }
 
-    //  ? "" : renderAdminIcon()
+    renderAdminIcon()
 
     
     // if we are in admin-login page, then run the code of checking admin data from localstorage in browser, to retain logged in admin

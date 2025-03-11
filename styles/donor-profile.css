@@ -1,7 +1,171 @@
-.profile-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10%;
-    justify-content: space-evenly;
+*{
+    /* border: 1px solid black; */
 }
 
+.profile-dialog-box{
+    position: absolute;
+    padding: 8px;
+    right: 10px;
+    display: none;
+    top: 60px;
+    border-radius: 10px;
+    background: rgba(235, 90, 90, 0.3);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.profile-button{
+    padding: 10px;
+    position: absolute;
+    cursor: pointer;
+    right: 5px;
+    color: white;
+}
+
+.profile-button i{
+    scale: 1.5;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 88vh;
+}
+
+h1{
+    font-size: 38px;
+}
+.profile-card{
+   
+    padding: 25px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background-color: #d32f2f;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.profile-card-2{
+    display: flex;
+    padding: 10px;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-card-2-1{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.profile-card-2-1 div{
+    width: 100%;
+}
+
+.profile-card-2-2{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.profile-card-2-2 div{
+    width: 100%;
+}
+
+.profile-card-3 {
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.profile-card-3-1{
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    /**/
+    
+    justify-content: space-around;
+}
+
+#no-records-found-label {
+    display: none;
+}
+
+.history-card {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    border-left: 6px solid #d32f2f;
+}
+
+.blood-icon {
+    font-size: 50px;
+    color: #d32f2f;
+    margin-right: 15px;
+}
+
+.history-details {
+    flex: 1;
+}
+
+.history-details h3 {
+    color: #d32f2f;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.info span {
+    font-weight: bold;
+    color: #d32f2f;
+}

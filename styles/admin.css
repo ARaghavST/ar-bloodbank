@@ -1,0 +1,53 @@
+.admin-list{
+    display: none;
+}
+
+#admin-blood-amount-input{
+    font-size: 16px;
+    
+}
+
+#admin-listbox-bg{
+    font-size: 16px;
+    width: 470px;
+}
+
+.admin-submit-donor-button {
+    background-color: #FA7070;
+    color: white;
+    display: flex;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.6);;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+.admin-reject-donor-button{
+    background-color: #FA7070;
+    color: white;
+    display: flex;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.6);;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+.admin-button-parent {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.admin-submit-donor-button:hover{
+    scale: 1.1;
+    transition: 0.2s ease-in;
+}
+
+.admin-reject-donor-button:hover{
+    scale: 1.1;
+    transition: 0.2s ease-in;
+}
