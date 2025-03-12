@@ -42,15 +42,16 @@
     </div>
     <div class="profile-card">
         
-        <h1 style="margin-bottom: 20px; text-align: center; color: red; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Welcome Jay</h1>
+        <h1 style="margin-bottom: 20px; text-align: center; color: red; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Welcome <span id="donor-profile-name"></span></h1>
         <div id="profile-card-1">
+          <span id="donor-profile-availability" style="text-shadow:2px 2px 1px rgba(0,0,0,0.4); font-size: 20px;"></span>
           <!-- <p>Your "Yes" to our bloodbank gives others a second chance in life. Keep up the good work</p> -->
-          <p>Your gift of blood can save lives. Keep your availability updated and make a difference!"</p>
+          <!-- <p>Your gift of blood can save lives. Keep your availability updated and make a difference!"</p> -->
         </div>
 
         <div class="profile-card-2">
           <div class="profile-card-2-1">
-            <div>
+            <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
               Update Availability
             </div>
             <label class="switch">
@@ -60,11 +61,11 @@
           </div>
   
           <div class="profile-card-2-2">
-            <div>
-              Update Emergency availability
+            <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
+              Update Emergency Availability
             </div>
             <label class="switch">
-              <input type="checkbox" id="availability-toggle">
+              <input type="checkbox" id="emergency-toggle" >
               <span class="slider"></span>
           </label>
           </div>
@@ -102,7 +103,17 @@
    </div>
   </div>
   </div>
+<div class="overlay">
+  <div class="update-status-dialog-box">
+    <div>Are you sure you want to update your <span id="status-update-field-name"></span> to <span style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7);">ACTIVE</span></div>
+    <div class="dialog-box-buttons">
+      <div class="dialog-box-yes-button">Yes</div>
+      <div class="dialog-box-no-button">No</div>
+    </div>
+  </div>
+</div>
 </body>
+
 <script src="../script.js"></script>
 <script src="../scripts/donor-profile.js"></script>
 

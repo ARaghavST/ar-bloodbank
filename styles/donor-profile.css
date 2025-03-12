@@ -31,7 +31,6 @@
 .profile-container {
     display: flex;
     justify-content: space-evenly;
-    min-height: 88vh;
 }
 
 h1{
@@ -39,7 +38,7 @@ h1{
 }
 .profile-card{
    
-    padding: 25px;
+    padding: 15px;
 }
 
 .switch {
@@ -168,4 +167,39 @@ input:checked + .slider:before {
 .info span {
     font-weight: bold;
     color: #d32f2f;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.6);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.update-status-dialog-box {
+    margin: 0 auto;
+    height: 150px;
+    width: 300px;
+    padding: 20px;
+    background: white;
+}
+
+.dialog-box-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dialog-box-yes-button {
+    background-color: #c51313;
+    padding: 4px 15px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
+    font-weight: 500;
 }
