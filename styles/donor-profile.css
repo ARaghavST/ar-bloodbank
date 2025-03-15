@@ -184,8 +184,14 @@ input:checked + .slider:before {
 
 .update-status-dialog-box {
     margin: 0 auto;
-    height: 150px;
+    height: 120px;
     width: 300px;
+    border-radius: 15px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 2px 4px 10px rgba(255, 255, 255, 0.8);
     padding: 20px;
     background: white;
 }
@@ -198,8 +204,29 @@ input:checked + .slider:before {
 .dialog-box-yes-button {
     background-color: #c51313;
     padding: 4px 15px;
+    cursor: pointer;
     border-radius: 5px;
     color: white;
-    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
+    /* box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7); */
+    transition: all 0.2s ease-in-out;
     font-weight: 500;
 }
+
+.dialog-box-no-button{
+    background-color: #ccc;
+    padding: 4px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.dialog-box-yes-button:hover{
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
+}
+
+.dialog-box-no-button:hover{
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
+}
+
+
+

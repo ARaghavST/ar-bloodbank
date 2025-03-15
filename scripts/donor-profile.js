@@ -56,3 +56,10 @@ function displayDonorData(){
     }
 }
 
+
+function closeDialogBox(){
+    const dialogBox = document.getElementsByClassName("overlay")[0]
+
+    dialogBox.style.display='none';
+
+}
