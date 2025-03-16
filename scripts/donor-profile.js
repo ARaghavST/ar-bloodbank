@@ -27,7 +27,6 @@ function displayDonorData(){
 
         const donorData = donorObj.data.data
 
-        console.log(donorObj)
         const nameLabel = document.getElementById("donor-profile-name")
         const availabilityStringLabel = document.getElementById("donor-profile-availability")
         const availabilityToggle = document.getElementById("availability-toggle")
@@ -58,8 +57,88 @@ function displayDonorData(){
 
 
 function closeDialogBox(){
-    const dialogBox = document.getElementsByClassName("overlay")[0]
 
+    const dialogBox = document.getElementsByClassName("overlay")[0]
     dialogBox.style.display='none';
+
+    const toUpdateFieldElement = document.getElementById("status-update-field-name")
+
+    if (toUpdateFieldElement.innerHTML == "AVAILABILITY"){
+        document.getElementById("availability-toggle").checked = false
+    }else{
+        document.getElementById("emergency-toggle").checked = false
+    }
+
+
+}
+
+function toggleAvailability(checkbox){
+
+    const toUpdateFieldElement = document.getElementById("status-update-field-name")
+
+    if(checkbox.checked){
+        const dialogBox = document.getElementsByClassName("overlay")[0]
+
+        toUpdateFieldElement.innerHTML = "AVAILABILITY"
+        dialogBox.style.display='flex';
+    }
+}
+
+function toggleEmergency(checkbox){
+    const toUpdateFieldElement = document.getElementById("status-update-field-name")
+
+    if(checkbox.checked){
+        const dialogBox = document.getElementsByClassName("overlay")[0]
+        toUpdateFieldElement.innerHTML = "EMERGENCY AVAILABILITY"
+        dialogBox.style.display='flex';
+    }
+}
+
+function updateStatusSpinner(){
+    const dialogBox = document.getElementsByClassName("update-status-dialog-box")[0]
+    const spinnerBox = document.getElementsByClassName("spinner-parent-div")[0]
+    const overlay = document.getElementsByClassName("overlay")[0]
+
+    const toUpdateFieldElement = document.getElementById("status-update-field-name")
+
+    dialogBox.style.display="none"
+    spinnerBox.style.display="flex"
+
+    var donor = localStorage.getItem("donor")
+
+    
+    donorObj = JSON.parse(donor)
+    const donorData = donorObj.data.data
+
+    var updateBody = {}
+
+    if (toUpdateFieldElement.innerHTML == "AVAILABILITY"){
+        updateBody = {
+            "availability":"YES"
+        }
+    }else{
+        updateBody = {
+            "e_ready":"1"
+        }
+    }
+
+    console.log(updateBody)
+  
+    fetch(`http://localhost:8080/bloodbank/donor/?id=${donorData.id}`,{
+        method : 'PUT',
+        body : JSON.stringify(updateBody)
+    }).then((response)=>{
+        return response.json()
+    }).then((data)=>{
+
+        overlay.style.display = "none"
+        console.log(data)
+        window.location.reload(true)
+
+
+
+    }).catch((err)=>{
+        console.log(err)
+    })
 
 }

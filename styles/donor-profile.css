@@ -176,7 +176,7 @@ input:checked + .slider:before {
     background: rgba(0,0,0,0.6);
     height: 100%;
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     
@@ -185,7 +185,7 @@ input:checked + .slider:before {
 .update-status-dialog-box {
     margin: 0 auto;
     height: 120px;
-    width: 300px;
+    width: 320px;
     border-radius: 15px;
     display: flex;
     gap: 10px;
@@ -228,5 +228,24 @@ input:checked + .slider:before {
     box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
 }
 
+.spinner-parent-div {
+    display: none;
+}
+
+.spinner {
+    width: 18px ;
+    scale: 4;
+    height: 18px ;
+    border-radius: 50% !important;
+    border-style: dashed !important;
+    border: 2px solid #c51313 ;
+    border-top: 2px solid transparent;
+    animation: spin 1s linear infinite;
+    cursor: not-allowed;
+}
 
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
