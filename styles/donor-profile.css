@@ -18,13 +18,23 @@
 
 .profile-button{
     padding: 10px;
-    position: absolute;
+    cursor: pointer;
+    right: 5px;
+    color: white;
+}
+
+.logout-button{
+    padding: 10px;
     cursor: pointer;
     right: 5px;
     color: white;
 }
 
 .profile-button i{
+    scale: 1.5;
+}
+
+.logout-button i{
     scale: 1.5;
 }
 
@@ -121,13 +131,40 @@ input:checked + .slider:before {
 }
 
 .profile-card-3-1{
-    height: 45vh;
+    height: 270px;
     display: flex;
     flex-direction: column;
     /**/
+    gap: 10px;
+    padding: 6px;
+    overflow-y: scroll;
     
     justify-content: space-around;
 }
+
+.profile-card-3-1::-webkit-scrollbar {
+
+    width: 10px;
+  }
+  
+  /* Track */
+  .profile-card-3-1::-webkit-scrollbar-track {
+    background: #cc83838e;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  .profile-card-3-1::-webkit-scrollbar-thumb {
+    background: #c51e1e9a;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .profile-card-3-1::-webkit-scrollbar-thumb:hover {
+    background: #c51313;
+  }
+
+
 
 #no-records-found-label {
     display: none;
@@ -196,6 +233,38 @@ input:checked + .slider:before {
     background: white;
 }
 
+.status-update-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-update-box{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.password-update-box input {
+    padding: 8px;
+}
+
+.dialog-box-update-password-button {
+    background-color: #c51313;
+    padding: 8px 10px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    
+}
+
+.dialog-box-update-password-button:hover{
+    box-shadow:  2px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+
 .dialog-box-buttons {
     display: flex;
     justify-content: space-evenly;
@@ -216,6 +285,9 @@ input:checked + .slider:before {
     background-color: #ccc;
     padding: 4px 15px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
     font-weight: 500;
 }

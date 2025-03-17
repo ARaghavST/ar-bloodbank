@@ -480,7 +480,7 @@ async function adminLogin(){
         "password":passwordText.value
     }
 
-   const response = await fetch(`${BLOODBANK_BACKEND_URL}/admin`,{
+   const response = await fetch(`http://localhost:8080/bloodbank/admin`,{
         method:'POST',
         body:JSON.stringify(loginData)
     })

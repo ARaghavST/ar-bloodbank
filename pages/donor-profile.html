@@ -20,14 +20,17 @@
 <body>
   <div class="navigation-bar">
     <h1 align="center">Blood Bank</h1>
+   <div style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
     <div class="profile-button"><i class="fas fa-user"></i></div>
+    <div class="logout-button" onclick="logoutDonorProfile()"><i class="fas fa-power-off"></i></div>
+   </div>
   </div>
   <div class="profile-dialog-box">
     <div style="font-size: 14px; padding: 10px;">
       <div><b>Registered On</b></div>
       <div >23 Jan 2020 13:20:00</div>
     </div>
-    <div style="background: red; border-radius: 10px; color: white; font-weight: 600;">
+    <div style="background: red; border-radius: 10px; color: white; font-weight: 600; cursor: pointer;" onclick="showUpdatePasswordDialogBox()">
       <div style="display: flex; justify-content: space-around; padding: 8px; align-items: center;">
         <i class="fas fa-key"></i>Reset Password
       </div>
@@ -74,25 +77,23 @@
         <div class="profile-card-3">
           <h3 style="text-align: center;">Your Donation History</h3>
           <div class="profile-card-3-1" id="donation-history-items">
-            <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600;">No donation history available</span>
-            <div class="history-card">
-              <div class="blood-icon">🩸</div>
-              <div class="history-details">
-                  <p class="info">🗓️ <span>Date:</span> 10th March 2025</p>
-                  <p class="info">⏰ <span>Time:</span> 10:30 AM</p>
-                  <p class="info">💉 <span>Amount Donated:</span> 500ml</p>
-                  <p class="info">⚖️ <span>Weight:</span> 72kg</p>
-              </div>
-            </div>
-          <div class="history-card">
-            <div class="blood-icon">🩸</div>
-            <div class="history-details">
-                <p class="info">🗓️ <span>Date:</span> 10th March 2025</p>
-                <p class="info">⏰ <span>Time:</span> 10:30 AM</p>
-                <p class="info">💉 <span>Amount Donated:</span> 500ml</p>
-                <p class="info">⚖️ <span>Weight:</span> 72kg</p>
-            </div>
+
+           <div id="history-items-loader" style="display: flex; justify-content: center;">
+            <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+           </div>
+            <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No donation history available</span>
+           <!----   donation history cards will be shown from here    -->
+           <!------
+           <div class="history-card">
+          <div class="blood-icon">🩸</div>
+          <div class="history-details">
+              <p class="info">🗓️ <span>Date:</span> 10th March 2025</p>
+              <p class="info">⏰ <span>Time:</span> 10:30 AM</p>
+              <p class="info">💉 <span>Amount Donated:</span> 500ml</p>
+              <p class="info">⚖️ <span>Weight:</span> 72kg</p>
           </div>
+         </div>
+         -->
           </div>
         </div>
     </div>
@@ -105,12 +106,23 @@
   </div>
 <div class="overlay">
   <div class="update-status-dialog-box">
+   <div class="status-update-box">
     <div>Are you sure you want to update your <b><span id="status-update-field-name"></span></b> to <span style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7);"><b>ACTIVE</b> </span>?</div>
     <div class="dialog-box-buttons">
-      <div class="dialog-box-yes-button" onclick="updateStatusSpinner()">Yes</div>
+      <div class="dialog-box-yes-button" onclick="updateYesStatusSpinner()">Yes</div>
       <div class="dialog-box-no-button" onclick="closeDialogBox()">No</div>
     </div>
+   </div>
+   <div class="password-update-box">
+    <h4 style="color: #b90606; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Password Change Request</h4>
+    <input type="text" placeholder="Your new password" id="new-password-input" autocomplete="off"/>
+    <div class="dialog-box-buttons">
+     <div class="dialog-box-update-password-button" onclick="changePassword()">Update</div>
+     <div class="dialog-box-no-button" onclick="closeDialogBox()">Cancel</div>
+    </div>
+   </div>
   </div>
+  
   <div class="spinner-parent-div">
     <div class="spinner"></i>
   </div>

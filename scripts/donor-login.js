@@ -17,10 +17,9 @@ async function userLogin() {
 
 
 
-    fetch(`${LOCAL_BACKEND_URL}/donor/login`,{
+    fetch("http://localhost:8080/bloodbank/donor/login",{
         
         method:'POST',
-        
         body:JSON.stringify(data)
     
     }).then((response)=>{
@@ -36,7 +35,14 @@ async function userLogin() {
             // will send notification here
         }else{
 
-            localStorage.setItem("donor",JSON.stringify(data))
+            const toSetDonorObject = data.data.data
+
+            const now = new Date(); // Get current date and time
+            now.setMinutes(now.getMinutes() + 30); // Add 10 minutes
+        
+            toSetDonorObject["expires_at"]=now.toISOString()
+
+            localStorage.setItem("donor",JSON.stringify(toSetDonorObject))
 
 
             window.location.href="/pages/donor-profile.html"
