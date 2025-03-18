@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BloodDonor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/admin-profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <div class="navigation-bar">
+    <h1 align="center">Blood Bank</h1>
+    <div
+      style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
+      <div class="logout-button" onclick="logoutDonorProfile()"><i class="fas fa-power-off"
+          style="scale: 1.5; color: white;"></i></div>
+    </div>
+  </div>
+
+  <div class="profile-container">
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+      <div class="col-1">
+        <img src="/resources/blood.png" height="250" width="250" />
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-card-1">
+        <!---- in HTML spaces in class name means we have two separate classes for that element -->
+        <div class="profile-tabs selected-tab" onclick="switchTab(this)">Receivers</div>
+        <div class="profile-tabs" onclick="switchTab(this)">Donors</div>
+      </div>
+      <div class="profile-card-2">
+
+        <div id="receivers-section">
+          <div style="border-bottom: 3px solid #d32f2f; display: flex; border-radius: 5px;">
+            <div class="section-tab selected-section-tab" onclick="switchSectionTab(this)">Approval List</div>
+            <div class="section-tab" style="border-left: 0.5px solid #d32f2f;" onclick="switchSectionTab(this)">History
+            </div>
+          </div>
+
+          <div id="receivers-data">
+            <!------>
+            <div id="receivers-items-loader" style="display: flex; justify-content: center;">
+              <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+            </div>
+            <span id="no-records-found-label"
+              style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No Pending Receivers</span>
+
+
+
+          </div>
+
+          <div class="carousel-navigation">
+            <div class="card-thumbs">
+              <i class="fas fa-hand-point-left"></i>
+            </div>
+            <!-- <div class="card-numbering">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+            </div> -->
+            <div class="card-thumbs">
+              <i class="fas fa-hand-point-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div id="donors-section"></div>
+
+      </div>
+
+
+    </div>
+
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+      <div class="col-3">
+        <img src="/resources/blood.png" height="250" width="250" />
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+
+  <div class="overlay">
+    <div class="update-status-dialog-box">
+      <div class="status-update-box">
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="../script.js"></script>
+<script src="../scripts/admin-profile.js"></script>
+
+</html>

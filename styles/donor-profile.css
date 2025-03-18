@@ -1,8 +1,8 @@
-*{
+* {
     /* border: 1px solid black; */
 }
 
-.profile-dialog-box{
+.profile-dialog-box {
     position: absolute;
     padding: 8px;
     right: 10px;
@@ -10,31 +10,31 @@
     top: 60px;
     border-radius: 10px;
     background: rgba(235, 90, 90, 0.3);
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
     flex-direction: column;
     justify-content: space-around;
 }
 
 
-.profile-button{
+.profile-button {
     padding: 10px;
     cursor: pointer;
     right: 5px;
     color: white;
 }
 
-.logout-button{
+.logout-button {
     padding: 10px;
     cursor: pointer;
     right: 5px;
     color: white;
 }
 
-.profile-button i{
+.profile-button i {
     scale: 1.5;
 }
 
-.logout-button i{
+.logout-button i {
     scale: 1.5;
 }
 
@@ -43,11 +43,12 @@
     justify-content: space-evenly;
 }
 
-h1{
+h1 {
     font-size: 38px;
 }
-.profile-card{
-   
+
+.profile-card {
+
     padding: 15px;
 }
 
@@ -87,15 +88,15 @@ h1{
     transition: 0.3s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #d32f2f;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(24px);
 }
 
-.profile-card-2{
+.profile-card-2 {
     display: flex;
     padding: 10px;
     margin-top: 15px;
@@ -104,23 +105,23 @@ input:checked + .slider:before {
     gap: 15px;
 }
 
-.profile-card-2-1{
+.profile-card-2-1 {
     display: flex;
     justify-content: space-around;
     width: 60%;
 }
 
-.profile-card-2-1 div{
+.profile-card-2-1 div {
     width: 100%;
 }
 
-.profile-card-2-2{
+.profile-card-2-2 {
     display: flex;
     justify-content: space-around;
     width: 60%;
 }
 
-.profile-card-2-2 div{
+.profile-card-2-2 div {
     width: 100%;
 }
 
@@ -130,7 +131,7 @@ input:checked + .slider:before {
     border-radius: 10px;
 }
 
-.profile-card-3-1{
+.profile-card-3-1 {
     height: 270px;
     display: flex;
     flex-direction: column;
@@ -138,31 +139,31 @@ input:checked + .slider:before {
     gap: 10px;
     padding: 6px;
     overflow-y: scroll;
-    
+
     justify-content: space-around;
 }
 
 .profile-card-3-1::-webkit-scrollbar {
 
     width: 10px;
-  }
-  
-  /* Track */
-  .profile-card-3-1::-webkit-scrollbar-track {
+}
+
+/* Track */
+.profile-card-3-1::-webkit-scrollbar-track {
     background: #cc83838e;
     border-radius: 10px;
-  }
-  
-  /* Handle */
-  .profile-card-3-1::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+.profile-card-3-1::-webkit-scrollbar-thumb {
     background: #c51e1e9a;
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  .profile-card-3-1::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+.profile-card-3-1::-webkit-scrollbar-thumb:hover {
     background: #c51313;
-  }
+}
 
 
 
@@ -206,17 +207,17 @@ input:checked + .slider:before {
     color: #d32f2f;
 }
 
-.overlay{
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     height: 100%;
     width: 100%;
     display: none;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .update-status-dialog-box {
@@ -239,7 +240,7 @@ input:checked + .slider:before {
     gap: 20px;
 }
 
-.password-update-box{
+.password-update-box {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -256,11 +257,11 @@ input:checked + .slider:before {
     color: white;
     border-radius: 8px;
     cursor: pointer;
-    
+
 }
 
-.dialog-box-update-password-button:hover{
-    box-shadow:  2px 3px 2px rgba(0, 0, 0, 0.5);
+.dialog-box-update-password-button:hover {
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -281,7 +282,7 @@ input:checked + .slider:before {
     font-weight: 500;
 }
 
-.dialog-box-no-button{
+.dialog-box-no-button {
     background-color: #ccc;
     padding: 4px 15px;
     cursor: pointer;
@@ -292,11 +293,11 @@ input:checked + .slider:before {
     font-weight: 500;
 }
 
-.dialog-box-yes-button:hover{
+.dialog-box-yes-button:hover {
     box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
 }
 
-.dialog-box-no-button:hover{
+.dialog-box-no-button:hover {
     box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.7);
 }
 
@@ -305,12 +306,12 @@ input:checked + .slider:before {
 }
 
 .spinner {
-    width: 18px ;
+    width: 18px;
     scale: 4;
-    height: 18px ;
+    height: 18px;
     border-radius: 50% !important;
     border-style: dashed !important;
-    border: 2px solid #c51313 ;
+    border: 2px solid #c51313;
     border-top: 2px solid transparent;
     animation: spin 1s linear infinite;
     cursor: not-allowed;
@@ -318,6 +319,11 @@ input:checked + .slider:before {
 
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
