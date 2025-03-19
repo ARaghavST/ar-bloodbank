@@ -292,7 +292,7 @@ window.onload = function(){
 
     
     // if we are in admin-login page, then run the code of checking admin data from localstorage in browser, to retain logged in admin
-    path === '/pages/admin-login.html' ? checkAdminLogin() : ""
+    path === '/pages/admin-login.html' ? "" : ""
 
 }
 
@@ -471,37 +471,6 @@ function submitGetBloodForm(){
  * 
  */
 
-async function adminLogin(){
-    const emailText = document.getElementById("admin-email")
-    const passwordText = document.getElementById("admin-password")
-
-    const loginData = {
-        "email":emailText.value,
-        "password":passwordText.value
-    }
-
-   const response = await fetch(`http://localhost:8080/bloodbank/admin`,{
-        method:'POST',
-        body:JSON.stringify(loginData)
-    })
-
-    const data = await response.json()
-
-    const adminLoginForm = document.getElementById("admin-login-form")
-    const adminUsersDiv = document.getElementById("admin-list-users")
-    
-    if (data['data']){
-
-        localStorage.setItem("admin",JSON.stringify(data['data']))
-
-        adminLoginForm.style.display="none" 
-        adminUsersDiv.style.display="block"
-    }else{
-        // notification popup
-        console.log(data['message'])
-    }
-
-}
 
 /** Script for admin-login page */
 
@@ -522,85 +491,6 @@ function showAdminPassword() {
 
 }
 
-function checkAdminLogin(){
-
-    var data = localStorage.getItem("admin")
-    const adminLoginForm = document.getElementById("admin-login-form")
-    const adminUsersDiv = document.getElementById("admin-list-users")
-    
-    if (data){
-        adminLoginForm.style.display="none"
-        adminUsersDiv.style.display="block"
-
-        fetchStatusZeroUsers()
-
-    }else{
-        
-    }
-
-}
-
-async function fetchStatusZeroUsers(){
-    const response = await fetch(`${BLOODBANK_BACKEND_URL}/admin`)
-
-    const users = await response.json()
-    // console.log(users)
-
-    const tableBodyElement = document.getElementById("status-zero-users-table")
-
-    for(var i = 0 ; i < users['data'].length ; i++){
-
-        const item = users['data'][i]
-
-        tableBodyElement.innerHTML += 
-        // vvvvvvvvvvvvvv important
-            //       `          is a tilde operator/symbol
-
-        `
-        <tr>
-        <td>${i+1}</td>
-        <td>${item.name}</td>
-        <td>${item.dob}</td>
-        <td>${item.gender}</td>
-        <td>${item.mobile}</td>
-        <td class="action-button" id=${i+1} onclick='adminShowRegUserDialogBox(${JSON.stringify(item)})'><i class="fas fa-pencil"></i></td>
-        </tr>
-        `
-   }
-}
-
-function adminShowRegUserDialogBox(item){
-    const blackScreen = document.getElementById("screen-1")
-    const dialogbox = document.getElementById("details-dialog-box")
-
-    const nameDiv = document.getElementById("admin-donor-name-div")
-
-
-    // we check empty condition , because initally we set the display of "screen-1" (id) as none - IN CSS
-    if (blackScreen.style.display == ""){
-        blackScreen.style.display = "block"
-    }
-
-
-    const adminSubmitDonorButton = document.getElementById("admin-submit")
-    // we have added one click listener to submit donor button in admin page
-    // we have done this because, we need sno field of donor everytime we click on submit button , to send update row in table with that sno field
-    adminSubmitDonorButton.addEventListener("click",()=>{
-        adminSubmitDonor(item.sno)
-    },{once:true})
-
-
-    const adminRejectDonorButton = document.getElementById("admin-reject")
-
-    adminRejectDonorButton.addEventListener("click",()=>{
-        adminRejectDonor(item.sno)
-    },{ once: true })
-
-
-
-    nameDiv.innerHTML = item.name
-
-}   
 
 
 async function adminSubmitDonor(sno){

@@ -1,10 +1,48 @@
 
+
+
 window.onload = function () {
+
+    const adminDataString = localStorage.getItem("admin")
+
+    if (!adminDataString){
+        window.location.replace("/pages/admin-login.html")
+    }
+    
+    const adminJson = JSON.parse(adminDataString)
+
+    const expiryTime = new Date(adminJson.expires_at)
+    const currentTime = new Date()
+
+  
+    console.log(currentTime.getTime() )
+    console.log(expiryTime.getTime())
+
+    if (currentTime.getTime() > expiryTime.getTime()){
+      
+        localStorage.removeItem("admin")
+
+        window.location.replace("/pages/admin-login.html")
+        
+
+        window.alert("Session expired! Login again")
+
+
+        return
+    }
+
+
 
 
     showPendingReceiversList()
 
 
+}
+
+function logoutAdminProfile(){
+    
+    localStorage.removeItem("admin")
+    window.location.replace("/pages/admin-login.html")
 }
 
 
@@ -49,6 +87,22 @@ function switchSectionTab(clickedDiv) {
 
 }
 
+
+
+function showReceiversHistory() {
+    fetch("http://localhost:8080/bloodbank/rhistory")
+        .then((response) => {
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+        })
+}
+
+
+var currentIndex = 0
+var maxIndex = 0 
+
+
 function showPendingReceiversList() {
 
     const receiversContainer = document.getElementById("receivers-data")
@@ -62,6 +116,8 @@ function showPendingReceiversList() {
 
             if (data.data.length === 0) {
                 noReceiversLabel.style.display = "flex"
+            }else{
+                maxIndex = data.data.length - 1;
             }
             loader.style.display = "none"
 
@@ -82,41 +138,56 @@ function showPendingReceiversList() {
                     </div>
                 </div>
                 `
+
+                maximumLength=data.data.length;
             }
 
+        }).catch((err)=>{
+            loader.style.display = "none"
+            noReceiversLabel.style.display = "flex"
+
         })
 
 
-    /**
-     * 
-     *  <div class="card">
-
-          <h2>Receiver's Name : <span class="highlight">Transformers</span></h2>
-
-          <p>📞 Phone: <span class="highlight">9399982755</span></p>
-          <p>📧 Email: <span class="highlight">valsala@gmail.com</span></p>
-          <p>🆔 Aadhar: <span class="highlight">238502615049</span></p>
-
-          <p>🩸 Blood Group Needed: <span class="highlight">AB-</span></p>
-          <p>📦 Quantity: <span class="highlight">400.0 ml</span></p>
-
-          <p>Status:
-            <span class="status pending">Pending</span>
-          </p>
-
-          <div class="footer">
-            <span>📅 Requested on: <strong>2025-03-01 18:50:23</strong></span>
-            <span>#ID No: <strong>3</strong></span>
-          </div>
-        </div>
-     */
 }
 
-function showReceiversHistory() {
-    fetch("http://localhost:8080/bloodbank/rhistory")
-        .then((response) => {
-            return response.json()
-        }).then((data) => {
-            console.log(data)
-        })
+
+function moveNext(){
+    const carousel = document.getElementById("receivers-data")
+    const rightThumb = document.getElementsByClassName("right-thumb")[0]
+    const leftThumb = document.getElementsByClassName("left-thumb")[0]
+
+
+    if (currentIndex < maxIndex){
+        currentIndex++;
+    }
+
+    leftThumb.classList.remove("blocked-thumb")
+    carousel.style.transform = `translateX(-${currentIndex*680}px)`
+
+    if(currentIndex === maxIndex ){
+        rightThumb.classList.add("blocked-thumb")
+    }
+
+}
+
+
+function movePrevious(){
+
+    const carousel = document.getElementById("receivers-data")
+    const rightThumb = document.getElementsByClassName("right-thumb")[0]
+    const leftThumb = document.getElementsByClassName("left-thumb")[0]
+
+    if (currentIndex > 0){
+        currentIndex--;
+    }
+
+    rightThumb.classList.remove("blocked-thumb")
+    carousel.style.transform = `translateX(-${currentIndex*680}px)`
+    
+    if (currentIndex === 0){
+        leftThumb.classList.add("blocked-thumb")
+    }
+    
+    
 }

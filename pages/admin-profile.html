@@ -26,7 +26,7 @@
     <h1 align="center">Blood Bank</h1>
     <div
       style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
-      <div class="logout-button" onclick="logoutDonorProfile()"><i class="fas fa-power-off"
+      <div class="logout-button" onclick="logoutAdminProfile()"><i class="fas fa-power-off"
           style="scale: 1.5; color: white;"></i></div>
     </div>
   </div>
@@ -34,7 +34,7 @@
   <div class="profile-container">
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
       <div class="col-1">
-        <img src="/resources/blood.png" height="250" width="250" />
+        <img src="/resources/blood.png" height="300" width="300" />
       </div>
     </div>
 
@@ -53,20 +53,26 @@
             </div>
           </div>
 
-          <div id="receivers-data">
-            <!------>
-            <div id="receivers-items-loader" style="display: flex; justify-content: center;">
-              <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
-            </div>
-            <span id="no-records-found-label"
-              style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No Pending Receivers</span>
 
+         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 65vh;">
+          <div id="receivers-items-loader" style="display: flex; justify-content: center;">
+            <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+          </div>
+          <span id="no-records-found-label"
+            style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No Pending Receivers</span>
+        
 
+        <div class="data-section">
+          <div class="carousel" id="receivers-data">
 
           </div>
+        </div>
+         </div>
+
+      
 
           <div class="carousel-navigation">
-            <div class="card-thumbs">
+            <div class="card-thumbs left-thumb blocked-thumb" onclick="movePrevious()">
               <i class="fas fa-hand-point-left"></i>
             </div>
             <!-- <div class="card-numbering">
@@ -75,7 +81,7 @@
               <div>3</div>
               <div>4</div>
             </div> -->
-            <div class="card-thumbs">
+            <div class="card-thumbs right-thumb " onclick="moveNext()">
               <i class="fas fa-hand-point-right"></i>
             </div>
           </div>
@@ -90,7 +96,7 @@
 
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
       <div class="col-3">
-        <img src="/resources/blood.png" height="250" width="250" />
+        <img src="/resources/blood.png" height="300" width="300" />
       </div>
     </div>
 
