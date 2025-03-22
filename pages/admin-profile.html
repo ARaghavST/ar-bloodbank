@@ -46,15 +46,42 @@
       </div>
       <div class="profile-card-2">
 
-        <div id="receivers-section">
-          <div style="border-bottom: 3px solid #d32f2f; display: flex; border-radius: 5px;">
-            <div class="section-tab selected-section-tab" onclick="switchSectionTab(this)">Approval List</div>
-            <div class="section-tab" style="border-left: 0.5px solid #d32f2f;" onclick="switchSectionTab(this)">History
+        <div id="receivers-section" >
+          <div style="background-color:  #eb90909a; display: flex;  padding: 5px; justify-content: space-between; width: 690px; cursor: pointer;border-top-left-radius: 5px;border-top-right-radius: 5px;" onclick="showFiltersList()">
+            <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;">FILTERS</div>
+            <div style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7);font-weight: 700;"><i class="fas fa-caret-down"></i><i class="fas fa-caret-up default-caret"></i></div>
+          </div>
+          <div class="filters-section">
+          <div class="filters-row-1">
+            <div style="width: 40%;"><input type="text" placeholder="Enter name to search" id="receiver-name-search"/></div>
+            <div style="display: flex; gap: 10px; width: 60%; justify-content: center;">
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="A+"/> <div style="font-weight: 600;">A+</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="A-"/> <div style="font-weight: 600;">A-</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="B+"/> <div style="font-weight: 600;">B+</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="B-"/> <div style="font-weight: 600;">B-</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="AB+"/><div style="font-weight: 600;">AB+</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="AB-"/><div style="font-weight: 600;">AB-</div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="O+"/> <div style="font-weight: 600;">O+ </div></div>
+             <div class="b_check"> <input type="checkbox" name="blood_group" value="O-"/> <div style="font-weight: 600;">O- </div></div>
             </div>
           </div>
+           <div class="filters-row-2">
+            <div style="display: flex;width: 40%; padding: 5px; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 4px;"> <input type="checkbox" name="status_check" value="0" onclick="handleStatusCheckBox(this)"/>Not Approved</div>
+              <div  style="display: flex;  align-items: center;  gap: 4px;"> <input type="checkbox" name="status_check" value="1" onclick="handleStatusCheckBox(this)"/>Approved</div>
+            </div>
+             <div style="width: 60%; display: flex; gap: 20px; align-items: center;">
+              <div style="display: flex; gap: 3px;">From<input type="date" id="date_from"/></div>
+              <div style="display: flex; gap: 3px;">To<input type="date" id="date_to"/></div>
+             </div>
+           </div>
+           <div class="filters-row-3">
+            <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="applyFilter()">APPLY</div>
+            <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="clearFilter()">CLEAR</div>
+           </div>
+          </div>
 
-
-         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 65vh;">
+         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
           <div id="receivers-items-loader" style="display: flex; justify-content: center;">
             <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
           </div>
@@ -107,9 +134,37 @@
 
   <div class="overlay">
     <div class="update-status-dialog-box">
-      <div class="status-update-box">
-
+      <div class="content-parent">
+        <div class="content">
+          <div class="column-1">
+            <div id="rec_id"></div>
+          </div>
+          <div class="column-2">
+            <div class="column2-row">
+              <div style="width: 40%; font-weight: 600;">Name</div>
+              <div id="rec_name" style="width: 60%;"></div>
+            </div>
+            <div class="column2-row">
+              <div style="width: 40%; font-weight: 600;">Blood Group</div>
+              <div id="rec_bg" style="width: 60%;"></div>
+            </div>
+            <div class="column2-row">
+              <div style="width: 40%; font-weight: 600;">Quantity</div>
+              <div id="rec_amount" style="width: 60%;"></div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="status-update-box">
+          <h3>Are you sure you want to approve this receiver ? </h3>
+      </div>
+      <div class="status-update-buttons">
+        <div class="dialog-buttons" style="background-color: #b11e1e" onclick="handleApproveReceiver()">YES</div>
+        <div class="dialog-buttons" style="background-color: #ccc; color: black;" onclick="handleCloseDialog()">NO</div>
+      </div>
+    </div>
+    <div class="spinner-parent-div">
+      <div class="spinner"></i>
     </div>
   </div>
 

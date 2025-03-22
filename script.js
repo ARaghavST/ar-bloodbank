@@ -437,7 +437,7 @@ function handleAadharFormat(aadharTextBox){
 }
 
 
-function submitGetBloodForm(){
+function submitGetBloodForm(                                                                                                                                                                                                                             ){
     const receiverName = document.getElementById("receiver-name").value
     const receiverPhno = document.getElementById("receiver-phno").value
     const receiverEmail = document.getElementById("receiver-email").value
@@ -457,6 +457,10 @@ function submitGetBloodForm(){
         window.alert('Aadhar number invalid');
         document.getElementById("receiver-aadhar").value = "";
     }
+
+
+
+
 
     
 }
