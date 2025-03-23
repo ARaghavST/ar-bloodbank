@@ -42,10 +42,14 @@
 
 #receivers-section {
     margin-top: 20px;
-    display: flex;
+    display: none;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+#donors-section{
+    display: flex;
 }
 
 .section-tab {
@@ -252,7 +256,7 @@
 }
 
 #no-records-found-label {
-    display: none;
+    display: flex;
 }
 
 .carousel-navigation {
@@ -416,4 +420,82 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+/**  receiver section finished here */
+
+/**  donor section starts here */
+
+.donor-requests-navigation{
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+    border-bottom: 4px solid #c41111;
+}
+
+#donation-donor-request-tab{
+    border-left: 3px solid #c41111;
+}
+
+.donor-requests-navigation div{
+    padding: 5px 8px;
+    transition: text-shadow 0.4s ease-out;
+    cursor: pointer;
+}
+
+.selected-request-tab{
+    color: #c71d1d;
+    font-weight: 600;
+    text-shadow: 1px 1px 10px rgba(255, 0, 0, 0.9);
+}
+
+#donors-section{
+    flex-direction: column;
+}
+
+.donor-filters-section{
+    background: #ee9494;
+    padding: 4px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.donor-filters {
+    margin-top: 5px;
+}
+
+.donor-filters input[type=checkbox]{
+    accent-color: #c71d1d;
+    scale: 1.5;
+}
+
+.donor-card{
+    box-shadow: 2px 1px 7px rgba(0,0,0,0.7);
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "Poppins", serif;
+    background: white;
+    width: 200px;
+    height: max-content;
+    transition: transform 0.2s ease-in-out;
+}
+
+.donor-card:hover{
+    transform: scale(1.2);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+}
+
+.donor-data-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 5px 5px; 
+    margin-top: 5px;
+    width: 910px;
+}
+
+.no-records-donor{
+    justify-content: center; 
+    align-items: center;
 }

@@ -42,56 +42,30 @@ function logoutAdminProfile(){
 }
 
 
-function switchTab(clickedDiv) {
+function switchTab(clickedSection) {
 
     const tabs = document.getElementsByClassName("profile-tabs")
+    const receiverSection = document.getElementById("receivers-section")
+    const donorSection = document.getElementById("donors-section")
 
     for (var i = 0; i < tabs.length; i++) {
-        if (tabs[i] === clickedDiv) {
+        if (tabs[i] === clickedSection) {
             tabs[i].classList.add("selected-tab")
         } else {
             tabs[i].classList.remove("selected-tab")
         }
     }
 
-
-
-}
-
-
-function switchSectionTab(clickedDiv) {
-
-    const tabs = document.getElementsByClassName("section-tab")
-
-    for (var i = 0; i < tabs.length; i++) {
-        if (tabs[i] === clickedDiv) {
-            tabs[i].classList.add("selected-section-tab")
-        } else {
-            tabs[i].classList.remove("selected-section-tab")
-        }
-    }
-
-    const selectedSectionTab = document.getElementsByClassName("selected-section-tab")[0]
-
-    if (selectedSectionTab.innerHTML === "Approval List") {
-        showPendingReceiversList()
-    } else {
-        showReceiversHistory()
+    if(clickedSection.innerHTML === "Donors"){
+        receiverSection.style.display = "none"
+        donorSection.style.display = "flex"
+    }else{
+         receiverSection.style.display = "flex"
+        donorSection.style.display = "none"
     }
 
 
 
-}
-
-
-
-function showReceiversHistory() {
-    fetch("http://localhost:8080/bloodbank/rhistory")
-        .then((response) => {
-            return response.json()
-        }).then((data) => {
-            console.log(data)
-        })
 }
 
 
@@ -489,5 +463,25 @@ function handleApproveReceiver(){
         overlay.style.display = "none"
         // we will show notification again for error 
     })
+
+}
+
+
+/** Donor section js starts here */
+
+
+function switchDonorRequestTab(clickedRequestTab){
+
+    const requestTabs = document.getElementsByClassName("donor-request-tab")
+
+    for(let i = 0 ; i < requestTabs.length ; i++){
+        if (requestTabs[i] === clickedRequestTab){
+            requestTabs[i].classList.add("selected-request-tab");
+        }else{
+            requestTabs[i].classList.remove("selected-request-tab");
+        }
+    }
+
+    
 
 }

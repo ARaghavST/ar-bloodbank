@@ -114,7 +114,150 @@
           </div>
         </div>
 
-        <div id="donors-section"></div>
+        <div id="donors-section">
+
+          <div class="donor-requests-navigation">
+            <div class="donor-request-tab selected-request-tab" id="signup-donor-request-tab" onclick="switchDonorRequestTab(this)">Signup Requests</div>
+            <div class="donor-request-tab" id="donation-donor-request-tab" onclick="switchDonorRequestTab(this)">Donation Requests</div>
+          </div>
+          
+          <div class="donor-filters-section">
+            <div class="donor-filters">
+                <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div ><input type="text" placeholder="Enter Name" style="padding: 2px 5px;"/></div>
+                  <div style="display: flex; gap: 12px;">
+                    <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+                      <div>From</div>
+                      <div><input type="date" id="donor-filter-date-from"/></div>
+                    </div>
+                    <div style="display: flex; gap: 5px;  justify-content: center; align-items: center;">
+                      <div>To</div>
+                      <div><input type="date" id="donor-filter-date-to"/></div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: center; align-items: center; ">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 4px;"><input type="checkbox" id="donor-filter-approved-status-check"/>Show Approved Donors</div>
+                  </div>
+                  <div style="display: flex;">
+                    <div class="donor-filter-emergency-label" style="display: flex; justify-content: center; align-items: center; color: #ccc; gap: 4px;"><input type="checkbox" id="donor-filter-emergency-check" disabled/>Show Emergency Available</div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 20%; margin-top: 5px; cursor: pointer;">
+                  <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 14px;" >APPLY</div>
+                  <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 14px;">CLEAR</div>
+                </div>
+                <div>
+                </div>
+
+            </div>
+          </div>
+          
+          
+          <div class="donor-data-section">
+
+            <!-- -- loader -->
+            <!-- <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
+              <div id="receivers-items-loader" style="display: flex; justify-content: center;">
+                <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+              </div>
+              </div> -->
+              <!--- loader code ends -->
+
+               <!---- no records label -->
+              <!-- <div style="height: 55vh; display: flex; justify-content: center; align-items: center;">
+                <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No New Requests</span>
+              </div> -->
+                <!---- no records label end -->
+
+              <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id" >#12</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);">B+</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">Anand S Pai</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">M</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">23</div>
+               </div>
+                </div>
+                <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">23 March 2025 11:34:00</div>
+                </div>
+              </div>
+              <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id">#12</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);" >B+</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">Anand S Pai</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">M</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">23</div>
+               </div>
+                </div>
+                <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">23 March 2025 11:34:00</div>
+                </div>
+              </div>
+              <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id">#12</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);" >B+</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">Anand S Pai</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">M</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">23</div>
+               </div>
+                </div>
+                <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">23 March 2025 11:34:00</div>
+                </div>
+              </div>
+              <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id">#12</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);" >B+</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">Anand S Pai</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">M</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">23</div>
+               </div>
+                </div>
+                <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">23 March 2025 11:34:00</div>
+                </div>
+              </div>
+              <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id">#12</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);" >B+</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">Anand S Pai</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">M</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">23</div>
+               </div>
+                </div>
+                <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">23 March 2025 11:34:00</div>
+                </div>
+              </div>
+          </div>
+
+
+        </div>
 
       </div>
 
