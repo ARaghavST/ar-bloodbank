@@ -13,8 +13,6 @@ window.onload = function(){
     })
 
     displayDonorData()
-
-
 }
 
 
@@ -47,6 +45,8 @@ function displayDonorData(){
         const availabilityToggle = document.getElementById("availability-toggle")
         const emergencyToggle = document.getElementById("emergency-toggle")
 
+        const dateInput = document.getElementById('available-date-input');
+
         nameLabel.innerHTML=donorData.name
 
         if (donorData.availability === "NO"){
@@ -64,6 +64,13 @@ function displayDonorData(){
             emergencyToggle.checked = true
         }
 
+        
+        const today = new Date();
+        const maxDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 10); // 7 days ahead
+
+        dateInput.min = today.toISOString().split("T")[0];
+        dateInput.max = maxDate.toISOString().split("T")[0];
+
 
         fetchAndDisplayDonationHistory()
 
@@ -80,6 +87,10 @@ function closeDialogBox(){
     dialogBox.style.display='none';
 
     const toUpdateFieldElement = document.getElementById("status-update-field-name")
+
+    if(toUpdateFieldElement.innerHTML===""){
+        return
+    }
 
     if (toUpdateFieldElement.innerHTML == "AVAILABILITY"){
         document.getElementById("availability-toggle").checked = false
@@ -179,8 +190,6 @@ function updateYesStatusSpinner(){
             "e_ready":"1"
         }
     }
-
-    console.log(updateBody)
   
     fetch(`http://localhost:8080/bloodbank/donor/?id=${donorObj.id}`,{
         method : 'PUT',
@@ -268,7 +277,7 @@ function fetchAndDisplayDonationHistory(){
         return response.json()
 
     }).then((data)=>{
-        console.log(data)
+
         historyContainerLoader.style.display = "none"
 
         if (data.data.length === 0 ){
@@ -280,8 +289,6 @@ function fetchAndDisplayDonationHistory(){
             for(var i = 0 ; i< data.data.length ; i++){
 
                 const item = data.data[i]
-
-                console.log(item)
 
                 const timeString = item.donation_time
 
@@ -381,4 +388,19 @@ function changePassword(){
 function logoutDonorProfile(){
     localStorage.removeItem("donor")
     window.location.replace("/pages/donor-login.html")
+}
+
+
+function openDonationConfirmationDialog(){
+    const updateStatusDiv = document.getElementsByClassName("status-update-box")[0]
+    const updatePasswordDiv = document.getElementsByClassName("password-update-box")[0]
+    const donationDiv = document.getElementsByClassName("donate-now-box")[0]
+    
+    const overlay = document.getElementsByClassName("overlay")[0]
+    overlay.style.display='flex';
+
+    updatePasswordDiv.style.display="none"
+    updateStatusDiv.style.display="none"
+    donationDiv.style.display="block"
+
 }
