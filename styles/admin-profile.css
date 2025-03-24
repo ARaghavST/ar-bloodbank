@@ -42,7 +42,7 @@
 
 #receivers-section {
     margin-top: 20px;
-    display: none;
+    display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -256,7 +256,7 @@
 }
 
 #no-records-found-label {
-    display: flex;
+    display: none;
 }
 
 .carousel-navigation {
@@ -426,6 +426,10 @@
 
 /**  donor section starts here */
 
+#donors-section{
+    display: none;
+}
+
 .donor-requests-navigation{
     display: flex;
     margin-top: 10px;
@@ -475,25 +479,58 @@
     border-radius: 10px;
     cursor: pointer;
     font-family: "Poppins", serif;
-    background: white;
+    background: #f3efef;
     width: 200px;
     height: max-content;
     transition: transform 0.2s ease-in-out;
 }
 
+.emergency-card{
+    box-shadow: 2px 1px 5px rgba(255,0,0,0.7);
+}
+
+.emergency-card:hover{
+    box-shadow: 2px 1px 5px rgba(255,0,0,0.9) !important;
+}
+
 .donor-card:hover{
-    transform: scale(1.2);
+    transform: scale(0.9);
     box-shadow: 2px 2px 8px rgba(0,0,0,0.9);
 }
 
 .donor-data-section {
-    display: flex;
+    display: none;
     gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
     flex-wrap: wrap;
     padding: 5px 5px; 
     margin-top: 5px;
     width: 910px;
 }
+
+.donor-data-section::-webkit-scrollbar {
+
+    width: 10px;
+}
+
+/* Track */
+.donor-data-section::-webkit-scrollbar-track {
+    background: #cc83838e;
+    border-radius: 10px;
+}
+
+/* Handle */
+.donor-data-section::-webkit-scrollbar-thumb {
+    background: #c51e1e9a;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.donor-data-section::-webkit-scrollbar-thumb:hover {
+    background: #c51313;
+}
+
 
 .no-records-donor{
     justify-content: center; 

@@ -5,6 +5,7 @@ window.onload = function () {
 
     const adminDataString = localStorage.getItem("admin")
 
+
     if (!adminDataString){
         window.location.replace("/pages/admin-login.html")
     }
@@ -27,9 +28,6 @@ window.onload = function () {
 
         return
     }
-
-
-
 
     showPendingReceiversList()
 
@@ -57,10 +55,12 @@ function switchTab(clickedSection) {
     }
 
     if(clickedSection.innerHTML === "Donors"){
+        showNotApprovedDonors()
+
         receiverSection.style.display = "none"
         donorSection.style.display = "flex"
     }else{
-         receiverSection.style.display = "flex"
+        receiverSection.style.display = "flex"
         donorSection.style.display = "none"
     }
 
@@ -69,8 +69,272 @@ function switchTab(clickedSection) {
 }
 
 
+function getYearsDifference(dateString) {
+    const [day, month, year] = dateString.split('/').map(Number);
+    const inputDate = new Date(year, month - 1, day);
+    const currentDate = new Date();
+
+    let years = currentDate.getFullYear() - inputDate.getFullYear();
+
+    // Adjust if the birthday hasn't occurred yet this year
+    if (
+        currentDate.getMonth() < inputDate.getMonth() || 
+        (currentDate.getMonth() === inputDate.getMonth() && currentDate.getDate() < inputDate.getDate())
+    ) {
+        years--;
+    }
+
+    return years;
+}
+
+
+function formatDate(dateString) {
+    // Parse the given date string
+    const date = new Date(dateString.replace(" ", "T")); // Convert to ISO format
+
+    // Define month names
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    // Extract date components
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    // Format time with leading zeros if needed
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
+    return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+}
+
+function showNotApprovedDonors(){
+
+    const loader = document.getElementById("donor-items-loader")
+    const noRecordsLabel = document.getElementById("donor-no-records-found-label")
+    const donorDataContainer = document.getElementsByClassName("donor-data-section")[0]
+    
+    donorDataContainer.style.display = "none"
+
+    donorDataContainer.innerHTML = ""
+    loader.style.display="flex"
+    noRecordsLabel.style.display="none"
+    
+
+
+    fetch("http://localhost:8080/bloodbank/admin?usertype=donors&status=0")
+    .then((response)=>{
+        return response.json()
+    }).then((data)=>{
+        
+        loader.style.display="none"
+        donorDataContainer.style.display = "flex"
+        if(data.data){
+
+            if (data.data.length===0){
+
+                  noRecordsLabel.style.display = "flex"
+                  return
+            }
+
+            for ( let i = 0 ; i< data.data.length ;i++){
+
+                let item = data.data[i]
+
+
+                donorDataContainer.innerHTML += `
+                <div class="donor-card">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id" >#${item.id}</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);">${item.blood_group}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">${item.name}</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">${item.gender}</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">${getYearsDifference(item.dob)}</div>
+               </div>
+                </div>
+                 <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">${formatDate(item.req_on)}</div>
+                </div>
+              </div>`
+            }
+
+            donorDataContainer.style.display="flex"
+
+
+        }else{
+            // notify empty data
+
+            noRecordsLabel.style.display = "flex"
+        }
+
+    }).catch((err)=>{
+        // notify
+        noRecordsLabel.style.display = "flex"
+    })
+
+
+}
+
+
+function addAdminDonorFilters(){
+
+    const nameFilter = document.getElementById("donor-filter-name").value
+    const dateFrom = document.getElementById("donor-filter-date-from").value
+    const dateTo = document.getElementById("donor-filter-date-to").value
+    const approvedStatusCheck = document.getElementById("donor-filter-approved-status-check")
+    const emergencyReadyCheck = document.getElementById("donor-filter-emergency-check")
+
+    const donorDataContainer = document.getElementsByClassName("donor-data-section")[0]
+    const loader = document.getElementById("donor-items-loader")
+    const noRecordsLabel = document.getElementById("donor-no-records-found-label")
+
+    let donorStatusToFetch = 0
+    let donorReqOnDateRange = ""
+    let donorEmergencyFetch = 0
+
+    if (approvedStatusCheck.checked){
+        donorStatusToFetch = 1
+    }
+
+    if (emergencyReadyCheck.checked) {
+        donorEmergencyFetch = 1
+    }
+
+    if(dateFrom && !dateTo){
+        window.alert("Both To and From dates are required !")
+        return
+    }
+
+    if(!dateFrom && dateTo){
+        window.alert("Both To and From dates are required !")
+        return
+    }
+
+    if (!dateFrom && !dateTo){
+        donorReqOnDateRange=""
+    }else{
+        donorReqOnDateRange = dateFrom + " 00:00:00"+","+dateTo+" 23:59:59"
+    }
+
+    
+
+    const fetchUrl = `http://localhost:8080/bloodbank/admin?usertype=donors&name=${nameFilter}&status=${donorStatusToFetch}&req_date_range=${encodeURIComponent(donorReqOnDateRange)}&emergency=${donorEmergencyFetch}`
+
+    donorDataContainer.style.display = "none"
+    donorDataContainer.innerHTML = ""
+
+    loader.style.display ="flex"
+    noRecordsLabel.style.display="none"
+
+    fetch(fetchUrl)
+    .then((response)=>{
+        return response.json()
+    }).then((data)=>{
+
+        donorDataContainer.style.display = "flex"
+        loader.style.display = "none"
+       
+        if(data.data){
+
+            if(data.data.length === 0 ){
+                noRecordsLabel.style.display="flex"
+                return  
+            }
+
+            let rows = data.data.length / 4
+
+            donorDataContainer.style.height = (rows*13)+"vh"
+
+            for ( let i = 0 ; i< data.data.length ;i++){
+
+                let item = data.data[i]
+
+
+                donorDataContainer.innerHTML += `
+                <div class="donor-card ${item.e_ready === 1 ? "emergency-card":""}">
+                <div style="display: flex; justify-content: space-between;">
+                  <div id="donor_id" >#${item.id}</div>
+                  <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);">${item.blood_group}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                 <div style="font-weight: 600;" id="donor_name">${item.name}</div>
+                <div style="display: flex; justify-content: space-around;gap: 2px;">
+                 <div style="padding: 2px;" id="donor_gender">${item.gender}</div>
+                 <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">${getYearsDifference(item.dob)}</div>
+               </div>
+                </div>
+                 <div style="display: flex; justify-content:space-between; font-size: 10px; gap: 20px;">
+                 <div>Req on :</div>
+                 <div style="font-style: italic;" id="donor_reqon">${formatDate(item.req_on)}</div>
+                </div>
+              </div>`
+            }
+
+        }else{
+            noRecordsLabel.style.display="flex"
+        }
+
+    }).catch((err)=>{
+        console.log(err)
+        noRecordsLabel.style.display="flex"
+    })
+
+
+}
+
+function performApproveCheck(checkedBox){
+    
+    const emergencyCheckBox = document.getElementById("donor-filter-emergency-check")
+    const emergencyLabel = document.getElementsByClassName("donor-filter-emergency-label")[0]
+    if (checkedBox.checked){
+        emergencyLabel.style.color = "black"
+        emergencyCheckBox.disabled = false
+    }else{
+        emergencyLabel.style.color = "#ccc"
+        emergencyCheckBox.disabled = true
+    }
+
+}
+
+
+function clearAdminDonorFilters(){
+    const nameFilter = document.getElementById("donor-filter-name")
+    const dateFrom = document.getElementById("donor-filter-date-from")
+    const dateTo = document.getElementById("donor-filter-date-to")
+    const approvedStatusCheck = document.getElementById("donor-filter-approved-status-check")
+    const emergencyCheckBox = document.getElementById("donor-filter-emergency-check")
+    const emergencyLabel = document.getElementsByClassName("donor-filter-emergency-label")[0]
+
+    nameFilter.value = ""
+    dateFrom.value = ""
+    dateTo.value = ""
+    approvedStatusCheck.checked = false
+    emergencyCheckBox.checked = false
+    emergencyCheckBox.disabled = true
+    emergencyLabel.style.color = "#ccc"
+
+    showNotApprovedDonors()
+
+}
+
+/**
+ * 
+ * --- Below is receivers section
+ * 
+ */
+
+
+
 var currentIndex = 0
 var maxIndex = 0 
+
 
 
 function showPendingReceiversList() {
@@ -482,6 +746,5 @@ function switchDonorRequestTab(clickedRequestTab){
         }
     }
 
-    
 
 }
