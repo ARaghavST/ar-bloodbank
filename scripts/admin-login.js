@@ -37,7 +37,7 @@ function adminLogin(){
         
         localStorage.setItem("admin",JSON.stringify(adminSession))
 
-        window.location.replace("/pages/admin-profile.html")
+        window.location.replace("/pages/admin-profile.html?section=Receivers&type=NewRequests")
         
 
         

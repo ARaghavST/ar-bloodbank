@@ -1,13 +1,29 @@
+var BACKEND_URL = "http://localhost:8080/bloodbank"
+
+
 
 let receiverDataArray=[]
 
+
 window.onload = function () {
 
+    let sessionExpired = IsSessionExprired()
+
+    if(sessionExpired){
+        localStorage.removeItem("admin")
+        window.location.replace("/pages/admin-login.html")
+        window.alert("Session expired! Login again")
+        return
+    }
+
+    handleDisplaySection()
+}
+
+function IsSessionExprired(){
     const adminDataString = localStorage.getItem("admin")
 
-
     if (!adminDataString){
-        window.location.replace("/pages/admin-login.html")
+        return true
     }
     
     const adminJson = JSON.parse(adminDataString)
@@ -15,23 +31,64 @@ window.onload = function () {
     const expiryTime = new Date(adminJson.expires_at)
     const currentTime = new Date()
 
-
-    if (currentTime.getTime() > expiryTime.getTime()){
-      
-        localStorage.removeItem("admin")
-
-        window.location.replace("/pages/admin-login.html")
-        
-
-        window.alert("Session expired! Login again")
+    return (currentTime.getTime() > expiryTime.getTime())
+}
 
 
-        return
+
+
+function handleDisplaySection(){
+    let currentLocation = window.location.href
+    let urlObject = new URL(currentLocation)
+
+    let section = urlObject.searchParams.get("section")
+    let type = urlObject.searchParams.get("type")
+
+    const profileTabs = document.getElementsByClassName("profile-tabs")
+    const requestTabs = document.getElementsByClassName("donor-request-tab")
+
+    const approvedDonorsCheckFilter = document.getElementById("donor-filter-approved-status-check")
+    const approvedDonorsCheckLabel = document.getElementsByClassName("donor-filter-approved-status-label")[0]
+    
+    const receiverSection = document.getElementById("receivers-section")
+    const donorSection = document.getElementById("donors-section")
+
+
+    for(let i = 0 ; i < requestTabs.length ; i++){
+        if (requestTabs[i].innerHTML.split(" ")[0]===type){
+            requestTabs[i].classList.add("selected-request-tab");
+        }else{
+            requestTabs[i].classList.remove("selected-request-tab");
+        }
+    }
+   
+    for (let i = 0; i < profileTabs.length ; i++){
+        if (profileTabs[i].innerHTML===section){
+            profileTabs[i].classList.add("selected-tab")
+        }else{
+            profileTabs[i].classList.remove("selected-tab")
+        }
     }
 
-    showPendingReceiversList()
+    if (section === "Donors"){
+        receiverSection.style.display = "none"
+        donorSection.style.display = "flex"
+        
+        if (type==="Signup"){
+            showNotApprovedDonors()
+        }else{
+            approvedDonorsCheckFilter.disabled = true
+            approvedDonorsCheckLabel.style.color = "#ccc"
+            showDonationRequests()
+        }
+    }else{
+        receiverSection.style.display = "flex"
+        donorSection.style.display = "none"
+        showPendingReceiversList()
+    }
 
 }
+
 
 function logoutAdminProfile(){
     
@@ -42,29 +99,12 @@ function logoutAdminProfile(){
 
 function switchTab(clickedSection) {
 
-    const tabs = document.getElementsByClassName("profile-tabs")
-    const receiverSection = document.getElementById("receivers-section")
-    const donorSection = document.getElementById("donors-section")
-
-    for (var i = 0; i < tabs.length; i++) {
-        if (tabs[i] === clickedSection) {
-            tabs[i].classList.add("selected-tab")
-        } else {
-            tabs[i].classList.remove("selected-tab")
-        }
-    }
-
     if(clickedSection.innerHTML === "Donors"){
-        showNotApprovedDonors()
-
-        receiverSection.style.display = "none"
-        donorSection.style.display = "flex"
+        window.location.replace("../pages/admin-profile.html?section=Donors&type=Signup")
     }else{
-        receiverSection.style.display = "flex"
-        donorSection.style.display = "none"
+  
+        window.location.replace("../pages/admin-profile.html?section=Receivers")
     }
-
-
 
 }
 
@@ -125,13 +165,13 @@ function showNotApprovedDonors(){
     
 
 
-    fetch("http://localhost:8080/bloodbank/admin?usertype=donors&status=0")
+    fetch(`${BACKEND_URL}/admin?usertype=donors&status=0`)
     .then((response)=>{
         return response.json()
     }).then((data)=>{
         
         loader.style.display="none"
-        donorDataContainer.style.display = "flex"
+        
         if(data.data){
 
             if (data.data.length===0){
@@ -143,7 +183,6 @@ function showNotApprovedDonors(){
             for ( let i = 0 ; i< data.data.length ;i++){
 
                 let item = data.data[i]
-
 
                 donorDataContainer.innerHTML += `
                 <div class="donor-card">
@@ -167,7 +206,6 @@ function showNotApprovedDonors(){
 
             donorDataContainer.style.display="flex"
 
-
         }else{
             // notify empty data
 
@@ -183,6 +221,45 @@ function showNotApprovedDonors(){
 }
 
 
+function showDonationRequests(){
+
+    const loader = document.getElementById("donor-items-loader")
+    const noRecordsLabel = document.getElementById("donor-no-records-found-label")
+    const donorDataContainer = document.getElementsByClassName("donor-data-section")[0]
+
+    donorDataContainer.innerHTML = ""
+    noRecordsLabel.style.display = "none"
+    loader.style.display = "flex"
+
+    fetch(`${BACKEND_URL}/admin?usertype=donors&status=2`)
+    .then((response)=>{return response.json()})
+    .then((data)=>{
+        
+
+        loader.style.display = "none"
+
+        const records = data.data 
+
+
+
+        if (!records || records.length === 0){
+            noRecordsLabel.children[0].innerHTML = "No new donation requests"
+            noRecordsLabel.style.display = "flex"
+            return
+        }
+
+
+
+
+
+    }).catch((err)=>{  
+        noRecordsLabel.children[0].innerHTML = "No new donation requests"
+        noRecordsLabel.style.display = "flex"
+    })
+
+
+}
+
 function addAdminDonorFilters(){
 
     const nameFilter = document.getElementById("donor-filter-name").value
@@ -190,6 +267,8 @@ function addAdminDonorFilters(){
     const dateTo = document.getElementById("donor-filter-date-to").value
     const approvedStatusCheck = document.getElementById("donor-filter-approved-status-check")
     const emergencyReadyCheck = document.getElementById("donor-filter-emergency-check")
+
+    const donorDataDisplayType = document.getElementsByClassName("selected-request-tab")[0]
 
     const donorDataContainer = document.getElementsByClassName("donor-data-section")[0]
     const loader = document.getElementById("donor-items-loader")
@@ -223,34 +302,68 @@ function addAdminDonorFilters(){
         donorReqOnDateRange = dateFrom + " 00:00:00"+","+dateTo+" 23:59:59"
     }
 
-    
-
-    const fetchUrl = `http://localhost:8080/bloodbank/admin?usertype=donors&name=${nameFilter}&status=${donorStatusToFetch}&req_date_range=${encodeURIComponent(donorReqOnDateRange)}&emergency=${donorEmergencyFetch}`
-
     donorDataContainer.style.display = "none"
     donorDataContainer.innerHTML = ""
-
     loader.style.display ="flex"
     noRecordsLabel.style.display="none"
+    
 
+    let fetchUrl = `${BACKEND_URL}/admin?usertype=donors&name=${nameFilter}&status=${donorStatusToFetch}&req_date_range=${encodeURIComponent(donorReqOnDateRange)}&emergency=${donorEmergencyFetch}`
+
+    if (donorDataDisplayType.innerHTML === "Donation Requests"){
+
+        fetchUrl = `${BACKEND_URL}/admin?usertype=donors&name=${nameFilter}&status=2&req_date_range=${encodeURIComponent(donorReqOnDateRange)}`
+        fetch(fetchUrl)
+        .then((response)=>{return response.json()})
+        .then((data)=>{
+
+            loader.style.display = "none"
+
+            const records = data.data
+
+            if (!records || records.length === 0 ){
+                noRecordsLabel.children[0].innerHTML = "No new donation requests"
+                noRecordsLabel.style.display = "flex"
+                return
+            }
+
+        }).catch((err)=>{
+                noRecordsLabel.children[0].innerHTML = "No new donation requests"
+                noRecordsLabel.style.display = "flex"
+        })
+
+        return
+    }
+
+   
+    
+
+
+    
     fetch(fetchUrl)
-    .then((response)=>{
-        return response.json()
-    }).then((data)=>{
-
-        donorDataContainer.style.display = "flex"
+    .then((response)=>{ return response.json()})
+    .then((data)=>{
+    
         loader.style.display = "none"
        
         if(data.data){
 
-            if(data.data.length === 0 ){
+            if(data.data.length === 0 ){                
                 noRecordsLabel.style.display="flex"
                 return  
             }
 
+            donorDataContainer.style.display = "flex"
+            // dynamically setting height of parent , to match will scroll bar and cards content
+            // the container "donorDataContainer" will take max 5 rows, each having 4 cards each
+            // If we have rows more than 5 , then we display scrollbar
             let rows = data.data.length / 4
-
-            donorDataContainer.style.height = (rows*13)+"vh"
+            let rem = (data.data.length % 4)
+            if(rows <= 5){
+                donorDataContainer.style.height = (rows*13)+(rem*13)+"vh" 
+            }else{
+                donorDataContainer.style.height = (rows*13)+"vh" 
+            }
 
             for ( let i = 0 ; i< data.data.length ;i++){
 
@@ -312,6 +425,8 @@ function clearAdminDonorFilters(){
     const emergencyCheckBox = document.getElementById("donor-filter-emergency-check")
     const emergencyLabel = document.getElementsByClassName("donor-filter-emergency-label")[0]
 
+    const donorDataDisplayType = document.getElementsByClassName("selected-request-tab")[0]
+
     nameFilter.value = ""
     dateFrom.value = ""
     dateTo.value = ""
@@ -320,7 +435,12 @@ function clearAdminDonorFilters(){
     emergencyCheckBox.disabled = true
     emergencyLabel.style.color = "#ccc"
 
-    showNotApprovedDonors()
+    if (donorDataDisplayType.innerHTML === "Donation Requests"){
+        showDonationRequests()   
+    }else{
+        showNotApprovedDonors()
+    }
+
 
 }
 
@@ -347,7 +467,7 @@ function showPendingReceiversList() {
     const loader = document.getElementById("receivers-items-loader")
     const noReceiversLabel = document.getElementById("no-records-found-label")
 
-    fetch("http://localhost:8080/bloodbank/admin?usertype=receivers")
+    fetch(`${BACKEND_URL}/admin?usertype=receivers`)
         .then((response) => {
             return response.json()
         }).then((data) => {
@@ -558,7 +678,7 @@ function applyFilter(){
 
     receiverDataArray=[]
     // preparing the backend fetch url
-    let url = `http://localhost:8080/bloodbank/admin?usertype=receivers&req_date_range=${rangeOfDate !== "" ? encodeURIComponent(rangeOfDate) : ""}&name=${nameToSearch}&status=${status}&bloodtype=${checkedBloodGroupString !== "" ? encodeURIComponent(checkedBloodGroupString) : ""}`
+    let url = `${BACKEND_URL}/admin?usertype=receivers&req_date_range=${rangeOfDate !== "" ? encodeURIComponent(rangeOfDate) : ""}&name=${nameToSearch}&status=${status}&bloodtype=${checkedBloodGroupString !== "" ? encodeURIComponent(checkedBloodGroupString) : ""}`
 
     // setting loader to be visible
     loader.style.display = "flex"
@@ -736,15 +856,11 @@ function handleApproveReceiver(){
 
 function switchDonorRequestTab(clickedRequestTab){
 
-    const requestTabs = document.getElementsByClassName("donor-request-tab")
-
-    for(let i = 0 ; i < requestTabs.length ; i++){
-        if (requestTabs[i] === clickedRequestTab){
-            requestTabs[i].classList.add("selected-request-tab");
-        }else{
-            requestTabs[i].classList.remove("selected-request-tab");
-        }
+  
+    if(clickedRequestTab.innerHTML === "Donation Requests"){
+        window.location.replace("../pages/admin-profile.html?section=Donors&type=Donation")
+    }else{
+        window.location.replace("../pages/admin-profile.html?section=Donors&type=Signup")
     }
-
 
 }
