@@ -336,7 +336,7 @@
     height: 240px;
     width: max-content;
     border-radius: 15px;
-    display: flex;
+    display: none;
     gap: 10px;
     flex-direction: column;
     justify-content: space-evenly;
@@ -486,7 +486,7 @@
 }
 
 .emergency-card{
-    box-shadow: 2px 1px 2px rgba(255,0,0,0.4);
+    box-shadow: 2px 1px 8px #ff000080;
 }
 
 .emergency-card:hover{
@@ -535,4 +535,108 @@
 .no-records-donor{
     justify-content: center; 
     align-items: center;
+}
+
+.donor-details-dialog-box{
+    display: block;
+    width: 380px;
+    font-family: "Poppins", serif;
+    box-shadow: 1px 1px 12px rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.section-1{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 8px;
+    background: #c93b3b;
+}
+
+.section-2{
+    padding: 5px;
+}
+
+.section-3{
+    padding: 5px;
+}
+
+.section-4{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#donor_emergency_label{
+    background: #ff000069; 
+    width: max-content; 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+#not_available_label{
+    background: #e4e3e3; 
+    width: max-content; 
+    padding: 5px; 
+    font-size: 12px;
+    border-radius: 20px;
+}
+
+#dialog_donor_name{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#dialog_donor_id{
+    display: flex; 
+    justify-content: center; 
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 10px rgba(0,0,0,0.8);
+    align-items: center; 
+    font-weight: 600; 
+    font-size: 32px;
+    background: white;
+}
+
+.request_blood_btn{
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 40%;
+    text-align: center;
+    background: #a71717;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.2s ease-in;
+}
+
+.disabled_request{
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+
+.close_form_btn{
+    font-size: 12px; 
+    padding: 5px; 
+    width: 40%; 
+    background: #ccc; 
+    text-align: center; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+.request_blood_btn:hover{
+    box-shadow: 1px 2px 15px rgba(0,0,0,0.8);
+}
+
+.dialog_spinner{
+    display: none;
+    justify-content: center;
 }

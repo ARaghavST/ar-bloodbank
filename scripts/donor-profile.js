@@ -1,3 +1,6 @@
+
+var BACKEND_URL = "http://localhost:8080/bloodbank"
+
 window.onload = function(){
 
     const body = document.getElementsByTagName("body")[0]
@@ -134,9 +137,14 @@ function toggleAvailability(checkbox){
         return
      }
 
+     const updatePasswordDiv = document.getElementsByClassName("password-update-box")[0]
+     const donationRequestDiv = document.getElementsByClassName("donate-now-box")[0]
     const toUpdateFieldElement = document.getElementById("status-update-field-name")
 
     if(checkbox.checked){
+        
+        updatePasswordDiv.style.display="none"
+        donationRequestDiv.style.display="none"
         const dialogBox = document.getElementsByClassName("overlay")[0]
 
         toUpdateFieldElement.innerHTML = "AVAILABILITY"
@@ -154,9 +162,13 @@ function toggleEmergency(checkbox){
         return
      }
 
+     const updatePasswordDiv = document.getElementsByClassName("password-update-box")[0]
+     const donationRequestDiv = document.getElementsByClassName("donate-now-box")[0]
     const toUpdateFieldElement = document.getElementById("status-update-field-name")
 
     if(checkbox.checked){
+        updatePasswordDiv.style.display="none"
+        donationRequestDiv.style.display="none"
         const dialogBox = document.getElementsByClassName("overlay")[0]
         toUpdateFieldElement.innerHTML = "EMERGENCY AVAILABILITY"
         dialogBox.style.display='flex';
@@ -170,6 +182,7 @@ function updateYesStatusSpinner(){
     const dialogBox = document.getElementsByClassName("update-status-dialog-box")[0]
     const spinnerBox = document.getElementsByClassName("spinner-parent-div")[0]
     const overlay = document.getElementsByClassName("overlay")[0]
+    
 
     const toUpdateFieldElement = document.getElementById("status-update-field-name")
 
@@ -292,8 +305,12 @@ function fetchAndDisplayDonationHistory(){
 
                 const timeString = item.donation_time
 
-                // These lines make date from 2025-03-17 to 17 March 2025
-                const dateObject = new Date(timeString.split(" ")[0]);
+                let formattedDate = ""
+                let formattedTime = ""
+                
+                if(timeString){
+                     // These lines make date from 2025-03-17 to 17 March 2025
+                const dateObject = new Date(timeString.split(" ")[0])
 
                 // Define options for formatting
                 const options = { day: '2-digit', month: 'long', year: 'numeric' };
@@ -302,7 +319,7 @@ function fetchAndDisplayDonationHistory(){
                 const formatter = new Intl.DateTimeFormat('en-GB', options);
 
                 // Format the date
-                const formattedDate = formatter.format(dateObject);
+                 formattedDate = formatter.format(dateObject);
 
 
                 // These functions make time from 13:00:00 to 01:00 PM
@@ -319,7 +336,8 @@ function fetchAndDisplayDonationHistory(){
                 minutes = minutes.toString().padStart(2, '0');
             
                 // Return formatted time without seconds
-                const formattedTime = `${hours}:${minutes} ${period}`;
+                 formattedTime = `${hours}:${minutes} ${period}`;
+                }
 
 
 
@@ -345,10 +363,12 @@ function showUpdatePasswordDialogBox(){
     
     const updateStatusDiv = document.getElementsByClassName("status-update-box")[0]
     const updatePasswordDiv = document.getElementsByClassName("password-update-box")[0]
+    const donationRequestDiv = document.getElementsByClassName("donate-now-box")[0]
     
     const dialogBox = document.getElementsByClassName("overlay")[0]
     dialogBox.style.display='flex';
 
+    donationRequestDiv.style.display="none"
     updatePasswordDiv.style.display="flex"
     updateStatusDiv.style.display="none"
 
@@ -402,5 +422,54 @@ function openDonationConfirmationDialog(){
     updatePasswordDiv.style.display="none"
     updateStatusDiv.style.display="none"
     donationDiv.style.display="block"
+
+}
+
+function getCurrentTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+}
+
+
+function submitBloodDonationRequest(){
+
+    var donor = localStorage.getItem("donor")    
+    var donorObj = JSON.parse(donor)
+
+    const dateInput = document.getElementById("available-date-input")
+    const spinnerDiv = document.getElementsByClassName("spinner-parent-div")[0]
+    const overlay = document.getElementsByClassName("overlay")[0]
+
+    if(!dateInput.value){
+        // notification
+        window.alert("You need to select date")
+        return
+    }
+    spinnerDiv.style.display="flex"
+
+    
+    
+
+
+    fetch(`${BACKEND_URL}/donor/donate?id=${donorObj.id}`,{
+        method : 'POST',
+        body : JSON.stringify({
+            "blood_group":donorObj.blood_group,
+            "available_date":dateInput.value+" "+getCurrentTime()
+        })
+    })
+    .then((response)=>{return response.json()})
+    .then((data)=>{
+
+
+        dateInput.input = ""
+        spinnerDiv.style.display="none"
+        overlay.style.display="none"
+        console.log(data)
+    })
+
 
 }

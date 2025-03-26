@@ -247,7 +247,7 @@ input:checked+.slider:before {
 
 .update-status-dialog-box {
     margin: 0 auto;
-    height: 120px;
+    height: max-content;
     width: 320px;
     border-radius: 15px;
     display: flex;

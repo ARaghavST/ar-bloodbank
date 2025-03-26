@@ -53,7 +53,6 @@ async function userLogin() {
     }).catch((err)=>{
 
          // will send notification here
-
         loginLockDiv.style.setProperty("display", "flex", "important")
         loginSpinner.style.setProperty("display", "none", "important")
     })
