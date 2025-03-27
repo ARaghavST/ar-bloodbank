@@ -43,8 +43,17 @@
     width: 10px;
     height: 10px;
 }
+
+#selected{
+    background: white;
+    box-shadow: 2px 4px 15px rgba(255, 0, 0, 1) !important;
+    width: 10px;
+    height: 10px;
+}
+
+
 .receiver-child-1{
-    display: flex;
+    display: none;
     padding: 8px 2px;
     justify-content: space-evenly
 }
@@ -107,25 +116,83 @@
     /* transition: bottom 0.7s ease-in-out; */
     height: 0;
     /* bottom: calc(-300px * 0.6); */
-    animation: moveMaxLine 2.5s ease-in-out forwards;
+    /* animation: moveMaxLine 2.5s ease-in-out forwards; */
 }
 
-@keyframes moveMaxLine {
+/* @keyframes moveMaxLine {
     from{
         bottom: 0;
     }
     to {
+        
         bottom: calc(-300px * 0.6); ;
+    }
+} */
+
+
+.spinner {
+    width: 18px;
+    scale: 4;
+    height: 18px;
+    border-radius: 50% !important;
+    border-style:solid !important;
+    border: 2px solid #c51313;
+    border-top: 2px solid transparent;
+    animation: spin 1s linear infinite;
+    cursor: not-allowed;
+}
+
+.receiver-submit-loader {
+    display: none;
+    padding: 8px;
+    margin-top: 20px;
+    justify-content: center;
+}
+.submit-spinner{
+    scale: 1.4;
+    
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
 
-
 /****** Request blood carousel implementation *****/
+.blood-stock-loader{
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center;
+    gap: 30px;
+    color: #8B0000;
+    height: 50vh;
+    font-size: 14px;
+    font-family: "Poppins" sans-serif;
+    width: 600px;
+}
+
+.blood-stock-not-fetched{
+    display: none; 
+    justify-content: center; 
+    align-items: center;
+    color: #8B0000;
+    height: 50vh;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Poppins" sans-serif;
+    width: 600px;
+}
 
 .receiver-child-2{
     /* border: 1px solid red; */
     padding: 10px;
-    display: flex;
+    display: none;
     width: 600px;
     overflow: hidden;
 }
@@ -164,17 +231,17 @@
     position: absolute; /* gyaan na baate */
     bottom: 0;  
     width: 100%;
-    height: 50%;
+    /* height: 50%; */
     background: linear-gradient(180deg, #FF0000, #8B0000);
     opacity: 0.4;
     /* background: linear-gradient(30deg, #f11313, #e46a3e ); */
     border-radius: 0 0 30px 30px;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
-    animation: fillBlood 2s ease-in-out forwards; /* line 425 */
+    /* animation: fillBlood 2s ease-in-out forwards;  */
     
     
 }
-
+/* 
 @keyframes fillBlood {
     from {
         height: 0;
@@ -182,7 +249,7 @@
     to {
         height: 40%;
     }
-}
+} */
 
 .receive-blood {
     position: absolute; /* gyaan na baate */
@@ -372,5 +439,5 @@ input[type="range"] {
     cursor: pointer;
     font-weight: 600;
     color: white;
-    background: linear-gradient(180deg, #da5454, #fb1212);;;
+    background: linear-gradient(180deg, #da5454, #fb1212);
 }

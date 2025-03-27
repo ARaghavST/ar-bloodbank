@@ -615,6 +615,19 @@
     transition: all 0.2s ease-in;
 }
 
+
+.approve_donor_button{
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 40%;
+    text-align: center;
+    background: #a71717;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.2s ease-in;
+}
+
 .disabled_request{
     background-color: #ccc;
     cursor: not-allowed;
@@ -639,4 +652,54 @@
 .dialog_spinner{
     display: none;
     justify-content: center;
+}
+
+
+.dialog-box-input-item input {
+    outline: none;
+    border: none;
+    background: white;
+    box-shadow: inset 1px 2px 2px rgba(0,0,0,0.4);
+    padding: 4px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+
+input[type="range"] {
+    accent-color: red;
+}
+
+#donated_amount_text{
+    width:50%; 
+    text-align:center;
+    font-weight:600;
+}
+
+#donation_request_weight_input{
+    width: 30%;
+}
+
+.submit_donation_form_btn{
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 40%;
+    text-align: center;
+    background: #a71717;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.2s ease-in;
+}
+
+.submit_donation_form_btn:hover{
+    box-shadow: 1px 2px 15px rgba(0,0,0,0.8);
+}
+
+.donation-submit-dialog-box{
+    display: block;
+    width: 380px;
+    font-family: "Poppins", serif;
+    box-shadow: 1px 1px 12px rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    background-color: white;
 }

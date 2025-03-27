@@ -1,236 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BloodDonor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
-  <link rel="stylesheet" href="../styles/style.css">
-  <link rel="stylesheet" href="../styles/admin-profile.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-
-  <div class="navigation-bar">
-    <h1 align="center">Blood Bank</h1>
-    <div
-      style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
-      <div class="logout-button" onclick="logoutAdminProfile()"><i class="fas fa-power-off"
-          style="scale: 1.5; color: white;"></i></div>
-    </div>
-  </div>
-
-  <div class="profile-container">
-    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-      <div class="col-1">
-        <img src="/resources/blood.png" height="300" width="300" />
-      </div>
-    </div>
-
-    <div class="profile-card">
-      <div class="profile-card-1">
-        <!---- in HTML spaces in class name means we have two separate classes for that element -->
-        <div class="profile-tabs" onclick="switchTab(this)">Receivers</div>
-        <div class="profile-tabs" onclick="switchTab(this)">Donors</div>
-      </div>
-      <div class="profile-card-2">
-
-        <div id="receivers-section" >
-          <div style="background-color:  #eb90909a; display: flex;  padding: 5px; justify-content: space-between; width: 690px; cursor: pointer;border-top-left-radius: 5px;border-top-right-radius: 5px;" onclick="showFiltersList()">
-            <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;">FILTERS</div>
-            <div style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7);font-weight: 700;"><i class="fas fa-caret-down"></i><i class="fas fa-caret-up default-caret"></i></div>
-          </div>
-          <div class="filters-section">
-          <div class="filters-row-1">
-            <div style="width: 40%;"><input type="text" placeholder="Enter name to search" id="receiver-name-search"/></div>
-            <div style="display: flex; gap: 10px; width: 60%; justify-content: center;">
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="A+"/> <div style="font-weight: 600;">A+</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="A-"/> <div style="font-weight: 600;">A-</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="B+"/> <div style="font-weight: 600;">B+</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="B-"/> <div style="font-weight: 600;">B-</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="AB+"/><div style="font-weight: 600;">AB+</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="AB-"/><div style="font-weight: 600;">AB-</div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="O+"/> <div style="font-weight: 600;">O+ </div></div>
-             <div class="b_check"> <input type="checkbox" name="blood_group" value="O-"/> <div style="font-weight: 600;">O- </div></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BloodDonor</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/admin-profile.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <h1 align="center">Blood Bank</h1>
+            <div style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
+                <div class="logout-button" onclick="logoutAdminProfile()">
+                    <i class="fas fa-power-off" style="scale: 1.5; color: white;"></i>
+                </div>
             </div>
-          </div>
-           <div class="filters-row-2">
-            <div style="display: flex;width: 40%; padding: 5px; gap: 10px;">
-              <div style="display: flex; align-items: center; gap: 4px;"> <input type="checkbox" name="status_check" value="0" onclick="handleStatusCheckBox(this)"/>Not Approved</div>
-              <div  style="display: flex;  align-items: center;  gap: 4px;"> <input type="checkbox" name="status_check" value="1" onclick="handleStatusCheckBox(this)"/>Approved</div>
-            </div>
-             <div style="width: 60%; display: flex; gap: 20px; align-items: center;">
-              <div style="display: flex; gap: 3px;">From<input type="date" id="date_from"/></div>
-              <div style="display: flex; gap: 3px;">To<input type="date" id="date_to"/></div>
-             </div>
-           </div>
-           <div class="filters-row-3">
-            <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="applyFilter()">APPLY</div>
-            <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="clearFilter()">CLEAR</div>
-           </div>
-          </div>
-
-         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
-          <div id="receivers-items-loader" style="display: flex; justify-content: center;">
-            <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
-          </div>
-          <span id="no-records-found-label"
-            style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No Pending Receivers</span>
-        
-
-        <div class="data-section">
-          <div class="carousel" id="receivers-data">
-
-          </div>
         </div>
-         </div>
-
-      
-
-          <div class="carousel-navigation">
-            <div class="card-thumbs left-thumb blocked-thumb" onclick="movePrevious()">
-              <i class="fas fa-hand-point-left"></i>
+        <div class="profile-container">
+            <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                <div class="col-1">
+                    <img src="/resources/blood.png" height="300" width="300">
+                </div>
             </div>
-            <!-- <div class="card-numbering">
+            <div class="profile-card">
+                <div class="profile-card-1">
+                    <!---- in HTML spaces in class name means we have two separate classes for that element -->
+                    <div class="profile-tabs" onclick="switchTab(this)">Receivers</div>
+                    <div class="profile-tabs" onclick="switchTab(this)">Donors</div>
+                </div>
+                <div class="profile-card-2">
+                    <div id="receivers-section">
+                        <div style="background-color:  #eb90909a; display: flex;  padding: 5px; justify-content: space-between; width: 690px; cursor: pointer;border-top-left-radius: 5px;border-top-right-radius: 5px;" onclick="showFiltersList()">
+                            <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;">FILTERS</div>
+                            <div style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7);font-weight: 700;">
+                                <i class="fas fa-caret-down"></i>
+                                <i class="fas fa-caret-up default-caret"></i>
+                            </div>
+                        </div>
+                        <div class="filters-section">
+                            <div class="filters-row-1">
+                                <div style="width: 40%;">
+                                    <input type="text" placeholder="Enter name to search" id="receiver-name-search">
+                                </div>
+                                <div style="display: flex; gap: 10px; width: 60%; justify-content: center;">
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="A+">
+                                        <div style="font-weight: 600;">A+</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="A-">
+                                        <div style="font-weight: 600;">A-</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="B+">
+                                        <div style="font-weight: 600;">B+</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="B-">
+                                        <div style="font-weight: 600;">B-</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="AB+">
+                                        <div style="font-weight: 600;">AB+</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="AB-">
+                                        <div style="font-weight: 600;">AB-</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="O+">
+                                        <div style="font-weight: 600;">O+</div>
+                                    </div>
+                                    <div class="b_check">
+                                        <input type="checkbox" name="blood_group" value="O-">
+                                        <div style="font-weight: 600;">O-</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-row-2">
+                                <div style="display: flex;width: 40%; padding: 5px; gap: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <input
+                                            type="checkbox"
+                                            name="status_check"
+                                            value="0"
+                                            onclick="handleStatusCheckBox(this)"
+                                        >Not Approved
+                                    </div>
+                                    <div style="display: flex;  align-items: center;  gap: 4px;">
+                                        <input
+                                            type="checkbox"
+                                            name="status_check"
+                                            value="1"
+                                            onclick="handleStatusCheckBox(this)"
+                                        >Approved
+                                    </div>
+                                </div>
+                                <div style="width: 60%; display: flex; gap: 20px; align-items: center;">
+                                    <div style="display: flex; gap: 3px;">From
+                                        <input type="date" id="date_from">
+                                    </div>
+                                    <div style="display: flex; gap: 3px;">To
+                                        <input type="date" id="date_to">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-row-3">
+                                <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="applyFilter()">APPLY</div>
+                                <div class="filters-button" style="color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700;" onclick="clearFilter()">CLEAR</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
+                            <div id="receivers-items-loader" style="display: flex; justify-content: center;">
+                                <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+                            </div>
+                            <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No Pending Receivers</span>
+                            <div class="data-section">
+                                <div class="carousel" id="receivers-data"></div>
+                            </div>
+                        </div>
+                        <div class="carousel-navigation">
+                            <div class="card-thumbs left-thumb blocked-thumb" onclick="movePrevious()">
+                                <i class="fas fa-hand-point-left"></i>
+                            </div>
+                            <!-- <div class="card-numbering">
               <div>1</div>
               <div>2</div>
               <div>3</div>
               <div>4</div>
             </div> -->
-            <div class="card-thumbs right-thumb " onclick="moveNext()">
-              <i class="fas fa-hand-point-right"></i>
-            </div>
-          </div>
-        </div>
-
-        <div id="donors-section">
-
-          <div class="donor-requests-navigation">
-            <div class="donor-request-tab" id="signup-donor-request-tab" onclick="switchDonorRequestTab(this)">Signup Requests</div>
-            <div class="donor-request-tab" id="donation-donor-request-tab" onclick="switchDonorRequestTab(this)">Donation Requests</div>
-          </div>
-          
-          <div class="donor-filters-section">
-            <div class="donor-filters">
-                <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; font-size: 12px;">
-                  <div ><input type="text" placeholder="Enter Name" style="padding: 5px 5px; outline: none; border: none; border-radius: 2px;" id="donor-filter-name"/></div>
-                  <div style="display: flex; gap: 12px;">
-                    <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-                      <div>From</div>
-                      <div><input type="date" id="donor-filter-date-from"/></div>
+                            <div class="card-thumbs right-thumb " onclick="moveNext()">
+                                <i class="fas fa-hand-point-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 5px;  justify-content: center; align-items: center;">
-                      <div>To</div>
-                      <div><input type="date" id="donor-filter-date-to"/></div>
+                    <div id="donors-section">
+                        <div class="donor-requests-navigation">
+                            <div class="donor-request-tab" id="signup-donor-request-tab" onclick="switchDonorRequestTab(this)">Signup Requests</div>
+                            <div class="donor-request-tab" id="donation-donor-request-tab" onclick="switchDonorRequestTab(this)">Donation Requests</div>
+                        </div>
+                        <div class="donor-filters-section">
+                            <div class="donor-filters">
+                                <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; font-size: 12px;">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Name"
+                                            style="padding: 5px 5px; outline: none; border: none; border-radius: 2px;"
+                                            id="donor-filter-name"
+                                        >
+                                    </div>
+                                    <div style="display: flex; gap: 12px;">
+                                        <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+                                            <div>From</div>
+                                            <div>
+                                                <input type="date" id="donor-filter-date-from">
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; gap: 5px;  justify-content: center; align-items: center;">
+                                            <div>To</div>
+                                            <div>
+                                                <input type="date" id="donor-filter-date-to">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: center; align-items: center; cursor: pointer; ">
+                                        <div class="donor-filter-approved-status-label" style="display: flex; justify-content: center; align-items: center; gap: 4px ;">
+                                            <input type="checkbox" id="donor-filter-approved-status-check" oninput="performApproveCheck(this)">Show Approved Donors
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="donor-filter-emergency-label" style="display: flex; justify-content: center; align-items: center; color: #ccc; gap: 4px;">
+                                            <input type="checkbox" id="donor-filter-emergency-check" disabled>Show Emergency Available
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: center; gap: 20%; margin-top: 5px; cursor: pointer;">
+                                    <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 12px;" onclick="addAdminDonorFilters()">APPLY</div>
+                                    <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 12px;" onclick="clearAdminDonorFilters()">CLEAR</div>
+                                </div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <!-- -- loader -->
+                        <div id="donor-items-loader" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
+                            <div style="display: flex; justify-content: center;">
+                                <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+                            </div>
+                        </div>
+                        <!--- loader code ends -->
+                        <!---- no records label -->
+                        <div id="donor-no-records-found-label" style="height: 55vh; display: none; justify-content: center; align-items: center;">
+                            <span style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No New Requests</span>
+                        </div>
+                        <!---- no records label end -->
+                        <div class="donor-data-section"></div>
                     </div>
-                  </div>
-                  <div style="display: flex; justify-content: center; align-items: center; cursor: pointer; ">
-                    <div class="donor-filter-approved-status-label" style="display: flex; justify-content: center; align-items: center; gap: 4px ;"><input type="checkbox" id="donor-filter-approved-status-check" oninput="performApproveCheck(this)"/>Show Approved Donors</div>
-                  </div>
-                  <div style="display: flex;">
-                    <div class="donor-filter-emergency-label" style="display: flex; justify-content: center; align-items: center; color: #ccc; gap: 4px;"><input type="checkbox" id="donor-filter-emergency-check" disabled/>Show Emergency Available</div>
-                  </div>
                 </div>
-                <div style="display: flex; justify-content: center; gap: 20%; margin-top: 5px; cursor: pointer;">
-                  <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 12px;" onclick="addAdminDonorFilters()">APPLY</div>
-                  <div style=" color: white; text-shadow: 1px 2px 3px rgba(0,0,0,0.7); font-weight: 700; font-size: 12px;" onclick="clearAdminDonorFilters()">CLEAR</div>
+            </div>
+            <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                <div class="col-3">
+                    <img src="/resources/blood.png" height="300" width="300">
                 </div>
-                <div>
-                </div>
-
             </div>
-          </div>
-           <!-- -- loader -->
-           <div id="donor-items-loader" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh;">
-            <div style="display: flex; justify-content: center;">
-              <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
-            </div>
-          </div>
-            <!--- loader code ends -->
-
-             <!---- no records label -->
-            <div id="donor-no-records-found-label"  style="height: 55vh; display: none; justify-content: center; align-items: center;">
-              <span style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No New Requests</span>
-            </div>
-              <!---- no records label end -->
-          
-          
-              <div class="donor-data-section">
-
-          
-        
-              </div>
-
-
         </div>
-
-      </div>
-
-
     </div>
-
-    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-      <div class="col-3">
-        <img src="/resources/blood.png" height="300" width="300" />
-      </div>
-    </div>
-
-  </div>
-  </div>
-
-
-
-  <div class="overlay">
-    <div class="update-status-dialog-box">
-      <div class="content-parent">
-        <div class="content">
-          <div class="column-1">
-            <div id="rec_id"></div>
-          </div>
-          <div class="column-2">
-            <div class="column2-row">
-              <div style="width: 40%; font-weight: 600;">Name</div>
-              <div id="rec_name" style="width: 60%;"></div>
+    <div class="overlay">
+        <div class="update-status-dialog-box">
+            <div class="content-parent">
+                <div class="content">
+                    <div class="column-1">
+                        <div id="rec_id"></div>
+                    </div>
+                    <div class="column-2">
+                        <div class="column2-row">
+                            <div style="width: 40%; font-weight: 600;">Name</div>
+                            <div id="rec_name" style="width: 60%;"></div>
+                        </div>
+                        <div class="column2-row">
+                            <div style="width: 40%; font-weight: 600;">Blood Group</div>
+                            <div id="rec_bg" style="width: 60%;"></div>
+                        </div>
+                        <div class="column2-row">
+                            <div style="width: 40%; font-weight: 600;">Quantity</div>
+                            <div id="rec_amount" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="column2-row">
-              <div style="width: 40%; font-weight: 600;">Blood Group</div>
-              <div id="rec_bg" style="width: 60%;"></div>
+            <div class="status-update-box">
+                <h3>Are you sure you want to approve this receiver ?</h3>
             </div>
-            <div class="column2-row">
-              <div style="width: 40%; font-weight: 600;">Quantity</div>
-              <div id="rec_amount" style="width: 60%;"></div>
+            <div class="status-update-buttons">
+                <div class="dialog-buttons" style="background-color: #b11e1e" onclick="handleApproveReceiver()">YES</div>
+                <div class="dialog-buttons" style="background-color: #ccc; color: black;" onclick="handleCloseDialog()">NO</div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="status-update-box">
-          <h3>Are you sure you want to approve this receiver ? </h3>
-      </div>
-      <div class="status-update-buttons">
-        <div class="dialog-buttons" style="background-color: #b11e1e" onclick="handleApproveReceiver()">YES</div>
-        <div class="dialog-buttons" style="background-color: #ccc; color: black;" onclick="handleCloseDialog()">NO</div>
-      </div>
+        <div class="spinner-parent-div">
+            <div class="spinner">
+            </i>
+        </div>
     </div>
-  
-    <div class="spinner-parent-div">
-      <div class="spinner"></i>
-    </div>
-  </div>
-
 </body>
-
 <script src="../script.js"></script>
 <script src="../scripts/admin-profile.js"></script>
-
 </html>

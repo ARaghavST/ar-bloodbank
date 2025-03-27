@@ -1,139 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloodDonor</title>
-
-
-    <link rel="stylesheet" href="../styles/style.css" >
-    <link rel="stylesheet" href="../styles/receiver.css" >
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-</head>
-
-<body >
-    <div class="navigation-bar">
-        <h1 align="center">Blood Bank</h1>
-        <div class="admin-button"> <i class="fas fa-headset"></i></div>
-      </div>
-    <div class="receiver-parent-1">
-       
-        <div class="receiver-parent-2">
-         <h2>Need Blood? We've Got You Covered</h2>
-         <p>Browse our inventory and request the blood type you need.</p>
-         
-         <div class="receiver-parent-3">
-            <h3 class="blood-required-title">Choose required blood group</h3>
-            <div style="padding: 5px; display: flex; gap: 10px; margin-top: 5px;">
-
-               <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
-                    <div id="not-available"></div>
-                    <div>Not Available</div>
-               </div>
-               
-               <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;"> 
-                    <div id="available"></div>
-                    <div>Available</div>
-                </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BloodDonor</title>
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/receiver.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <h1 align="center">Blood Bank</h1>
+            <div class="admin-button">
+                <i class="fas fa-headset"></i>
             </div>
-
-            <div class="receiver-child-1">
-                <div name="blood_type">A+</div>
-                <div name="blood_type" class="not-available-blood">AB+</div>
-                <div name="blood_type">B+</div>
-                <div name="blood_type">B-</div>
-                <div name="blood_type">O+</div>
-                <div name="blood_type">O-</div>
-                <div name="blood_type">AB-</div>
-                <div name="blood_type">A-</div>
-             </div>
-             <div class="receiver-child-2">
-                <div class="carousel">
-                    <div class="receiver-child-2-card">
-                        <div class="test-tube-container-2-1">
-                            <div class="max-line">Available amount</div> 
-                            <div class="test-tube-2-1-1">
-                                <div class="blood"></div>
-                                <div class="receive-blood"></div>
-                                <div class="shine"></div>
-                                <div class="scale">
-                                    <div class="scale-mark" style="bottom: 100%;">1000</div>
-                                    <div class="scale-mark" style="bottom: 90%;">900</div>
-                                    <div class="scale-mark" style="bottom: 80%;">800</div>
-                                    <div class="scale-mark" style="bottom: 70%;">700</div>
-                                    <div class="scale-mark" style="bottom: 60%;">600</div>
-                                    <div class="scale-mark" style="bottom: 50%;">500</div>
-                                    <div class="scale-mark" style="bottom: 40%;">400</div>
-                                    <div class="scale-mark" style="bottom: 30%;">300</div>
-                                    <div class="scale-mark" style="bottom: 20%;">200</div>
-                                    <div class="scale-mark" style="bottom: 10%;">100</div>  
+        </div>
+        <div class="receiver-parent-1">
+            <div class="receiver-parent-2">
+                <h2>Need Blood? We've Got You Covered</h2>
+                <p>Browse our inventory and request the blood type you need.</p>
+                <div class="receiver-parent-3">
+                    <h3 class="blood-required-title">Choose required blood group</h3>
+                    <div style="padding: 5px; display: flex; gap: 10px; margin-top: 5px; align-items: center;">
+                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                            <div id="not-available"></div>
+                            <div>Not Available</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                            <div id="available"></div>
+                            <div>Available</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                            <div id="selected"></div>
+                            <div>Selected</div>
+                        </div>
+                    </div>
+                    <div class="blood-stock-loader">
+                        <div class="spinner" style="scale: 2.5;"></div>
+                        <div>Loading stock...</div>
+                    </div>
+                    <div class="blood-stock-not-fetched">
+                        <div>Cannot retrieve blood stock</div>
+                    </div>
+                    <div class="receiver-child-1">
+                        <div name="blood_type">A+</div>
+                        <div name="blood_type">AB+</div>
+                        <div name="blood_type">B+</div>
+                        <div name="blood_type">B-</div>
+                        <div name="blood_type">O+</div>
+                        <div name="blood_type">O-</div>
+                        <div name="blood_type">AB-</div>
+                        <div name="blood_type">A-</div>
+                    </div>
+                    <div class="receiver-child-2">
+                        <div class="carousel">
+                            <div class="receiver-child-2-card">
+                                <div class="test-tube-container-2-1">
+                                    <div class="max-line">Available amount</div>
+                                    <div class="test-tube-2-1-1">
+                                        <div class="blood"></div>
+                                        <div class="receive-blood"></div>
+                                        <div class="shine"></div>
+                                        <div class="scale">
+                                            <div class="scale-mark" style="bottom: 100%;">1000</div>
+                                            <div class="scale-mark" style="bottom: 90%;">900</div>
+                                            <div class="scale-mark" style="bottom: 80%;">800</div>
+                                            <div class="scale-mark" style="bottom: 70%;">700</div>
+                                            <div class="scale-mark" style="bottom: 60%;">600</div>
+                                            <div class="scale-mark" style="bottom: 50%;">500</div>
+                                            <div class="scale-mark" style="bottom: 40%;">400</div>
+                                            <div class="scale-mark" style="bottom: 30%;">300</div>
+                                            <div class="scale-mark" style="bottom: 20%;">200</div>
+                                            <div class="scale-mark" style="bottom: 10%;">100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="receiver-child-2-1-1">
+                                    <div>
+                                        <h2>Select Blood Amount</h2>
+                                        <p>Adjust the slider or enter a value manually.</p>
+                                    </div>
+                                    <div class="slider-container">
+                                        <input
+                                            type="range"
+                                            id="bloodSlider"
+                                            min="0"
+                                            max="1000"
+                                            step="10"
+                                            oninput="processBloodSlider()"
+                                        >
+                                        <input
+                                            type="text"
+                                            id="bloodInput"
+                                            class="input-box"
+                                            oninput="processBloodInputText()"
+                                        >
+                                        <span class="unit">mL</span>
+                                    </div>
+                                    <div class="receiver-buttons-container">
+                                        <div class="receiver-button-refresh" onclick="fetchBloodStock()">
+                                            <i class="fas fa-rotate"></i>
+                                            Refresh Stock
+                                        </div>
+                                        <div class="receiver-button-request" onclick="submitAndShowSecondCard()">
+                                            <i class="fas fa-regular fa-hand-holding-droplet"></i>
+                                            Request Now
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="receiver-child-2-card">
+                                <div class="receiver-child-2-card-1">
+                                    <div class="receiver-form-description">
+                                        <h4>
+                                            You requested
+                                            <span id="blood-amount">400</span>
+                                            <br>
+                                            mL of
+                                            <span id="blood-group">AB+</span>
+                                        </h4>
+                                        <br>
+                                        <h4 style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px;">
+                                            We now require some additional info of yours &nbsp;&nbsp;
+                                            <i class="fas fa-arrow-right"></i>
+                                        </h4>
+                                        <div onclick="goToReceiverChild2Card()">
+                                            <i class="fas fa-backward"></i>
+                                            Back
+                                        </div>
+                                    </div>
+                                    <div class="receiver-form-gui">
+                                        <div class="receiver-form-control">
+                                            <input
+                                                type="text"
+                                                placeholder="Enter full name"
+                                                id="receiver-name"
+                                                autocomplete="off"
+                                            >
+                                        </div>
+                                        <div class="receiver-form-control">
+                                            <input
+                                                type="text"
+                                                placeholder="Enter phone number"
+                                                id="receiver-phno"
+                                                autocomplete="off"
+                                            >
+                                        </div>
+                                        <div class="receiver-form-control">
+                                            <input
+                                                type="text"
+                                                placeholder="Enter email"
+                                                id="receiver-email"
+                                                autocomplete="off"
+                                            >
+                                        </div>
+                                        <div class="receiver-form-control">
+                                            <input
+                                                type="text"
+                                                placeholder="Enter aadhar number"
+                                                id="receiver-aadhar"
+                                                oninput="handleAadharFormat(this)"
+                                                autocomplete="off"
+                                            >
+                                        </div>
+                                        <div class="receiver-submit-loader">
+                                            <div class="spinner submit-spinner"></div>
+                                        </div>
+                                        <div class="receiver-form-button-control">
+                                            <div onclick="submitGetBloodForm()">
+                                                SUBMIT
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="receiver-child-2-1-1">
-                           <div> 
-                            <h2>Select Blood Amount</h2>
-                            <p>Adjust the slider or enter a value manually.</p>
-                        </div>
-                            <div class="slider-container">
-                                <input type="range" id="bloodSlider" min="0" max="1000" step="10" value="200" oninput="processBloodSlider(this,400)">
-                                <input type="text" id="bloodInput" class="input-box" value="200" oninput="processBloodInputText(this,400)">
-                                <span class="unit">mL</span>
-                            </div>
-                            <div class="receiver-buttons-container">
-                                <div class="receiver-button-refresh" onclick=""><i class="fas fa-rotate"></i> Refresh Stock</div>
-                                <div class="receiver-button-request" onclick="submitAndShowSecondCard()"><i class="fas fa-regular fa-hand-holding-droplet"></i>Request Now</div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="receiver-child-2-card">
-                        <div class="receiver-child-2-card-1">
-                        <div class="receiver-form-description">
-                            <h4>You requested <span id="blood-amount">400</span><br/> mL of <span id="blood-group">AB+</span></h4><br/>
-                            <h4 style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px;">We now require some additional info of yours &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></h4>
-                            <div onclick="goToReceiverChild2Card()"><i class="fas fa-backward"></i>Back</div>
-                        </div>
-                        <div class="receiver-form-gui">
-
-                            <div class="receiver-form-control">  
-                                <input type="text"  placeholder="Enter full name" id="receiver-name"  autocomplete="off"/>
-                             </div>
-                            
-                             <div class="receiver-form-control">  
-                                <input type="text" placeholder="Enter phone number" id="receiver-phno"  autocomplete="off"/>
-                             </div>
-                            
-                             <div class="receiver-form-control">  
-                                <input type="text" placeholder="Enter email" id="receiver-email"  autocomplete="off"/>
-                             </div>
-    
-                             <div class="receiver-form-control">  
-                                <input type="text" placeholder="Enter aadhar number" id="receiver-aadhar" oninput="handleAadharFormat(this)"  autocomplete="off"/>
-                             </div>
-
-                             <div class="receiver-form-button-control">
-                                <div onclick="submitGetBloodForm()">SUBMIT</div>
-                             </div>
-                        </div>
-
-                        </div>
                     </div>
                 </div>
-             </div>
-         </div>
-        </div>
-      
-    </div> 
-    
-</body>
-
-<script src="../script.js"></script>
-</html>
+            </body>
+            <script src="../script.js"></script>
+            <script src="../scripts/receiver.js"></script>
+        </html>
