@@ -448,10 +448,10 @@
         width: 100%;
         
     }
-    /*TODO: CHeck this*/
-    .profile-card-2 div {
-        /* font-size: 14px !important; */
-        /* text-shadow: 1px 1px 1px rgba(0,0,0,0.8) !important; */
+    
+    .donor-availability-labels div {
+        font-size: 14px !important; 
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.8) !important;
     }
 
     .profile-card-3-1{
