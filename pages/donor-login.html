@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BloodDonor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/style.css">
-  <link rel="stylesheet" href="../styles/donor-login.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <div class="navigation-bar">
-    <h1 align="center">Blood Bank</h1>
-    <div class="admin-button"> <i class="fas fa-headset"></i></div>
-  </div>
-  <div class="login-container">
-    <div class="col-1">
-      <img src="/resources/blood.png" height="200" width="200" />
-    </div>
-    <div class="login-form col-2">
-      <div class="login-item">
-        <span>Email</span>
-        <input type="text" placeholder="Your Email" id="email" />
-      </div>
-      <div class="login-item">
-        <span>Password</span>
-        <span class="password-item">
-          <input type="password" placeholder="Your password" id="password" />
-          <span class="password-toggle-icon" onclick="showPassword()"><i class="fas fa-eye"></i></span>
-        </span>
-      </div>
-      <div class="login-button">
-        <div onclick="userLogin()" class="login-lock-div">
-          <span><i class="fas fa-lock"></i>&nbsp;Login</span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BloodDonor</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/donor-login.css">
+        <link rel="stylesheet" href="../styles/mobile-ui.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <h1 align="center">Blood Bank</h1>
         </div>
-        <div class="spinner-parent-div">
-          <div class="spinner" id="spinner"></div>
-
+        <div class="login-container">
+            <div class="col-1">
+                <img src="/resources/blood.png" height="200" width="200">
+            </div>
+            <div class="login-form col-2">
+                <div class="login-item">
+                    <div>Email</div>
+                    <input type="text" placeholder="Your Email" id="email">
+                </div>
+                <div class="login-item">
+                    <div>Password</div>
+                    <div class="password-item">
+                        <input type="password" placeholder="Your password" id="password">
+                        <div class="password-toggle-icon" onclick="showPassword()">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-button">
+                    <div onclick="userLogin()" class="login-lock-div">
+                        <span>
+                            <i class="fas fa-lock"></i>
+                            &nbsp;Login
+                        </span>
+                    </div>
+                    <div class="spinner-parent-div">
+                        <div class="spinner" id="spinner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="/resources/blood.png" height="200" width="200">
+            </div>
         </div>
-        
-      </div>
     </div>
-    <div class="col-3">
-      <img src="/resources/blood.png" height="200" width="200" />
-    </div>
-  </div>
-  </div>
 </body>
-<script src="../script.js"></script>
+<div class="notification">
+    <div style="display: flex; width: 100%; justify-content: space-evenly; height: 100%; align-items: center;">
+        <div class="noty-type">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="noty-message">Check logs in server! Login done successfully !</div>
+    </div>
+    <div class="cross-mark-div">
+        <i style="color: #8c8989; cursor: pointer;" class="fas fa-xmark" onclick="closeNotification()"></i>
+    </div>
+</div>
+<script src="../parent-script.js"></script>
 <script src="../scripts/donor-login.js"></script>
-
 </html>

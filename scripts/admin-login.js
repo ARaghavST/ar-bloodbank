@@ -1,49 +1,50 @@
-function adminLogin(){
-    const emailText = document.getElementById("admin-email")
-    const passwordText = document.getElementById("admin-password")
+const BACKEND_URL = 'http://192.168.29.161:8080/bloodbank'
 
-    const loginLockDiv = document.getElementsByClassName("login-lock-div")[0]
-    const loginSpinner = document.getElementsByClassName("spinner-parent-div")[0]
+function adminLogin() {
+	const emailText = document.getElementById('admin-email')
+	const passwordText = document.getElementById('admin-password')
 
-    loginLockDiv.style.setProperty("display", "none", "important")
-    loginSpinner.style.setProperty("display", "flex", "important")
+	const loginLockDiv = document.getElementsByClassName('login-lock-div')[0]
+	const loginSpinner = document.getElementsByClassName('spinner-parent-div')[0]
 
-    const loginData = {
-        "email":emailText.value,
-        "password":passwordText.value
-    }
+	loginLockDiv.style.setProperty('display', 'none', 'important')
+	loginSpinner.style.setProperty('display', 'flex', 'important')
 
-    fetch("http://localhost:8080/bloodbank/admin",{
-        method : 'POST',
-        body : JSON.stringify(loginData)
-    }).then((response)=>{
-        return response.json()
-    }).then((data)=>{
+	const loginData = {
+		email: emailText.value,
+		password: passwordText.value,
+	}
 
+	fetch(`${BACKEND_URL}/admin`, {
+		method: 'POST',
+		body: JSON.stringify(loginData),
+	})
+		.then((response) => {
+			return response.json()
+		})
+		.then((data) => {
+			if (data.error) {
+				showNotification('ERROR', 'Admin credentials invalid !')
+				loginLockDiv.style.setProperty('display', 'flex', 'important')
+				loginSpinner.style.setProperty('display', 'none', 'important')
+				return
+			}
 
-        if(data.error){
-            loginLockDiv.style.setProperty("display", "flex", "important")
-            loginSpinner.style.setProperty("display", "none", "important")
-            return
-        }
+			const now = new Date() // Get current date and time
+			now.setMinutes(now.getMinutes() + 30) // Add 30 minutes
 
-        const now = new Date(); // Get current date and time
-        now.setMinutes(now.getMinutes() + 30); // Add 30 minutes
-        
-        adminSession = {
-            "msg":"Logged In",
-            "expires_at":now.toISOString()
-        }
-        
-        localStorage.setItem("admin",JSON.stringify(adminSession))
+			adminSession = {
+				msg: 'Logged In',
+				expires_at: now.toISOString(),
+			}
 
-        window.location.replace("/pages/admin-profile.html?section=Receivers&type=NewRequests")
-        
-
-        
-    }).catch((err)=>{
-        loginLockDiv.style.setProperty("display", "flex", "important")
-        loginSpinner.style.setProperty("display", "none", "important")
-    })
-
+			localStorage.setItem('admin', JSON.stringify(adminSession))
+			localStorage.setItem('admin-logged-in', data.message)
+			window.location.replace('/pages/admin-profile.html?section=Receivers&type=NewRequests')
+		})
+		.catch((err) => {
+			showNotification('ERROR', 'Server closed! Please check server.')
+			loginLockDiv.style.setProperty('display', 'flex', 'important')
+			loginSpinner.style.setProperty('display', 'none', 'important')
+		})
 }

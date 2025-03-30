@@ -1,89 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BloodDonor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../styles/style.css">
-  <link rel="stylesheet" href="../styles/donor-profile.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <div class="navigation-bar">
-    <h1 align="center">Blood Bank</h1>
-   <div style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
-    <div class="profile-button"><i class="fas fa-user"></i></div>
-    <div class="logout-button" onclick="logoutDonorProfile()"><i class="fas fa-power-off"></i></div>
-   </div>
-  </div>
-  <div class="profile-dialog-box">
-    <div style="font-size: 14px; padding: 10px;">
-      <div><b>Registered On</b></div>
-      <div >23 Jan 2020 13:20:00</div>
-    </div>
-    <div style="background: red; border-radius: 10px; color: white; font-weight: 600; cursor: pointer;" onclick="showUpdatePasswordDialogBox()">
-      <div style="display: flex; justify-content: space-around; padding: 8px; align-items: center;">
-        <i class="fas fa-key"></i>Reset Password
-      </div>
-    </div>
-
-  </div>
-  <div class="profile-container">
-    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-      <div class="col-1">
-        <img src="/resources/blood.png" height="250" width="250" />
-      </div>
-    </div>
-    <div class="profile-card">
-        
-        <h2 style="margin-bottom: 20px; color: red; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Welcome <span id="donor-profile-name"></span>,</h2>
-        <div id="profile-card-1">
-          <span id="donor-profile-availability" style="text-shadow:2px 2px 1px rgba(0,0,0,0.4); font-size: 20px;"></span>
-          <!-- <p>Your "Yes" to our bloodbank gives others a second chance in life. Keep up the good work</p> -->
-          <!-- <p>Your gift of blood can save lives. Keep your availability updated and make a difference!"</p> -->
-        </div>
-
-        <div class="profile-card-2">
-          <div class="profile-card-2-1">
-            <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
-              Update Availability
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BloodDonor</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/donor-profile.css">
+        <link rel="stylesheet" href="../styles/mobile-ui.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <h1 align="center">Blood Bank</h1>
+            <div style="position: absolute; right: 0; display: flex; justify-content: center; align-items: center; gap: 20px;padding: 8px;">
+                <div class="profile-button">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="logout-button" onclick="logoutDonorProfile()">
+                    <i class="fas fa-power-off"></i>
+                </div>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="availability-toggle" oninput="toggleAvailability(this)">
-              <span class="slider"></span>
-            </label>
-          </div>
-  
-          <div class="profile-card-2-2">
-            <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
-              Update Emergency Availability
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="emergency-toggle" oninput="toggleEmergency(this)" >
-              <span class="slider"></span>
-          </label>
-          </div>
         </div>
-    
-        <div class="profile-card-3">
-          <h3>Your Donation History</h3>
-          <div class="profile-card-3-1" id="donation-history-items">
-
-           <div id="history-items-loader" style="display: flex; justify-content: center;">
-            <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
-           </div>
-            <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No donation history available</span>
-           <!----   donation history cards will be shown from here    -->
-           <!------
+        <div class="profile-dialog-box">
+            <div style="font-size: 14px; padding: 10px;">
+                <div>
+                    <b>Registered On</b>
+                </div>
+                <div>23 Jan 2020 13:20:00</div>
+            </div>
+            <div style="background: red; border-radius: 10px; color: white; font-weight: 600; cursor: pointer;" onclick="showUpdatePasswordDialogBox()">
+                <div style="display: flex; justify-content: space-around; padding: 8px; align-items: center;">
+                    <i class="fas fa-key"></i>
+                    Reset Password
+                </div>
+            </div>
+        </div>
+        <div class="profile-container">
+            <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                <div class="col-1">
+                    <img src="/resources/blood.png" height="250" width="250">
+                </div>
+            </div>
+            <div class="profile-card">
+                <h2 style="margin-bottom: 20px; color: red; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    Welcome
+                    <span id="donor-profile-name"></span>
+                    ,
+                </h2>
+                <div id="profile-card-1">
+                    <span id="donor-profile-availability" style="text-shadow:2px 2px 1px rgba(0,0,0,0.4); font-size: 20px;"></span>
+                    <!-- <p>Your "Yes" to our bloodbank gives others a second chance in life. Keep up the good work</p> -->
+                    <!-- <p>Your gift of blood can save lives. Keep your availability updated and make a difference!"</p> -->
+                </div>
+                <div class="profile-card-2">
+                    <div class="profile-card-2-1">
+                        <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
+                            Update Availability
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="availability-toggle" oninput="toggleAvailability(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="profile-card-2-2">
+                        <div style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7); font-size: 20px;">
+                            Update Emergency Availability
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="emergency-toggle" oninput="toggleEmergency(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="profile-card-3">
+                    <h3>Your Donation History</h3>
+                    <div class="profile-card-3-1" id="donation-history-items">
+                        <div id="history-items-loader" style="display: flex; justify-content: center;">
+                            <div class="spinner" style="scale: 2.5; opacity: 0.6; border-style: dotted !important;"></div>
+                        </div>
+                        <span id="no-records-found-label" style="font-size: 12px; color: darkred; font-weight: 600; text-align: center;">No donation history available</span>
+                        <!----   donation history cards will be shown from here    -->
+                        <!------
            <div class="history-card">
           <div class="blood-icon">🩸</div>
           <div class="history-details">
@@ -94,58 +101,84 @@
           </div>
          </div>
          -->
-          </div>
+                    </div>
+                </div>
+                <div class="donate-now-button">
+                    <div onclick="openDonationConfirmationDialog()">
+                        Donate Now
+                        <i class="fas fa-hand-holding-medical"></i>
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                <div class="col-3">
+                    <img src="/resources/blood.png" height="250" width="250">
+                </div>
+            </div>
         </div>
-        <div class="donate-now-button">
-          <div onclick="openDonationConfirmationDialog()">Donate Now <i class="fas fa-hand-holding-medical"></i></div>
+    </div>
+    <div class="overlay">
+        <div class="update-status-dialog-box">
+            <div class="status-update-box">
+                <div>
+                    Are you sure you want to update your
+                    <b>
+                        <span id="status-update-field-name"></span>
+                    </b>
+                    to
+                    <span style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7);">
+                        <b>ACTIVE</b>
+                    </span>
+                    ?
+                </div>
+                <div class="dialog-box-buttons">
+                    <div class="dialog-box-yes-button" onclick="updateYesStatusSpinner()">Yes</div>
+                    <div class="dialog-box-no-button" onclick="closeDialogBox()">No</div>
+                </div>
+            </div>
+            <div class="password-update-box">
+                <h4 style="color: #b90606; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Password Change Request</h4>
+                <input
+                    type="text"
+                    placeholder="Your new password"
+                    id="new-password-input"
+                    autocomplete="off"
+                >
+                <div class="dialog-box-buttons">
+                    <div class="dialog-box-update-password-button" onclick="changePassword()">Update</div>
+                    <div class="dialog-box-no-button" onclick="closeDialogBox()">Cancel</div>
+                </div>
+            </div>
+            <div class="donate-now-box">
+                <h4 style="color: #b90606; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); text-align: center;">Blood Donation Request</h4>
+                <p style="font-size: 12px; margin-top: 5px; margin-bottom: 2px; font-family: 'Poppins'">Thanks for taking a stand for blood donation. We would like to know your availability :</p>
+                <div style="margin-top: 10px; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                    <div style="font-size: 14px;">Date of availability</div>
+                    <input type="date" id="available-date-input" style="width: 50%;">
+                </div>
+                <div class="dialog-box-buttons" style="margin-top: 20px;">
+                    <div class="dialog-box-update-password-button" onclick="submitBloodDonationRequest()">Submit</div>
+                    <div class="dialog-box-no-button" onclick="closeDialogBox()">Cancel</div>
+                </div>
+            </div>
+        </div>
+        <div class="spinner-parent-div">
+            <div class="spinner"></div>
         </div>
     </div>
-   <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-    <div class="col-3">
-      <img src="/resources/blood.png" height="250" width="250" />
-    </div>
-   </div>
-  </div>
-  </div>
-<div class="overlay">
-  <div class="update-status-dialog-box">
-   <div class="status-update-box">
-    <div>Are you sure you want to update your <b><span id="status-update-field-name"></span></b> to <span style="color: red; text-shadow: 2px 2px 3px rgba(0,0,0,0.7);"><b>ACTIVE</b> </span>?</div>
-    <div class="dialog-box-buttons">
-      <div class="dialog-box-yes-button" onclick="updateYesStatusSpinner()">Yes</div>
-      <div class="dialog-box-no-button" onclick="closeDialogBox()">No</div>
-    </div>
-   </div>
-   <div class="password-update-box">
-    <h4 style="color: #b90606; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Password Change Request</h4>
-    <input type="text" placeholder="Your new password" id="new-password-input" autocomplete="off"/>
-    <div class="dialog-box-buttons">
-     <div class="dialog-box-update-password-button" onclick="changePassword()">Update</div>
-     <div class="dialog-box-no-button" onclick="closeDialogBox()">Cancel</div>
-    </div>
-   </div>
-   <div class="donate-now-box">
-    <h4 style="color: #b90606; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); text-align: center;">Blood Donation Request</h4>
-    <p style="font-size: 12px; margin-top: 5px; margin-bottom: 2px; font-family: 'Poppins'">Thanks for taking a stand for blood donation. We would like to know your availability : </p>
-    <div style="margin-top: 10px; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-      <div style="font-size: 14px;">Date of availability </div>
-      
-      <input type="date" id="available-date-input" style="width: 50%;"/>
-    </div>
-    <div class="dialog-box-buttons" style="margin-top: 20px;">
-     <div class="dialog-box-update-password-button" onclick="submitBloodDonationRequest()">Submit</div>
-     <div class="dialog-box-no-button" onclick="closeDialogBox()">Cancel</div>
-    </div>
-   </div>
-  </div>
-  
-  <div class="spinner-parent-div">
-    <div class="spinner"></div>
-  </div>
-  </div>
 </body>
-
-<script src="../script.js"></script>
+<div class="notification">
+    <div style="display: flex; width: 100%; justify-content: space-evenly; height: 100%; align-items: center;">
+        <div class="noty-type">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="noty-message">Check logs in server! Login done successfully !</div>
+    </div>
+    <div class="cross-mark-div">
+        <i style="color: #8c8989; cursor: pointer;" class="fas fa-xmark" onclick="closeNotification()"></i>
+    </div>
+</div>
+<script src="../parent-script.js"></script>
 <script src="../scripts/donor-profile.js"></script>
-
 </html>

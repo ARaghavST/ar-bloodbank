@@ -6,6 +6,7 @@
         <title>BloodDonor</title>
         <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/receiver.css">
+        <link rel="stylesheet" href="../styles/mobile-ui.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -30,19 +31,21 @@
                 <h2>Need Blood? We've Got You Covered</h2>
                 <p>Browse our inventory and request the blood type you need.</p>
                 <div class="receiver-parent-3">
-                    <h3 class="blood-required-title">Choose required blood group</h3>
-                    <div style="padding: 5px; display: flex; gap: 10px; margin-top: 5px; align-items: center;">
-                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
-                            <div id="not-available"></div>
-                            <div>Not Available</div>
-                        </div>
-                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
-                            <div id="available"></div>
-                            <div>Available</div>
-                        </div>
-                        <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
-                            <div id="selected"></div>
-                            <div>Selected</div>
+                    <div>
+                        <h3 class="blood-required-title">Choose required blood group</h3>
+                        <div style="padding: 5px; display: flex; gap: 10px; margin-top: 5px; align-items: center;">
+                            <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                                <div id="not-available"></div>
+                                <div>Not Available</div>
+                            </div>
+                            <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                                <div id="available"></div>
+                                <div>Available</div>
+                            </div>
+                            <div style="display: flex; gap: 10px; font-size: 12px; align-items: center;">
+                                <div id="selected"></div>
+                                <div>Selected</div>
+                            </div>
                         </div>
                     </div>
                     <div class="blood-stock-loader">
@@ -121,8 +124,8 @@
                             </div>
                             <div class="receiver-child-2-card">
                                 <div class="receiver-child-2-card-1">
-                                    <div class="receiver-form-description">
-                                        <h4>
+                                    <div class="receiver-form-description mobile-hide">
+                                        <h4 class="mobile-hide">
                                             You requested
                                             <span id="blood-amount">400</span>
                                             <br>
@@ -138,6 +141,18 @@
                                             <i class="fas fa-backward"></i>
                                             Back
                                         </div>
+                                    </div>
+                                    <div class="receiver-form-description desktop-hide" style="padding: 2px">
+                                        <h4>
+                                            You requested
+                                            <span id="blood-amount-mobile">400</span>
+                                            mL of
+                                            <span id="blood-group-mobile">AB+</span>
+                                        </h4>
+                                        <br>
+                                        <h4 style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px;">
+                                            Please fill below form for more details :
+                                        </h4>
                                     </div>
                                     <div class="receiver-form-gui">
                                         <div class="receiver-form-control">
@@ -169,7 +184,7 @@
                                                 type="text"
                                                 placeholder="Enter aadhar number"
                                                 id="receiver-aadhar"
-                                                oninput="handleAadharFormat(this)"
+                                                oninput="handleAadharFormat(event,this)"
                                                 autocomplete="off"
                                             >
                                         </div>
@@ -182,12 +197,29 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div>
+                                        <div class="desktop-hide" onclick="goToReceiverChild2Card()">
+                                            <i class="fas fa-backward"></i>
+                                            Back
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </body>
-            <script src="../script.js"></script>
-            <script src="../scripts/receiver.js"></script>
-        </html>
+            </div>
+        </div>
+    </body>
+    <div class="notification">
+        <div style="display: flex; width: 100%; justify-content: space-evenly; height: 100%; align-items: center;">
+            <div class="noty-type"></div>
+            <div class="noty-message"></div>
+        </div>
+        <div class="cross-mark-div">
+            <i style="color: #8c8989; cursor: pointer;" class="fas fa-xmark" onclick="closeNotification()"></i>
+        </div>
+    </div>
+    <script src="../parent-script.js"></script>
+    <script src="../scripts/receiver.js"></script>
+</html>

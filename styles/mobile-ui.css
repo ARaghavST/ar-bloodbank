@@ -1,0 +1,501 @@
+
+/*  Mobile device CSS  */
+@media only screen and (max-width: 480px) {
+
+    *{
+        /* border: 1px solid black; */
+    }
+
+    /* index.html mobile starts */
+    body{
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .col-1{
+        display: none;
+    }
+
+    .col-3{
+        display: none;
+    }
+
+     /* index.html ends */
+
+     /* donor.html mobile starts */
+    .donor-container {
+        display: flex;
+        margin: 0 auto;
+        padding: 15px;
+        transform: translateY(45%);
+    }
+
+    .donor-ctr-center{
+        display: flex !important;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        font-size: 34px;
+    }
+    /* donor.html ends */
+
+    /* Notification starts */
+    .notification {
+        width: max-content;
+    }
+
+    /* Notification ends */
+
+    /* Donor login starts */
+    .login-form {
+        width: 100%;
+        padding: 10px;
+        height: fit-content;
+        gap: 20px;
+        transform: translateY(50%);
+    }
+    .login-container input {
+        width: 100%;
+        font-size: 14px;
+        border: 1px solid;
+    }
+
+    .login-container {
+        padding: 10px;
+    }
+    .password-item{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid;
+        border-radius: 6px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .password-item  input {
+        border: none;
+    }
+
+    .password-toggle-icon i{
+        padding: 5px;
+    }
+    .login-item {
+        font-size: 14px;
+        width: 100% !important;
+        gap: 10px;
+        /* border: 2px solid green; */
+    }
+
+    .login-item:nth-child(0){
+      width: 40%;
+    }
+    .login-item:nth-child(1){
+
+      width: 60%;
+    }
+
+    .login-button div {
+        width: auto;
+        font-size: 14px;
+    }
+
+
+    /* Donor login ends */
+
+
+    /* Receiver.html starts */
+
+    .receiver-parent-2{
+        font-size: small;
+        width: 100%;
+        padding: 0;
+    }
+
+    .receiver-parent-3{
+        display: flex;
+        justify-content: center;
+    }
+
+   
+
+    .receiver-child-2{
+        padding: 0px;
+        width: 350px !important;
+        /* border: 2px solid violet; */
+    }
+
+
+    .carousel {
+        /* border: 1px solid green; */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .test-tube-container-2-1{
+        padding: 5px;
+    }
+    .receiver-child-2-card{
+        width: 350px !important;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .max-line{
+        width: 30px;
+        font-size: 6px;
+    }
+
+    .receiver-child-2-card-1{
+        flex-direction: column;
+        justify-content: center;
+        height: fit-content !important;
+        padding: 0px;
+        width: 340px;
+        align-items: center !important;
+        gap: 2px;
+    }
+
+    .receiver-child-2-1-1 {
+        font-size: 12px;
+    }
+ 
+    .blood-stock-loader {
+        width: 100%;
+    }
+
+    .blood-stock-not-fetched{
+        width: 100%;
+    }
+
+
+    .receiver-child-2-card input{
+        font-size: 12px;
+    }
+    .receiver-child-1 {
+        /* display: none !important; */
+        flex-wrap: wrap;
+        max-width: max-content;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .receiver-child-1 div{
+        margin-left: 0px;
+        font-size: 12px;
+        margin-right: 0px;
+        width: 60px;
+    }
+  
+    .receiver-buttons-container{
+        flex-direction: column;
+    }
+   
+
+    .receiver-form-description{
+        font-size: small;
+        height: fit-content;
+        width: 340px;
+        padding: 2px;
+    }
+
+    .receiver-form-description > h4{
+        font-size: 14px !important;
+    }
+
+    .receiver-form-gui{
+        width: 340px;
+        padding: 2px;
+        gap: 5px;
+    }
+
+    .receiver-form-control{
+        padding: 0px;
+        width: 100%;
+    }
+
+    .receiver-form-control input {
+        width: 100%;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    #blood-group-mobile {
+        color: red;
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* Receiver.html ends */
+
+    /* admin-profile.html starts */
+
+
+    .admin-logout{
+        position: absolute;
+        right: 10px;
+    }
+
+    .data-section{
+        /* border: 1px solid blue; */
+        /* overflow: visible; */
+        height: max-content;
+        width: 260px;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px !important;
+        
+    }
+   
+    #receivers-data {
+        /* display: none; */
+        /* border: 1px solid red; */
+        gap: 10px !important;
+    }
+
+    .card{
+        width: 240px;
+
+        background: white;
+        border: 1px solid #ccc;
+        padding: 10px !important;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+  
+    .carousel-navigation{
+        margin-top: 10px;
+        gap: 100px !important;
+    }
+
+    #approved-tag{
+        /* transform: rotate(90deg); */
+        left: 190px !important;
+        /* display: none; */
+        width: max-content;
+    }
+    .card h2{
+        font-size: large;
+    }
+
+    .approved-receiver {
+        cursor:not-allowed;
+        border: 1px solid rgba(143, 240, 78,0.8);
+        box-shadow: none !important;
+    }
+    .card:hover {
+        box-shadow: 2px 8px 4px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .filters-section{
+        /* display: none !important; */
+        display: flex;
+        font-size: x-small !important;
+        width: 300px;
+        flex-direction: column !important;
+    }
+
+    .filters-section input {
+        font-size: x-small !important;
+    }
+
+    .filters-row-1{
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .receiver-filter-name-parent{
+        display: flex;
+        justify-content: center;
+    }
+
+    .receiver-filter-name-parent > input {
+        width: 100% !important;
+    }
+
+    .filters-row-1 > div {
+        flex-wrap: wrap;
+        
+        width: 100% !important;
+        flex-direction: row;
+        justify-content: center !important;
+    }
+
+    .filters-row-2{
+        flex-direction: column;
+        width: 100% !important;
+    }
+
+    .filters-row-2 > div {
+        width: 100% !important;
+        justify-content: space-around !important;
+    }
+
+    .receivers-filter-date-parent{
+        flex-direction: column;
+        gap: 5px !important;
+        width: max-content !important;
+        
+    }
+
+    .receivers-filter-date-parent > div {
+        width: 100% !important;
+        text-align: left !important;
+        justify-content: center;
+        
+    }
+
+    .receivers-filters-parent{
+        width: 300px;
+    }
+
+    #rec_id{
+        font-size: 34px;
+    }
+    .content{
+        font-size: 13px;
+    }
+    
+
+    /* admin Donors section starts */
+
+    #donors-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .donor-card{
+        width: 90%;
+    }
+
+    .donor-filters-section{
+        /* display: none; */
+        width: 100%;
+    }
+
+    .donor-data-section{
+        flex-wrap: nowrap;
+        align-items: center;
+        height: 60vh !important;
+        flex-direction: column;
+        width: 250px;
+        padding: 10px;
+    }
+
+    .donor-filters-section div {
+        font-size: 10px;
+    }
+
+    .donor-filters-section input[type=text]{
+        width: 200px !important;
+    } 
+
+    .donor-filters-section input {
+        height: 10px;
+        font-size: 8px !important;
+    }
+
+    .donor-filter-date-range input{
+        width: 100px;
+    }
+
+    .donor-filters > div {
+        flex-direction: column;
+    }
+
+    .donor-filters-button{
+        flex-direction: row !important;
+    }
+
+    .donor-card:hover{
+        transform: scale(0.96);
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    }
+
+    /* Donors section end */
+
+    /* admin-profile.html ends */
+
+    /* donor-profile.html starts */
+
+    .profile-card{
+        font-size: small;
+    }
+
+    #donor-profile-availability{
+        text-shadow: none !important;
+        font-size: 14px !important;
+    }
+
+    .switch {
+        width: 60px;
+    }
+
+
+
+    .history-card p{
+        font-size: 14px !important;
+    }
+
+    .profile-card-2 > div{
+        width: 100%;
+        
+    }
+    /*TODO: CHeck this*/
+    .profile-card-2 div {
+        /* font-size: 14px !important; */
+        /* text-shadow: 1px 1px 1px rgba(0,0,0,0.8) !important; */
+    }
+
+    .profile-card-3-1{
+        height: 310px;
+        gap: 5px;
+    }
+
+    .donate-now-button {
+        margin-top: 5px;
+    }
+
+    .navigation-bar > div {
+        gap: 5px !important;
+        padding: 0 !important;
+    }
+
+    
+
+    .profile-button i {
+        scale: 1.1;
+    }
+    
+    .logout-button i {
+        scale: 1.1;
+    }
+
+    .profile-dialog-box {
+        background: rgb(224, 197, 197);
+    }
+
+    .profile-dialog-box div {
+        font-size: 12px;
+    }
+    /* donor-profile.html ends */
+
+}
+
+
+@media only screen and (min-width: 992px) {
+    .mobile-hide {
+        display: block;
+    }
+
+    .desktop-hide{
+        display: none !important;
+    }
+}

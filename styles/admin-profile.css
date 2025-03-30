@@ -21,6 +21,16 @@
 
 }
 
+.receivers-filters-parent{
+    background-color:  #eb90909a; 
+    display: flex;  
+    padding: 5px; 
+    justify-content: space-between; 
+    width: 690px; 
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 .profile-card-1 div {
 
     width: 100%;
@@ -479,14 +489,14 @@
     border-radius: 10px;
     cursor: pointer;
     font-family: "Poppins", serif;
-    background: #f3efef;
+    background: white;
     width: 200px;
     height: max-content;
     transition: transform 0.2s ease-in-out;
 }
 
 .emergency-card{
-    box-shadow: 2px 1px 8px #ff000080;
+    background: #f80d0d0e;
 }
 
 .emergency-card:hover{
@@ -507,6 +517,7 @@
     padding: 5px 5px; 
     margin-top: 5px;
     width: 910px;
+    height: 65vh;
 }
 
 .donor-data-section::-webkit-scrollbar {

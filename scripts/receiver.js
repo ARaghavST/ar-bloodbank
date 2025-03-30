@@ -1,4 +1,6 @@
-var BACKEND_URL = 'http://localhost:8080/bloodbank'
+// var BACKEND_URL = 'http://localhost:8080/bloodbank'
+
+var BACKEND_URL = 'http://192.168.29.161:8080/bloodbank'
 var bloodStockMap = {}
 
 var currentBloodMaxValue = 0
@@ -7,7 +9,17 @@ var currentBloodMaxValue = 0
 window.onload = function () {
 	path = window.location.pathname
 
-	fetchBloodStock()
+	var delayBloodStockFetchNotificationFlag = false
+	// this notify-receiver key will be added everytime we submit a new blood receiver request
+	if (localStorage.getItem('notify-receiver')) {
+		showNotification('SUCCESS', localStorage.getItem('notify-receiver'))
+		localStorage.removeItem('notify-receiver')
+
+		// delayBloodStockFetchNotificationFlag is used to delay the next incoming "blood stock fetched" notification
+		delayBloodStockFetchNotificationFlag = true
+	}
+
+	fetchBloodStock(delayBloodStockFetchNotificationFlag)
 
 	const bloodDrops = document.getElementsByName('blood_type')
 
@@ -22,7 +34,7 @@ window.onload = function () {
 //#endregion
 
 //#region FetchBloodStock Function
-function fetchBloodStock() {
+function fetchBloodStock(delayBloodStockFetchNotification) {
 	const bloodGroupButtonsParent = document.getElementsByClassName('receiver-child-1')[0]
 	const buttonsSection = document.getElementsByClassName('receiver-child-1')[0]
 	const carouselSection = document.getElementsByClassName('receiver-child-2')[0]
@@ -51,12 +63,14 @@ function fetchBloodStock() {
 		.then((data) => {
 			// if no data , then show no stock available label
 			if (!data.data) {
-				//TODO : Show notification for no data
+				showNotification('INFO', 'Blood stock empty!')
 				notAvailableBloodStock.style.display = 'flex'
 				return
 			}
 
 			bloodStockMap = data.data
+
+			localStorage.setItem('bloodstock', JSON.stringify(bloodStockMap))
 
 			const bloodGroupButtonsArray = bloodGroupButtonsParent.children
 
@@ -84,9 +98,19 @@ function fetchBloodStock() {
 			loader.style.display = 'none'
 			buttonsSection.style.display = 'flex'
 			carouselSection.style.display = 'flex'
+
+			if (delayBloodStockFetchNotification) {
+				setTimeout(() => {
+					showNotification('INFO', 'Blood stock loaded successfully!')
+				}, 2000)
+			} else {
+				showNotification('INFO', 'Blood stock loaded successfully!')
+			}
 		})
 		.catch((err) => {
-			//TODO: Show notification for error
+			loader.style.display = 'none'
+			showNotification('INFO', 'Blood stock empty!')
+			notAvailableBloodStock.style.display = 'flex'
 			notAvailableBloodStock.style.display = 'flex'
 		})
 }
@@ -126,7 +150,12 @@ function processBloodInputText() {
 	const slider = document.getElementById('bloodSlider')
 	const receiveBloodFill = document.getElementsByClassName('receive-blood')
 
+	if (textbox.value < 0) {
+		textbox.value = 0
+	}
+
 	if (textbox.value > currentBloodMaxValue) {
+		showNotification('WARNING', 'Reached maximum blood amount !')
 		textbox.value = currentBloodMaxValue
 	}
 
@@ -156,21 +185,38 @@ function submitAndShowSecondCard() {
 	// below line will store the amount of blood chosen
 	const bloodAmount = document.getElementById('bloodInput').value
 
-	const bloodAmountLabel = document.getElementById('blood-amount')
-	const bloodTypeLabel = document.getElementById('blood-group')
+	if (parseInt(bloodAmount) < 50) {
+		showNotification('WARNING', 'Blood amount request should be atleast 50 mL!')
+		return
+	}
+	let bloodAmountLabel = document.getElementById('blood-amount')
+	let bloodTypeLabel = document.getElementById('blood-group')
 
-	bloodAmountLabel.innerHTML = bloodAmount
-	bloodTypeLabel.innerHTML = selectedBloodGroup
+	if (IsMobile()) {
+		bloodAmountLabel = document.getElementById('blood-amount-mobile')
+		bloodTypeLabel = document.getElementById('blood-group-mobile')
 
-	carousel[0].style.transform = 'translateX(-620px)'
+		bloodAmountLabel.innerHTML = bloodAmount
+		bloodTypeLabel.innerHTML = selectedBloodGroup
+		carousel[0].style.transform = 'translateX(-360px)'
+	} else {
+		bloodAmountLabel.innerHTML = bloodAmount
+		bloodTypeLabel.innerHTML = selectedBloodGroup
+		carousel[0].style.transform = 'translateX(-620px)'
+	}
 
 	var bloodRequiredTitle = document.getElementsByClassName('blood-required-title')
 	bloodRequiredTitle[0].style.display = 'none'
 }
 //#endregion
 
-//#region Drop Click
+//#region Blood Type Click
 function handleBloodTypeClick(clickedElement) {
+	if (clickedElement.classList.contains('not-available-blood')) {
+		showNotification('WARNING', `Blood type ${clickedElement.innerHTML} not available !`)
+		return
+	}
+
 	const bloodTypes = document.getElementsByName('blood_type')
 
 	const carousel = document.getElementsByClassName('carousel')
@@ -202,16 +248,18 @@ function goToReceiverChild2Card() {
 }
 //#endregion
 
-function handleAadharFormat(aadharTextBox) {
-	var text = aadharTextBox.value
+function handleAadharFormat(event, aadharTextBox) {
+	if (event.inputType !== 'deleteContentBackward') {
+		var text = aadharTextBox.value
 
-	// split text by '-' and join with empty space
-	var aadharInNumber = text.split('-').join('')
+		// split text by '-' and join with empty space
+		var aadharInNumber = text.split('-').join('')
 
-	if (aadharInNumber.length % 4 === 0 && aadharInNumber.length !== 0 && aadharInNumber.length != 12) {
-		text += '-'
+		if (aadharInNumber.length % 4 === 0 && aadharInNumber.length !== 0 && aadharInNumber.length != 12) {
+			text += '-'
+		}
+		aadharTextBox.value = text
 	}
-	aadharTextBox.value = text
 }
 
 //#region Receiver Submit Form
@@ -232,6 +280,7 @@ function submitGetBloodForm() {
 	if (!emailRegex.test(receiverEmail)) {
 		window.alert('Email format invalid')
 		document.getElementById('receiver-email').value = ''
+		return
 	}
 
 	var hyphenRemovedString = receiverAadhar.split('-').join('')
@@ -239,6 +288,7 @@ function submitGetBloodForm() {
 	if (!validateAadhaarNumber(hyphenRemovedString)) {
 		window.alert('Aadhar number invalid')
 		document.getElementById('receiver-aadhar').value = ''
+		return
 	}
 
 	const receiverPostData = {
@@ -265,12 +315,12 @@ function submitGetBloodForm() {
 			submitButton.style.display = 'flex'
 
 			if (data.data === 1) {
-				//TODO:Show notification of success
+				localStorage.setItem('notify-receiver', data.message)
 				window.location.reload(true)
 			}
 		})
 		.catch((err) => {
-			//TODO:Show notification of success
+			showNotification('ERROR', 'Server closed! Please check server.')
 			submitLoader.style.display = 'none'
 			submitButton.style.display = 'flex'
 		})

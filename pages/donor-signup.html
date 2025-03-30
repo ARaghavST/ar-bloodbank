@@ -1,71 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloodDonor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css" >
-    <link rel="stylesheet" href="/styles/donor-signup.css" >
-</head>
-<body>
-    <div class="navigation-bar">
-        <h1 align="center">Blood Bank</h1>
-        <div class="admin-button"> <i class="fas fa-headset"></i></div>
-      </div>
-    <div class="signup-donor-container">
-        <div class="signup-form">
-            <div class="signup-description">
-                <h3>Make a Difference – Register as a <span style="color: red;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BloodDonor</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/donor-signup.css">
+        <link rel="stylesheet" href="../styles/mobile-ui.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <h1 align="center">Blood Bank</h1>
+            <div class="admin-button">
+                <i class="fas fa-headset"></i>
+            </div>
+        </div>
+        <div class="signup-donor-container">
+            <div class="signup-form">
+                <div class="signup-description">
+                    <h3>
+                        Make a Difference – Register as a
+                        <span style="color: red;
                     font-weight: 600;
-                    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Donor </span>Now!</h3>
-                <p>Every donation you make is a heartbeat saved. Start your journey as a blood donor today!</p>
-            </div>
-            <div class="signup-item">
-                <input type="text" id="signup-name-text" placeholder="Your name" autocomplete="off"/>
-            </div>
-            <div class="signup-item">
-                <div>Date of Birth</div>
-                <input type="text" id="signup-dob-text" placeholder="DD/MM/YYYY"  autocomplete="off"/>
-            </div>
-            <div class="signup-item">
-                <span>You are a ? </span>
-                <div class="signup-radiogroup">
-                    <input type="radio" id="male-radio" name="gender" value="Male">Male</input>
-                    <input type="radio" id="female-radio" name="gender" value="Female">Female</input>
-                    <input type="radio" id="others-radio" name="gender" value="Others">Others</input>
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Donor &nbsp;</span>
+                        Now!
+                    </h3>
+                    <p>Every donation you make is a heartbeat saved. Start your journey as a blood donor today!</p>
+                    <p style="font-size: 10px; color: rgba(170, 17, 17, 0.959); font-style: italic;">* All fields are mandatory</p>
+                </div>
+                <div class="signup-item">
+                    <input
+                        type="text"
+                        id="signup-name-text"
+                        placeholder="Your name"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="signup-item">
+                    <div>Date of Birth</div>
+                    <input
+                        type="text"
+                        id="signup-dob-text"
+                        placeholder="DD/MM/YYYY"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="signup-item">
+                    <span>You are a ?</span>
+                    <div class="signup-radiogroup">
+                        <input
+                            type="radio"
+                            id="male-radio"
+                            name="gender"
+                            value="Male"
+                        >Male</input>
+                        <input
+                            type="radio"
+                            id="female-radio"
+                            name="gender"
+                            value="Female"
+                        >Female</input>
+                        <input
+                            type="radio"
+                            id="others-radio"
+                            name="gender"
+                            value="Others"
+                        >Others</input>
+                    </div>
+                </div>
+                <div class="signup-item">
+                    <!---   On input function (a.k.a event listener) for this text box is in script.js 90   -->
+                    <input
+                        type="text"
+                        id="signup-mobile-text"
+                        placeholder="Your Mobile Number"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="signup-item">
+                    <input
+                        type="text"
+                        id="signup-email-text"
+                        placeholder="Your Email"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="signup-item">
+                    <span>Your blood group</span>
+                    <select name="bg" id="listbox-bg">
+                        <option value="Select blood group" disabled selected>Select blood group</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="signup-item emergency-checkbox-item">
+                    <input
+                        type="checkbox"
+                        id="e_check"
+                        class="emergency-check"
+                        value="1"
+                    >
+                    <div>I will be available during emergencies</div>
+                </div>
+                <div class="signup-item submit-btn">
+                    <div class="submit-apply-test-button" onclick="onClickAFT()">APPLY FOR TEST</div>
                 </div>
             </div>
-            <div class="signup-item">
-                <!---   On input function (a.k.a event listener) for this text box is in script.js 90   -->
-                <input type="text" id="signup-mobile-text" placeholder="Your Mobile Number"  autocomplete="off" />
-            </div>
-            <div class="signup-item">
-                <input type="text" id="signup-email-text" placeholder="Your Email"  autocomplete="off"/>
-            </div>
-            <div class="signup-item">
-                <span>Your blood group</span>
-                <select name="bg" id="listbox-bg">
-                    <option value="Select blood group" disabled selected>Select blood group</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                  </select>
-            </div>
-            <div class="signup-item emergency-checkbox-item">
-               <input type="checkbox" id="e_check" class="emergency-check" value="1"/><div>I will be available during emergencies</div> 
-            </div>
-            <div class="signup-item submit-btn">
-                <div class="submit-apply-test-button" onclick="onClickAFT()">APPLY FOR TEST</div>
-            </div>
-        </div>    
+        </div>
+    </body>
+    <div class="notification">
+        <div class="cross-mark-div">
+            <i style="color: #8c8989; cursor: pointer;" class="fas fa-xmark" onclick="closeNotification()"></i>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; margin-top: 20px;">
+            <div class="noty-type"></div>
+            <div class="noty-message"></div>
+        </div>
     </div>
-</body>
-<script src="../script.js"></script>
+    <script src="../parent-script.js"></script>
 </html>

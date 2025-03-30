@@ -34,16 +34,12 @@
 
 
 .password-item {
-
     display: flex;
     align-items: center;
     justify-content: center;
     width: 300px;
 }
 
-.password-item > input {
-    height: 100%;
-}
 
 input:focus {
     outline: none;
@@ -105,3 +101,5 @@ input {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+

@@ -55,7 +55,7 @@
 .receiver-child-1{
     display: none;
     padding: 8px 2px;
-    justify-content: space-evenly
+    justify-content: space-evenly;
 }
 
 
@@ -188,6 +188,8 @@
     font-family: "Poppins" sans-serif;
     width: 600px;
 }
+
+
 
 .receiver-child-2{
     /* border: 1px solid red; */
