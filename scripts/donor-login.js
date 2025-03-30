@@ -1,5 +1,3 @@
-const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
-
 window.onload = function () {
 	if (localStorage.getItem('logged_out')) {
 		showNotification('SUCCESS', localStorage.getItem('logged_out'))

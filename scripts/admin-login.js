@@ -1,5 +1,3 @@
-const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
-
 function adminLogin() {
 	const emailText = document.getElementById('admin-email')
 	const passwordText = document.getElementById('admin-password')

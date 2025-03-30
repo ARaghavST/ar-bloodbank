@@ -1,5 +1,3 @@
-const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
-
 var lastDonatedDate = ''
 
 //#region Page Load functions
