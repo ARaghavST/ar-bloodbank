@@ -1,5 +1,5 @@
-const BLOODBANK_BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
-const LOCAL_BACKEND_URL = 'http://localhost:8080/bloodbank'
+const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
+// const LOCAL_BACKEND_URL = 'http://localhost:8080/bloodbank'
 
 window.onload = function () {
 	if (localStorage.getItem('notify-signup')) {

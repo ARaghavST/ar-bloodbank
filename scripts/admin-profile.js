@@ -1,4 +1,5 @@
-var BACKEND_URL = 'http://192.168.29.161:8080/bloodbank'
+// var BACKEND_URL = 'http://192.168.29.161:8080/bloodbank'
+const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
 
 let receiverDataArray = []
 
@@ -593,7 +594,7 @@ function showPendingReceiversList() {
 
 					if (IsMobile()) {
 						receiversContainer.innerHTML += `
-						<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno})">
+						<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${item.email}')">
 							${item.status === 1 ? '<div style="font-size:10px;" id="approved-tag">APPROVED</div>' : ''}
 							<div style="color:#ff5733";>
 							<div>Receiver's Name</div>
@@ -612,7 +613,9 @@ function showPendingReceiversList() {
 						`
 					} else {
 						receiversContainer.innerHTML += `
-                    <div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno})">
+                    <div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${
+							item.email
+						}')">
                         ${item.status === 1 ? '<div id="approved-tag">APPROVED</div>' : ''}
                         <h2>Receiver's Name : <span class="highlight">${item.name}</span></h2>
                         <p>📞 Phone: <span class="highlight">${item.phno}</span></p>
@@ -850,24 +853,42 @@ function applyFilter() {
 
 					// appending data items into receiver data container ("receivers-data")
 
-					receiversContainer.innerHTML += `
-					<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno})">
-						${item.status === 1 ? '<div style="font-size:10px;" id="approved-tag">APPROVED</div>' : ''}
-						<div style="color:#ff5733";>
-						<div>Receiver's Name</div>
-						<div><span class="highlight">${item.name}</span></div>
+					if (IsMobile()) {
+						receiversContainer.innerHTML += `
+						<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${item.email}')">
+							${item.status === 1 ? '<div style="font-size:10px;" id="approved-tag">APPROVED</div>' : ''}
+							<div style="color:#ff5733";>
+							<div>Receiver's Name</div>
+							<div><span class="highlight">${item.name}</span></div>
+							</div>
+							<p style="font-size:10px;">📞 Phone : <span class="highlight">${item.phno}</span></p>
+							<p style="font-size:10px;">📧 Email : <span class="highlight">${item.email}</span></p>
+							<p style="font-size:10px;">🆔 Aadhar : <span class="highlight">${item.aadhar}</span></p>
+							<p style="font-size:10px;">🩸 Blood Group Needed : <span class="highlight">${item.bg_needed}</span></p>
+							<p style="font-size:10px;">📦 Quantity : <span class="highlight">${item.quantity} mL</span></p>
+							<div class="footer">
+								<span style="font-size:10px;">📅 Requested on : &nbsp;<strong>${item.req_date}</strong></span>
+								<span style="font-size:10px;">#ID No: <strong>${item.sno}</strong></span>
+							</div>
 						</div>
-						<p style="font-size:10px;">📞 Phone : <span class="highlight">${item.phno}</span></p>
-						<p style="font-size:10px;">📧 Email : <span class="highlight">${item.email}</span></p>
-						<p style="font-size:10px;">🆔 Aadhar : <span class="highlight">${item.aadhar}</span></p>
-						<p style="font-size:10px;">🩸 Blood Group Needed : <span class="highlight">${item.bg_needed}</span></p>
-						<p style="font-size:10px;">📦 Quantity : <span class="highlight">${item.quantity} mL</span></p>
+						`
+					} else {
+						receiversContainer.innerHTML += `
+					<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${item.email}')">
+						${item.status === 1 ? '<div id="approved-tag">APPROVED</div>' : ''}
+						<h2>Receiver's Name : <span class="highlight">${item.name}</span></h2>
+						<p >📞 Phone : <span class="highlight">${item.phno}</span></p>
+						<p>📧 Email : <span class="highlight">${item.email}</span></p>
+						<p>🆔 Aadhar : <span class="highlight">${item.aadhar}</span></p>
+						<p>🩸 Blood Group Needed : <span class="highlight">${item.bg_needed}</span></p>
+						<p>📦 Quantity : <span class="highlight">${item.quantity} mL</span></p>
 						<div class="footer">
-							<span style="font-size:10px;">📅 Requested on : &nbsp;<strong>${item.req_date}</strong></span>
-							<span style="font-size:10px;">#ID No: <strong>${item.sno}</strong></span>
+							<span>📅 Requested on : &nbsp;<strong>${item.req_date}</strong></span>
+							<span>#ID No: <strong>${item.sno}</strong></span>
 						</div>
 					</div>
 					`
+					}
 
 					receiverDataArray.push(item)
 
@@ -901,9 +922,11 @@ function clearFilter() {
 //#endregion
 
 //#region Donor Card Click
-function handleCardClick(targetReceiverId) {
+var clickedReceiverEmail = ''
+function handleCardClick(targetReceiverId, targetReceiverMail) {
 	const clickedCardData = receiverDataArray.find((receiver) => receiver.sno === targetReceiverId)
 
+	clickedReceiverEmail = targetReceiverMail
 	const clickedCard = document.getElementsByClassName(`card-${targetReceiverId}`)[0]
 	const overlay = document.getElementsByClassName('overlay')[0]
 	const statusUpdateDialogBox = document.getElementsByClassName('update-status-dialog-box')[0]
@@ -948,6 +971,7 @@ function handleApproveReceiver() {
 		method: 'PUT',
 		body: JSON.stringify({
 			id: targetId,
+			email: clickedReceiverEmail ?? '',
 		}),
 	})
 		.then((response) => {
