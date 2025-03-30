@@ -1,4 +1,3 @@
-// const BACKEND_URL = 'http://192.168.29.161:8080/bloodbank'
 const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
 
 function adminLogin() {
