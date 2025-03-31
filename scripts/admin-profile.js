@@ -1288,11 +1288,21 @@ function handleDonationSubmit(donorId) {
 	const spinner = document.getElementsByClassName('dialog_spinner')[0]
 	const dialogButtonsToHide = document.getElementsByClassName('request_dialog_button')[0]
 
+	if (parseInt(weightAmount) < 50) {
+		window.alert('Weight of donor cannot be less than 50kg')
+		return
+	}
+
 	const updatePayload = {
 		donor_id: donorId + '',
 		row_id: clickedDonationRequestCard.row_id,
 		weight: weightAmount,
 		quantity: bloodAmountDiv.innerHTML.split(' ')[0],
+	}
+
+	if (parseInt(updatePayload.quantity) < 50) {
+		window.alert('Blood amount cannot be less than 50 mL')
+		return
 	}
 
 	spinner.style.display = 'flex'

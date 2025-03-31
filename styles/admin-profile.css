@@ -158,7 +158,7 @@
 }
 
 .card {
-    background: #e7dede70;
+    background: rgb(255, 240, 240);
     box-shadow: 1px 10px 8px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 30px;
@@ -496,7 +496,8 @@
 }
 
 .emergency-card{
-    background: #f80d0d0e;
+    background: #ffffff;
+    border-top: 4px solid #e60909
 }
 
 .emergency-card:hover{

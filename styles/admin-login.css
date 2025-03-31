@@ -59,8 +59,12 @@
     justify-content: space-evenly;
 }
 
+.fa-eye, .fa-eye-slash {
+    color: #da1c1c;
+}
+
 .login-form {
-    background-color: white;
+    background: rgb(252, 221, 221);
     font-family: "Poppins", serif;
     padding: 25px;
     font-size: 28px;

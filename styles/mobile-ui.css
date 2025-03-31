@@ -8,6 +8,9 @@
 
     /* index.html mobile starts */
     body{
+        background: url('../resources/bg-mobile.jpg') !important;
+        background-repeat: no-repeat !important;
+        background-size: 50vh 100vh !important;
         overflow-x: hidden;
         overflow-y: scroll;
     }
@@ -26,13 +29,17 @@
         display: flex;
         margin: 0 auto;
         padding: 15px;
+        
         transform: translateY(45%);
     }
 
     .donor-ctr-center{
+        background: white;
         display: flex !important;
         flex-direction: column;
         gap: 25px;
+        /* background: rgb(248, 234, 234); */
+        box-shadow: 2px 2px 20px rgba(0,0,0,1);
         width: 100%;
         font-size: 34px;
     }
@@ -113,7 +120,14 @@
     .receiver-parent-3{
         display: flex;
         justify-content: center;
+    
     }
+
+    .receiver-parent-2 h2,p {
+
+        text-shadow: 2px 2px 1px rgb(255,255,255) !important;
+    }
+
 
    
 
@@ -371,6 +385,25 @@
         
     }
 
+    .signup-form {
+        font-size: 12px !important;
+    }
+
+    .signup-form input {
+        font-size: 12px !important;
+    }
+
+    .signup-form select {
+        font-size: 12px !important;
+    }
+
+    .mobile-strong {
+        font-weight: 600;
+    }
+    
+    .signup-radiogroup input[type=radio]{
+        accent-color: #c41111;
+    }
     .donor-card{
         width: 90%;
     }
@@ -488,9 +521,20 @@
     /* donor-profile.html ends */
 
 }
+/* Mobile device CSS end */
 
+
+
+
+
+/* Desktop device only below*/
 
 @media only screen and (min-width: 992px) {
+
+    .profile-card-3 h3{
+        text-align: center;
+    }
+
     .mobile-hide {
         display: block;
     }

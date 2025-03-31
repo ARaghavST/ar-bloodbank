@@ -441,7 +441,7 @@ function openDonationConfirmationDialog() {
 		const date = new Date(lastDonatedDate)
 		date.setDate(date.getDate() + 91)
 		const nextDonationDate = date.toISOString().replace('T', ' ').split(' ')[0]
-		showNotification('WARNING', `You have donated blood recently! Now you can donate after ${nextDonationDate}`)
+		window.alert(`You have donated blood recently! Now you can donate after ${nextDonationDate}`)
 		return
 	}
 
