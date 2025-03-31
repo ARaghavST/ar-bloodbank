@@ -162,7 +162,7 @@ function onClickAFT() {
 		e_ready: e_available,
 	}
 
-	fetch(`${LOCAL_BACKEND_URL}/donor/`, {
+	fetch(`${BACKEND_URL}/donor/`, {
 		method: 'POST',
 		body: JSON.stringify(signupData),
 	})
