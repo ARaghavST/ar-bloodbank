@@ -40,6 +40,34 @@
     /* width: 300px; */
     align-items: center;
 }
+
+.spinner-parent-div {
+    display: none;
+    justify-content: center;
+}
+
+.spinner {
+    width: 18px;
+    scale: 1;
+    height: 18px;
+    border-radius: 50% !important;
+    border-style:solid !important;
+    border: 2px solid #c51313;
+    border-top: 2px solid transparent;
+    animation: spin 1s linear infinite;
+    cursor: not-allowed;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .signup-item > div {
     width: 200px;
 }
@@ -98,6 +126,7 @@
     width: 100% !important;
     justify-content: center;
 }
+
 
 .submit-apply-test-button {
     background-color: rgba(255, 70, 70, 0.9);

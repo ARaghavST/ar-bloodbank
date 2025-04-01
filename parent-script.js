@@ -1,12 +1,19 @@
+// This backend url is for onrender deployed backend
 const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
-// const LOCAL_BACKEND_URL = 'http://localhost:8080/bloodbank'
 
+// This backend url is the local running backend
+// const BACKEND_URL = 'http://localhost:8080/bloodbank'
+
+// onload runs everytime my html page reloads
+
+// this functionality is done to show alert on successful signup
 window.onload = function () {
 	if (localStorage.getItem('notify-signup')) {
-		showNotification('SUCCESS', localStorage.getItem('notify-signup'))
+		window.alert(localStorage.getItem('notify-signup'))
 		localStorage.removeItem('notify-signup')
 	}
 
+	// this will render admin login icon in navigation bar
 	renderAdminIcon()
 }
 
@@ -112,14 +119,16 @@ mobileTextBox
 //#endregion
 
 //#region Donor Signup logic
-// AFT stand for "Apply For Test" in Donor--> SingnUp page
+// AFT stand for "Apply For Test" in Donor--> SignUp page
 function onClickAFT() {
+	const spinnerParent = document.getElementsByClassName('spinner-parent-div')[0]
+	const submitButton = document.getElementsByClassName('submit-btn')[0]
 	const name = document.getElementById('signup-name-text').value
 	const dob = document.getElementById('signup-dob-text').value
 	const mobile = document.getElementById('signup-mobile-text').value
 	const email = document.getElementById('signup-email-text').value
 
-	const gender = document.querySelector('input[name="gender"]:checked').value
+	const gender = document.querySelector('input[name="gender"]:checked')
 
 	var e_available = document.querySelector('input[id="e_check"]:checked') ? 1 : 0
 
@@ -129,6 +138,7 @@ function onClickAFT() {
 
 	var listLength = listbox.options.length
 	for (var i = 0; i < listLength; i++) {
+		// this is for selecting blood group from list box
 		if (listbox.options[i].selected) {
 			bloodGroup = listbox.options[i].value
 		}
@@ -138,6 +148,11 @@ function onClickAFT() {
 	const dateRegx = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/
 	//Regular expression for Email in DOB in Donor-->SignUp Page
 	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+	if (!gender) {
+		showNotification('ERROR', 'Please choose gender!')
+		return
+	}
 
 	if (!dateRegx.test(dob)) {
 		showNotification('ERROR', 'Invalid date format given!')
@@ -157,10 +172,19 @@ function onClickAFT() {
 		dob: dob,
 		phno: mobile,
 		email: email,
-		gender: gender[0],
+		gender: gender.value,
 		blood_group: bloodGroup,
 		e_ready: e_available,
 	}
+
+	submitButton.style.display = 'none'
+	spinnerParent.style.display = 'flex'
+
+	// setTimeout(() => {
+	// 	window.alert('Email already in use!')
+	// 	submitButton.style.display = 'flex'
+	// 	spinnerParent.style.display = 'none'
+	// }, 2000)
 
 	fetch(`${BACKEND_URL}/donor/`, {
 		method: 'POST',
@@ -170,14 +194,34 @@ function onClickAFT() {
 			return response.json()
 		})
 		.then((data) => {
+			submitButton.style.display = 'flex'
+			spinnerParent.style.display = 'none'
+
 			if (!data.error) {
 				localStorage.setItem('notify-signup', 'Donor signup successful ! You will receive mail for approval.')
+				// below line will reload the page, which will run window.onload function | Line-10
 				window.location.reload(true)
 			} else {
-				showNotification('ERROR', 'Unable to process signup !')
+				// if we received error from backend
+				// we will empty all input fields
+				document.getElementById('signup-name-text').value = ''
+				document.getElementById('signup-dob-text').value = ''
+				document.getElementById('signup-mobile-text').value = ''
+				document.getElementById('signup-email-text').value = ''
+
+				const allCheckBoxes = document.getElementsByName('gender')
+				allCheckBoxes.forEach((checkbox) => [(checkbox.checked = false)])
+				document.querySelector('input[id="e_check"]').checked = false
+
+				document.getElementById('listbox-bg').options[0].selected = true
+
+				window.alert(data.error)
 			}
 		})
 		.catch((err) => {
+			// this the case when backend is not running OR is stopped
+			submitButton.style.display = 'flex'
+			spinnerParent.style.display = 'none'
 			showNotification('ERROR', 'Server closed! Please check server.')
 		})
 
@@ -190,17 +234,13 @@ function onClickAFT() {
 
 /** The HTML code for creation of table is present in script.js line no. 189 - 195 */
 
-function removeBlackScreen() {
-	const screen = document.getElementById('screen-1')
-
-	screen.style.display = ''
-}
-
 //#region Admin icon render
+// this function is used to decide on which html page we need to show admin icon in navigation bar
 function renderAdminIcon() {
 	const adminIcon = document.getElementsByClassName('admin-button')[0]
 
 	path = window.location.pathname
+
 	adminIcon.style.display = path === '/' || path === '/index.html' ? 'block' : ''
 }
 
