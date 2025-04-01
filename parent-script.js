@@ -172,7 +172,7 @@ function onClickAFT() {
 		dob: dob,
 		phno: mobile,
 		email: email,
-		gender: gender.value,
+		gender: gender.value[0],
 		blood_group: bloodGroup,
 		e_ready: e_available,
 	}
