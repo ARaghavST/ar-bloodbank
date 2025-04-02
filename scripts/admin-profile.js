@@ -953,7 +953,7 @@ function handleCloseDialog() {
 }
 //#endregion
 
-//#region Approve Rec Logic
+//#region ReceiverApprove
 function handleApproveReceiver() {
 	const updateStatusDialogBox = document.getElementsByClassName('update-status-dialog-box')[0]
 	const spinnerParent = document.getElementsByClassName('spinner-parent-div')[0]
@@ -962,12 +962,16 @@ function handleApproveReceiver() {
 	updateStatusDialogBox.style.display = 'none'
 	spinnerParent.style.display = 'flex'
 
+	const targetBloodGroup = document.getElementById('rec_bg').innerHTML
+	const targetBloodAmount = document.getElementById('rec_amount').innerHTML
 	const targetId = document.getElementById('rec_id').innerHTML.substring(1)
 
 	fetch(`${BACKEND_URL}/update-status?for=receiver`, {
 		method: 'PUT',
 		body: JSON.stringify({
 			id: targetId,
+			blood_group: targetBloodGroup,
+			amount: targetBloodAmount,
 			email: clickedReceiverEmail ?? '',
 		}),
 	})
@@ -1283,6 +1287,7 @@ function handleDonationSubmit(donorId) {
 	const clickedDonationRequestCard = donationRequestArray.find((card) => parseInt(card.donor_id) === donorId)
 
 	const bloodAmountDiv = document.getElementById('donated_amount_text')
+	const bloodGroupDiv = document.getElementById('donor_bgroup')
 	const weightAmount = document.getElementById('donation_request_weight_input').value
 
 	const spinner = document.getElementsByClassName('dialog_spinner')[0]
@@ -1295,6 +1300,7 @@ function handleDonationSubmit(donorId) {
 
 	const updatePayload = {
 		donor_id: donorId + '',
+		blood_group: bloodGroupDiv.innerHTML,
 		row_id: clickedDonationRequestCard.row_id,
 		weight: weightAmount,
 		quantity: bloodAmountDiv.innerHTML.split(' ')[0],

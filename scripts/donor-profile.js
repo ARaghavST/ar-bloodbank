@@ -533,6 +533,8 @@ function submitBloodDonationRequest() {
 		.then((data) => {
 			showNotification('SUCCESS', 'Donation request submitted !')
 
+			updateLocalStorageDonorItem()
+
 			dateInput.input = ''
 			spinnerDiv.style.display = 'none'
 			overlay.style.display = 'none'
@@ -546,3 +548,14 @@ function submitBloodDonationRequest() {
 		})
 }
 //#endregion
+
+function updateLocalStorageDonorItem() {
+	const localStorageDonorData = localStorage.getItem('donor')
+	let localStorageParsedDonorData = JSON.parse(localStorageDonorData)
+	localStorageParsedDonorData['status'] = 2
+	localStorage.setItem('donor', JSON.stringify(localStorageParsedDonorData))
+
+	setTimeout(() => {
+		window.location.reload(true)
+	}, 900)
+}
