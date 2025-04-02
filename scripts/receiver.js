@@ -101,7 +101,18 @@ function fetchBloodStock(delayBloodStockFetchNotification) {
 					showNotification('INFO', 'Blood stock loaded successfully!')
 				}, 2000)
 			} else {
-				showNotification('INFO', 'Blood stock loaded successfully!')
+				var bloodStockEmpty = true
+				Object.values(bloodStockMap).forEach((val) => {
+					if (val > 0) {
+						bloodStockEmpty = false
+					}
+				})
+
+				if (bloodStockEmpty) {
+					showNotification('WARNING', 'Blood bank is empty !')
+				} else {
+					showNotification('INFO', 'Blood stock loaded successfully!')
+				}
 			}
 		})
 		.catch((err) => {
@@ -183,6 +194,10 @@ function submitAndShowSecondCard() {
 	const bloodAmount = document.getElementById('bloodInput').value
 
 	if (parseInt(bloodAmount) < 50) {
+		if (IsMobile()) {
+			showNotification('WARNING', 'Blood request must be aleast 50 mL!')
+			return
+		}
 		showNotification('WARNING', 'Blood amount request should be atleast 50 mL!')
 		return
 	}
@@ -330,19 +345,25 @@ function submitGetBloodForm() {
 
 // This function is the one which updates the blood height in testtube and "Available amount" mark
 function handleFillBlood(clickedBloodType, availBloodAmount) {
-	const maxBloodAvailDiv = document.getElementsByClassName('blood')[0]
 	const receiveBloodDiv = document.getElementsByClassName('receive-blood')[0]
+	if (clickedBloodType) {
+		const maxBloodAvailDiv = document.getElementsByClassName('blood')[0]
 
-	clickedBloodType.classList.add('selected-blood')
+		clickedBloodType.classList.add('selected-blood')
 
-	const height = availBloodAmount / 10
+		const height = availBloodAmount / 10
 
-	currentBloodMaxValue = availBloodAmount
+		currentBloodMaxValue = availBloodAmount
 
-	setTimeout(() => {
-		animateBlood(receiveBloodDiv, height / 2)
-	}, 800)
-	animateBlood(maxBloodAvailDiv, height)
+		setTimeout(() => {
+			animateBlood(receiveBloodDiv, height / 2)
+		}, 800)
+		animateBlood(maxBloodAvailDiv, height)
+	} else {
+		const maxAmountMark = document.getElementsByClassName('max-line')[0]
+		receiveBloodDiv.style.height = '0%'
+		maxAmountMark.style.bottom = '-300px'
+	}
 }
 
 function animateBlood(bloodDiv, fillheight) {
