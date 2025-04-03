@@ -603,7 +603,9 @@ function showPendingReceiversList() {
 
 					if (IsMobile()) {
 						receiversContainer.innerHTML += `
-						<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${item.email}')">
+						<div class="card card-${item.sno} ${item.status === 1 ? 'approved-receiver' : ''}" onclick="handleCardClick(${item.sno},'${item.email}','${
+							item.name
+						}')">
 							${item.status === 1 ? '<div style="font-size:10px;" id="approved-tag">APPROVED</div>' : ''}
 							<div style="color:#ff5733";>
 							<div>Receiver's Name</div>
@@ -931,11 +933,13 @@ function clearFilter() {
 //#endregion
 
 //#region Donor Card Click
-var clickedReceiverEmail = ''
-function handleCardClick(targetReceiverId, targetReceiverMail) {
+var clickedReceiverEmail = null
+var clickedReceiverName = null
+function handleCardClick(targetReceiverId, targetReceiverMail, targetReceiverName) {
 	const clickedCardData = receiverDataArray.find((receiver) => receiver.sno === targetReceiverId)
 
 	clickedReceiverEmail = targetReceiverMail
+	clickedReceiverName = targetReceiverName
 	const clickedCard = document.getElementsByClassName(`card-${targetReceiverId}`)[0]
 	const overlay = document.getElementsByClassName('overlay')[0]
 	const statusUpdateDialogBox = document.getElementsByClassName('update-status-dialog-box')[0]
@@ -985,6 +989,7 @@ function handleApproveReceiver() {
 			blood_group: targetBloodGroup,
 			amount: targetBloodAmount,
 			email: clickedReceiverEmail ?? '',
+			name: clickedReceiverName ?? '',
 		}),
 	})
 		.then((response) => {
