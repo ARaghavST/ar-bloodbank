@@ -1,8 +1,8 @@
 // This backend url is for onrender deployed backend
-const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
+// const BACKEND_URL = 'https://ar-bloodbank-backend.onrender.com/bloodbank-1.0'
 
 // This backend url is the local running backend
-// const BACKEND_URL = 'http://localhost:8080/bloodbank'
+const BACKEND_URL = 'http://localhost:8080/bloodbank'
 
 // onload runs everytime my html page reloads
 
@@ -192,12 +192,6 @@ function onClickAFT() {
 
 	submitButton.style.display = 'none'
 	spinnerParent.style.display = 'flex'
-
-	setTimeout(() => {
-		window.alert('Email already in use!')
-		submitButton.style.display = 'flex'
-		spinnerParent.style.display = 'none'
-	}, 2000)
 
 	fetch(`${BACKEND_URL}/donor/`, {
 		method: 'POST',
