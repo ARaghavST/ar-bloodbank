@@ -476,6 +476,18 @@ function addAdminDonorFilters() {
 
 					currentDonorItems.push(item)
 
+					let name = ''
+					const nameArray = item.name.split(' ')
+
+					if (nameArray.length > 2) {
+						for (var j = 0; j < 2; j++) {
+							name += nameArray[j] + ' '
+						}
+						name = name.trimEnd(' ')
+					} else {
+						name = nameArray.join(' ')
+					}
+
 					donorDataContainer.innerHTML += `
                 <div class="donor-card ${item.e_ready === 1 ? 'emergency-card' : ''}" onclick="openDonorDetailsDialogBox(${item.id})">
                 <div style="display: flex; justify-content: space-between;">
@@ -483,7 +495,7 @@ function addAdminDonorFilters() {
                   <div style="color: #e22424; text-shadow: 1px 1px 10px rgba(0,0,0,0.8);">${item.blood_group}</div>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
-                 <div style="font-weight: 600;" id="donor_name">${item.name}</div>
+                 <div style="font-weight: 600;" id="donor_name">${name}</div>
                 <div style="display: flex; justify-content: space-around;gap: 2px;">
                  <div style="padding: 2px;" id="donor_gender">${item.gender}</div>
                  <div style="border-left: 2px solid #ccc;padding: 2px;" id="donor_age">${getYearsDifference(item.dob)}</div>
