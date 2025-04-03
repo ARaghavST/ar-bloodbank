@@ -177,14 +177,27 @@ function onClickAFT() {
 		e_ready: e_available,
 	}
 
+	var emptyFields = []
+
+	Object.entries(signupData).forEach((entry) => {
+		if (!entry[1]) {
+			entry[0] != 'e_ready' ? emptyFields.push(entry[0].toUpperCase()) : ''
+		}
+	})
+
+	if (emptyFields.length > 0) {
+		window.alert(`${emptyFields.join(',')} cannot be empty !`)
+		return
+	}
+
 	submitButton.style.display = 'none'
 	spinnerParent.style.display = 'flex'
 
-	// setTimeout(() => {
-	// 	window.alert('Email already in use!')
-	// 	submitButton.style.display = 'flex'
-	// 	spinnerParent.style.display = 'none'
-	// }, 2000)
+	setTimeout(() => {
+		window.alert('Email already in use!')
+		submitButton.style.display = 'flex'
+		spinnerParent.style.display = 'none'
+	}, 2000)
 
 	fetch(`${BACKEND_URL}/donor/`, {
 		method: 'POST',
@@ -269,19 +282,9 @@ function showAdminPassword() {
 
 /********************** Aadhar validation logics ******/
 //#region Aadhar logic
-function validateAadhaarNumber(aadhaar) {
-	// Regular expression to check if the Aadhaar number is exactly 12 digits
-	const aadhaarRegex = /^\d{12}$/
-
-	if (!aadhaarRegex.test(aadhaar)) {
-		return false // Aadhaar number must be 12 digits
-	}
-
-	return isValidVerhoeff(aadhaar)
-}
-
-// Verhoeff algorithm implementation
-const verhoeffTableD = [
+// Verhoeff Algorithm implementation for Aadhaar number validation
+// Multiplication table
+const d = [
 	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 	[1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
 	[2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
@@ -294,31 +297,37 @@ const verhoeffTableD = [
 	[9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
 ]
 
-const verhoeffTableP = [
+// Permutation table
+const p = [
 	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 	[1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
-	[2, 8, 0, 7, 9, 6, 4, 1, 3, 5],
-	[3, 9, 1, 0, 5, 7, 8, 2, 6, 4],
-	[4, 2, 8, 6, 7, 3, 0, 9, 5, 1],
-	[5, 4, 6, 8, 0, 2, 9, 7, 1, 3],
-	[6, 3, 9, 2, 8, 0, 7, 5, 4, 1],
-	[7, 0, 4, 9, 1, 5, 2, 3, 6, 8],
-	[8, 7, 5, 4, 3, 9, 1, 6, 0, 2],
-	[9, 6, 3, 5, 8, 1, 4, 7, 2, 0],
+	[5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
+	[8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
+	[9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
+	[4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
+	[2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
+	[7, 0, 4, 6, 9, 1, 3, 2, 5, 8],
 ]
 
-const verhoeffTableInv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9]
+// Inverse table
+const inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9]
 
-function isValidVerhoeff(aadhaar) {
-	let checksum = 0
-	let reversedArray = aadhaar.split('').reverse().map(Number)
-
-	for (let i = 0; i < reversedArray.length; i++) {
-		checksum = verhoeffTableD[checksum][verhoeffTableP[i % 8][reversedArray[i]]]
+function isValidAadhaar(aadhaar) {
+	if (!/^\d{12}$/.test(aadhaar)) {
+		return false // Must be exactly 12 digits
 	}
 
-	return checksum === 0
+	let c = 0 // Initial checksum value
+	let aadhaarDigits = aadhaar.split('').map(Number) // Convert string to number array
+
+	// Process digits in reverse order
+	for (let i = 0; i < 12; i++) {
+		c = d[c][p[i % 8][aadhaarDigits[11 - i]]]
+	}
+
+	return c === 0 // Valid if checksum is 0
 }
+
 //#endregion
 
 //#region Notification Logic

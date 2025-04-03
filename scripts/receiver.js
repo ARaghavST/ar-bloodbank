@@ -297,7 +297,7 @@ function submitGetBloodForm() {
 
 	var hyphenRemovedString = receiverAadhar.split('-').join('')
 
-	if (!validateAadhaarNumber(hyphenRemovedString)) {
+	if (!isValidAadhaar(hyphenRemovedString)) {
 		window.alert('Aadhar number invalid')
 		document.getElementById('receiver-aadhar').value = ''
 		return
@@ -310,6 +310,18 @@ function submitGetBloodForm() {
 		aadhar: hyphenRemovedString,
 		quantity: parseFloat(bloodAmount),
 		bg_needed: bloodGroup,
+	}
+
+	var isEmpty = false
+	Object.entries(receiverPostData).forEach((entry) => {
+		if (!entry[1]) {
+			window.alert(`${entry[0]} should not be empty!`)
+			isEmpty = true
+		}
+	})
+
+	if (isEmpty) {
+		return
 	}
 
 	submitButton.style.display = 'none'
