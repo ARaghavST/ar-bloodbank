@@ -551,7 +551,7 @@
 
 .donor-details-dialog-box{
     display: block;
-    width: 380px;
+    width: max-content;
     font-family: "Poppins", serif;
     box-shadow: 1px 1px 12px rgba(255, 255, 255, 0.8);
     border-radius: 8px;
