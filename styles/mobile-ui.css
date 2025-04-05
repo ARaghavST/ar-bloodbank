@@ -520,6 +520,43 @@
     }
     /* donor-profile.html ends */
 
+
+    /* About Us Section */
+
+    .about-us-dialog-box-parent{
+        padding: 10px;
+    }
+
+    .about-us-dialog-box {
+        transform: translateX(0%);
+        width: auto;
+    }
+
+    .about-us-dialog-box h2 {
+        font-size: 16px;
+    }
+
+    .about-us-dialog-box p,h4 {
+        font-size: 12px;
+    }
+
+    .about-us-dialog-box h4{
+        font-size: 12px;
+    }
+
+    .about-us-item {
+        font-size: 12px;
+        font-style: normal;
+    }
+
+    .about-us-item > div {
+        width: fit-content;
+    }
+
+  
+
+   
+
 }
 /* Mobile device CSS end */
 

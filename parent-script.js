@@ -396,6 +396,40 @@ function showNotification(type, message) {
 
 //#endregion
 
+//#region About Us Code
+
+function showAboutUs(aboutUsButton) {
+	const aboutUsDialogBox = document.getElementsByClassName('about-us-dialog-box-parent')[0]
+
+	aboutUsButton.style.display = 'none'
+	aboutUsDialogBox.style.display = 'flex'
+
+	aboutUsDialogBox.animate([{ top: '-400px' }, { top: '10px' }], {
+		duration: 400,
+		easing: 'ease-in-out',
+		iterations: 1,
+	})
+	aboutUsDialogBox.style.top = '10px'
+}
+
+function closeAboutUs() {
+	const aboutUsDialogBox = document.getElementsByClassName('about-us-dialog-box-parent')[0]
+	const aboutUsButton = document.getElementsByClassName('about-us-button-parent')[0]
+	aboutUsDialogBox.animate([{ top: '10px' }, { top: '-400px' }], {
+		duration: 400,
+		easing: 'ease-in-out',
+		iterations: 1,
+	})
+
+	aboutUsDialogBox.style.top = '-400px'
+	aboutUsButton.style.display = 'block'
+	setTimeout(() => {
+		aboutUsDialogBox.style.display = 'none'
+	}, 700)
+}
+
+//#endregion
+
 //#region Mobile device check
 function IsMobile() {
 	return window.matchMedia('(max-width: 480px)').matches

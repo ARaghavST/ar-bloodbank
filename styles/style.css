@@ -237,3 +237,84 @@ input.donor-check {
 }
 /* Notification style end */
 
+
+
+/* About us button */
+
+
+.about-us-button-parent {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.about-us-button{
+    background: #8a1414;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 2px 5px 25px rgba(0,0,0,1);
+    transition: all 0.2s ease-in-out;
+}
+
+.about-us-button:hover{
+    background: #d31414;
+    scale: 0.9;
+}
+
+
+.about-us-dialog-box-parent{
+    position: absolute;
+    font-family: "Poppins" serif;
+    top: -200px;
+    transition: all 0.4s ease-in-out;
+    display: none;
+}
+
+.about-us-dialog-box{
+    background: rgb(252, 216, 216);
+    width: 500px;
+    transform: translateX(100%);
+    box-shadow: 2px 2px 25px rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.about-us-dialog-box h2{
+    color: rgb(116, 12, 12); 
+    border-bottom: 4px solid rgb(116, 12, 12); 
+    width: 150px;
+}
+
+.about-us-dialog-box p{
+    margin-top: 10px;
+}
+
+.about-us-item {
+    display: flex;
+}
+.about-us-item div {
+    width: 100%;
+    font-family: 'Inter' sans-serif;
+    text-align: left;
+}
+
+.about-us-dialog-box h4{
+    margin-top: 5px;
+}
+
+
+.about-us-close-parent{
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+}
+.about-us-close-parent > div {
+    padding: 5px;
+    color: #8a1414;
+    font-size: 20px;
+}
