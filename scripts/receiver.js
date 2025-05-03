@@ -281,8 +281,13 @@ function submitGetBloodForm() {
 	const receiverEmail = document.getElementById('receiver-email').value
 	const receiverAadhar = document.getElementById('receiver-aadhar').value
 
-	const bloodAmount = document.getElementById('blood-amount').innerHTML
-	const bloodGroup = document.getElementById('blood-group').innerHTML
+	var bloodAmount = document.getElementById('blood-amount').innerHTML
+	var bloodGroup = document.getElementById('blood-group').innerHTML
+
+	if (IsMobile()) {
+		bloodAmount = document.getElementById('blood-amount-mobile').innerHTML
+		bloodGroup = document.getElementById('blood-group-mobile').innerHTML
+	}
 
 	const submitLoader = document.getElementsByClassName('receiver-submit-loader')[0]
 	const submitButton = document.getElementsByClassName('receiver-form-button-control')[0]
